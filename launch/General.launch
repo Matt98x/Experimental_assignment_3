@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+<!-- general parameters definition -->
+  <!-- Robot deginition -->
+  <arg name="model" default="$(find exp_assignment2)/urdf/robot.xacro" />
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" 
+	 command="$(find xacro)/xacro --inorder $(arg model)" />
+<!-- Start the assignment implementation -->  
+  <include file="$(find exp_assignment3)/launch/simulation.launch"/>
+  <include file="$(find exp_assignment3)/launch/rviz.launch"/>
+</launch>
