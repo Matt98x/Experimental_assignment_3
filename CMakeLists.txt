@@ -15,7 +15,13 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   tf
+  nav_msgs
+  nodelet 
+  openslam_gmapping
+  rosbag_storage
 )
+
+find_package(Boost REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -154,9 +160,39 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
+
+## Add all gmapping executable
+
+add_executable(slam_gmapping src/slam_gmapping.cpp src/main.cpp)
+target_link_libraries(slam_gmapping ${Boost_LIBRARIES} ${catkin_LIBRARIES})
+if(catkin_EXPORTED_TARGETS)
+  add_dependencies(slam_gmapping ${catkin_EXPORTED_TARGETS})
+endif()
+
+add_library(slam_gmapping_nodelet src/slam_gmapping.cpp src/nodelet.cpp)
+target_link_libraries(slam_gmapping_nodelet ${catkin_LIBRARIES})
+
+add_executable(slam_gmapping_replay src/slam_gmapping.cpp src/replay.cpp)
+target_link_libraries(slam_gmapping_replay ${Boost_LIBRARIES} ${catkin_LIBRARIES})
+if(catkin_EXPORTED_TARGETS)
+add_dependencies(slam_gmapping_replay ${catkin_EXPORTED_TARGETS})
+endif()
+
 #############
 ## Install ##
 #############
+
+
+## Install additional components
+install(TARGETS slam_gmapping slam_gmapping_nodelet slam_gmapping_replay
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(FILES nodelet_plugins.xml
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
