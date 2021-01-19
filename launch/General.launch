@@ -7,7 +7,21 @@
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" 
 	 command="$(find xacro)/xacro --inorder $(arg model)" />
+
+  <!-- Load the move_base launcher with its parameters -->
+
+    <arg name="des_x" default= "0.0"/>
+    <arg name="des_y" default= "0.0"/>
+    <param name="des_pos_x" value="$(arg des_x)" />
+    <param name="des_pos_y" value="$(arg des_y)" />
+    
+    <include file="$(find exp_assignment3)/launch/move_base.launch"></include>
+
+	
 <!-- Start the assignment implementation -->  
   <include file="$(find exp_assignment3)/launch/simulation.launch"/>
   <include file="$(find exp_assignment3)/launch/rviz.launch"/>
+ 
+
+
 </launch>

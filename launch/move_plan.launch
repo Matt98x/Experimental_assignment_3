@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+    <node pkg="exp_assignment3" type="wall_follow_service_m.py" name="wall_follower"/>
+    <node pkg="exp_assignment3" type="go_to_point_service_m.py" name="go_to_point" />
+    <!-- <node pkg="exp_assignment3" type="user_interface.py" name="user_interface" output="screen" /> -->
+    <node pkg="exp_assignment3" type="bug_m.py" name="bug" />
+</launch>

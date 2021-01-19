@@ -44,12 +44,13 @@
   <material name="white">
     <color rgba="1.0 1.0 1.0 1.0"/>
   </material>
+    
 
-	  <link name="link_chassis">
+    <link name="link_chassis">
     <!-- pose and inertial -->
     <pose>0 0 0.1 0 0 0</pose>
     <inertial>
-      <mass value="5"/>
+      <mass value="10"/>
       <origin rpy="0 0 0" xyz="0 0 0.1"/>
       <inertia ixx="0.0395416666667" ixy="0" ixz="0" iyy="0.106208333333" iyz="0" izz="0.106208333333"/>
     </inertial>
@@ -66,62 +67,113 @@
       </geometry>
       <material name="blue"/>
     </visual>
-    <!-- caster front -->
-    <collision name="caster_front_collision">
-      <origin rpy=" 0 0 0" xyz="0.1 0 -0.20"/>
-      <geometry>
-        <sphere radius="0.05"/>
-      </geometry>
-    </collision>
-    <visual name="caster_front_visual">
-      <origin rpy=" 0 0 0" xyz="0.1 0 -0.20"/>
-      <geometry>
-        <sphere radius="0.05"/>
-      </geometry>
-    </visual>
-    <!-- caster back -->
-    <collision name="caster_back_collision">
-      <origin rpy=" 0 0 0" xyz="-0.1 0 -0.20"/>
-      <geometry>
-        <sphere radius="0.05"/>
-      </geometry>
-    </collision>
-    <visual name="caster_back_visual">
-      <origin rpy=" 0 0 0" xyz="-0.1 0 -0.20"/>
-      <geometry>
-        <sphere radius="0.05"/>
-      </geometry>
-    </visual>
    <!-- arm left -->
-    <collision name="caster_back_collision">
+    <collision name="arm_left_collision">
       <origin rpy=" 0 0 0" xyz="0.1 -0.20 0.05"/>
       <geometry>
         <box size="0.2 0.05 0.05"/>
       </geometry>
     </collision>
-    <visual name="caster_back_visual">
+    <visual name="arm_left_visual">
       <origin rpy=" 0 0 0" xyz="0.1 -0.20 0.05"/>
       <geometry>
         <box size="0.2 0.05 0.05"/>
       </geometry>
     </visual>
-   <!-- arm left -->
-    <collision name="caster_back_collision">
+   <!-- arm right -->
+    <collision name="arm_right_collision">
       <origin rpy=" 0 0 0" xyz="0.1 0.20 0.05"/>
       <geometry>
         <box size="0.2 0.05 0.05"/>
       </geometry>
     </collision>
-    <visual name="caster_back_visual">
+    <visual name="arm_right_visual">
       <origin rpy=" 0 0 0" xyz="0.1 0.20 0.05"/>
       <geometry>
         <box size="0.2 0.05 0.05"/>
       </geometry>
     </visual>
-   
   </link>
 
-   <link name="link_right_wheel">
+   
+
+
+<!-- castor wheels -->
+
+ <link name="link_castor_axis">
+    <!-- pose and inertial -->
+    <pose>0 0 0.1 0 0 0</pose>
+    <xacro:default_inertial mass="2" />
+    <!-- body -->
+    <collision name="collision_chassis">
+      <origin rpy="0 0 0" xyz="0.025 0 0"/>
+      <geometry>
+        <box size="0.05 0.035 0.03"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.025 0 0"/>
+      <geometry>
+        <box size="0.05 0.035 0.03"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="link_castor_wheel">
+    <xacro:default_inertial mass="0.8"/>
+    <collision name="link_castor_wheel_collision">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.03"/>
+      </geometry>
+    </collision>
+    <visual name="link_castor_wheel_visual">
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.02" radius="0.03"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="joint_castor_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="0.05 0 -0.015"/>
+    <child link="link_castor_wheel"/>
+    <parent link="link_castor_axis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+
+  <joint name="joint_castor_axis" type="continuous">
+    <origin rpy="0 0 0" xyz="0.1 0 -0.20"/>
+    <child link="link_castor_axis"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 0 1"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+
+ <!-- Main wheels -->
+  <joint name="joint_right_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.1 0.175 -0.14"/>
+    <child link="link_right_wheel"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+  
+  
+  <joint name="joint_left_wheel" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.1 -0.175 -0.14"/>
+    <child link="link_left_wheel"/>
+    <parent link="link_chassis"/>
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <limit effort="10000" velocity="1000"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <link name="link_right_wheel">
     <xacro:default_inertial mass="0.2"/>
     <collision name="link_right_wheel_collision">
       <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
@@ -147,26 +199,8 @@
     </visual>
   </link>
 
+<!-- Neck and head -->
 
-  <joint name="joint_right_wheel" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0.175 -0.15"/>
-    <child link="link_right_wheel"/>
-    <parent link="link_chassis"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-  
-  
-  <joint name="joint_left_wheel" type="continuous">
-    <origin rpy="0 0 0" xyz="0 -0.175 -0.15"/>
-    <child link="link_left_wheel"/>
-    <parent link="link_chassis"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-  
   <link name="neck_link">
 	    <collision>
 	      <origin xyz="0 0 0.10" rpy="0 0 0"/>
@@ -212,7 +246,7 @@
 	    <inertial>
 	      <mass value="1e-5" />
 	      <origin xyz="0 0 0" rpy="0 0 0"/>
-	      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+	      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1" iyz="0" izz="1e-6" />
 	    </inertial> 
   </link>
   
