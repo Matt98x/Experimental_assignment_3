@@ -1,0 +1,16 @@
+ <launch>
+
+<param name="owner/x"  value="2" />
+<param name="owner/y"  value="2" />
+<param name="home/x"  value="5" />
+<param name="home/y"  value="5" />
+<param name="in_course"  value="0" />
+<param name="state"  value="1" />
+
+    <node pkg="exp_assignment3" name="Pet_logic" type="Pet_logic.py" output="screen"/>
+    <node pkg="exp_assignment3" name="Human" type="Command_giver.py"/> 
+    <group ns="robot">
+       <node pkg="exp_assignment3" name="Pet_behaviour" type="Pet_behaviours.py" output="screen"/>
+       <node name="Perception" pkg="exp_assignment3" type="robot_following.py" output="screen" />
+    </group>
+</launch>

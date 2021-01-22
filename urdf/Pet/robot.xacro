@@ -145,7 +145,7 @@
   </joint>
 
   <joint name="joint_castor_axis" type="continuous">
-    <origin rpy="0 0 0" xyz="0.1 0 -0.20"/>
+    <origin rpy="0 0 0" xyz="0.18 0 -0.20"/>
     <child link="link_castor_axis"/>
     <parent link="link_chassis"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
