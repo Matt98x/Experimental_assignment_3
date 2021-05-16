@@ -15,13 +15,17 @@
     <param name="des_pos_x" value="$(arg des_x)" />
     <param name="des_pos_y" value="$(arg des_y)" />
     
-    <include file="$(find exp_assignment3)/launch/move_base.launch"></include>
+    <include file="$(find exp_assignment3)/launch/move_base.launch"></include> -
 
 	
-<!-- Start the assignment implementation -->  
-  <include file="$(find exp_assignment3)/launch/simulation.launch"/>
-  <include file="$(find exp_assignment3)/launch/rviz.launch"/>
+<!-- Start the assignment implementation -->
+  <node name="gmappping" pkg="exp_assignment3" type="gmapping_muting.sh" /> <!-- Launch gmapping in a secondary tab to avoid showing its output in the main shell --> 
+  <include file="$(find exp_assignment3)/launch/simulation.launch"/> <!-- launch gazebo and initialize the simulation environment -->
+  <include file="$(find exp_assignment3)/launch/rviz.launch"/> <!-- launch rviz -->
+
  
 
+<!-- Start the robot behaviors -->
 
-</launch>
+
+</launch>	
