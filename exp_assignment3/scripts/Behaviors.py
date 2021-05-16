@@ -8,16 +8,6 @@
 
 ## Libraries declaration
 import rospy
-
-
-from geometry_msgs.msg import Twist, Point, Pose, PoseStamped, Pose2D
-from turtlesim.srv import *
-from std_msgs.msg import String
-from std_msgs.msg import Bool
-from std_srvs.srv import Empty
-from robot_pose_ekf.srv import GetStatus
-from tf.transformations import euler_from_quaternion
-from nav_msgs.msg import Odometry
 import time
 import math
 import sys
@@ -26,7 +16,16 @@ import smach
 import smach_ros
 import actionlib
 import actionlib.msg
-import exp_assignment2.msg
+import exp_assignment3.msg
+
+from geometry_msgs.msg import Twist, Point, Pose, PoseStamped, Pose2D
+from turtlesim.srv import *
+from std_msgs.msg import String
+from std_msgs.msg import Bool
+from std_srvs.srv import Empty
+from robot_pose_ekf.srv import GetStatus
+from tf.transformations import euler_from_quaternion
+
 
 
 ## Variable definition
@@ -80,12 +79,13 @@ vel_pub = rospy.Publisher("/robot/cmd_vel",
                                        Twist, queue_size=1)
 
 ## Function to assign the robot position via the action server
-def setPosition(x,y):
+def setPosition(x,y,theta):
 	global client
 	pose=Pose() # initialization of the pose message
 	pose.position.x=x #assign the x component
 	pose.position.y=y #assign the y component
 	pose.position.z=0 # the z component will be switched from over to under and vice versa
+	pose.quaternion=quaternion_from_euler(0,0,theta)
 	msg=PoseStamped() # create the correct format
 	msg.pose=pose # initialize a goal object with the correct format
 	goal=exp_assignment2.msg.PlanningGoal(target_pose=msg) # initialize a goal object with the correct format
@@ -97,9 +97,10 @@ def setPosition(x,y):
 def roam():
 	global x,y
 	## Command decision
-	dx=random.randint(-7,7) # find a random point in the grid for x
-	dy=random.randint(-7,7) # find a random point in the grid for y 
-	setPosition(dx,dy)  # set the new goal position
+	dx=random.uniform(-7,7) # find a random point in the grid for x
+	dy=rand(-7,7) # find a random point in the grid for y
+	dtheta=random.uniform(-math.pi,math.pi)
+	setPosition(dx,dy,dtheta)  # set the new goal position
 
 ## Sleep: class that describes the Sleep state
 class Sleep(smach.State):
@@ -109,19 +110,19 @@ class Sleep(smach.State):
 	
 
     def execute(self, userdata):
-	global x,y,client
-	## Check if in normal or not
-	client.cancel_goal() # cancel previous goals
+				global x,y,client
+				## Check if in normal or not
+				client.cancel_goal() # cancel previous goals
 	
-	## while not at home
-	xtar=rospy.get_param('/home/x')
-	ytar=rospy.get_param('/home/y')
-	setPosition(xtar,ytar)
-	while True: ## change state if not sleep
-		state=rospy.get_param('/state')
-		if not state==3:
-			return 'outcome1'
-		
+				## while not at home
+				x=rospy.get_param('/home/x')
+				y=rospy.get_param('/home/y')
+				theta=rospy.get_param('/home/theta')
+				setPosition(xtar,ytar)
+				while True: ## change state if not sleep
+					state=rospy.get_param('/state')
+					if not state==0:
+						return 'outcome1'
 		
 ## Normal: class that describes the Normal state
 class Normal(smach.State):
@@ -130,23 +131,23 @@ class Normal(smach.State):
         smach.State.__init__(self, outcomes=['outcome1','outcome2'])
 
     def execute(self, userdata):
-	client.cancel_goal() # cancel previous goals
-	var=1 # if you are roaming
-	while True:
+				client.cancel_goal() # cancel previous goals
+				var=1 # if you are roaming
+				while True:
 		
-		if var==1: # if to not preempt the roam goal if the pet is going there
-			## roam
-			roam()
-			var=0
-		else:
-		     if client.get_state()==3: # the goal was achieved
-			var=1
-		## check the state
-		state=rospy.get_param('/state')
-  		if state==2:
-			return 'outcome1'
-		elif state==3:
-			return 'outcome2'
+					if var==1: # if to not preempt the roam goal if the pet is going there
+						## roam
+						roam()
+						var=0
+					else:
+						if client.get_state()==3: # the goal was achieved
+							var=1
+					## check the state
+					state=rospy.get_param('/state')
+					if state==2:
+						return 'outcome1'
+					elif state==0:
+						return 'outcome2'
 
 ## Play: class that describes the Play state
 class Play(smach.State):
@@ -155,29 +156,29 @@ class Play(smach.State):
         smach.State.__init__(self, outcomes=['outcome1','outcome2'])
 
     def execute(self, userdata):
-	global camera_angle , radius, rob_angle, vel_pub,client
-	client.cancel_goal() # cancel previous goals
-	while True:
+				global camera_angle , radius, rob_angle, vel_pub,client
+				client.cancel_goal() # cancel previous goals
+				while True:
 		
-		vel=Twist()
-		if radius>-0.5:
-			# logic to go closer to the ball but not close enough to flip the robot
-			if radius<=125:
-				vel.linear.x=-0.012*(radius-125)
-				if camera_angle*camera_angle>0.001:		
-					vel.angular.z=2*(camera_angle)
-			else:
-				if radius<128:
-					vel.linear.x=-0.012*(radius-128)
+					vel=Twist()
+					if radius>-0.5:
+						# logic to go closer to the ball but not close enough to flip the robot
+						if radius<=125:
+							vel.linear.x=-0.012*(radius-125)
+							if camera_angle*camera_angle>0.001:		
+								vel.angular.z=2*(camera_angle)
+						else:
+							if radius<128:
+								vel.linear.x=-0.012*(radius-128)
 			
-			vel_pub.publish(vel)
-		## check the state
-		state=rospy.get_param('/state')		
-		if state==3:
-			return 'outcome2'
+						vel_pub.publish(vel)
+					## check the state
+					state=rospy.get_param('/state')		
+					if state==0:
+						return 'outcome2'
 		
-		if state==1:
-			return 'outcome1'
+					if state==1:
+						return 'outcome1'
 
 
 ## Main function declaration
@@ -193,23 +194,23 @@ if __name__ == '__main__':
 	
 
 	## Create a SMACH state machine
-        sm_s_a = smach.StateMachine(outcomes=['outcome4'])
+    sm_s_a = smach.StateMachine(outcomes=['outcome4'])
 
-        ## Open the container
-        with sm_s_a:
+    ## Open the container
+    with sm_s_a:
 
 	    ## Add states to the container
 	    smach.StateMachine.add('NORMAL', Normal(), 
 				          transitions={'outcome1':'PLAY', 
 				                       'outcome2':'SLEEP'})
-            ## Add states to the container
-            smach.StateMachine.add('SLEEP', Sleep(), 
-					transitions={'outcome1':'NORMAL'})
+        ## Add states to the container
+        smach.StateMachine.add('SLEEP', Sleep(), 
+									transitions={'outcome1':'NORMAL'})
 
 	    ## Add states to the container
 	    smach.StateMachine.add('PLAY', Play(), 
 				          transitions={'outcome1':'NORMAL', 
 				                       'outcome2':'SLEEP'})
 	    
-            ## Execute SMACH plan
-            outcome = sm_s_a.execute()
+    ## Execute SMACH plan
+    outcome = sm_s_a.execute()
