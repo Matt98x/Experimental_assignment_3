@@ -78,12 +78,14 @@ def enclosing_circle(cnts):
     center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
     return [x,y,radius,center]
 
-def caption(image_np,x,y,radius,center):
+def caption(image_np,x,y,radius,center,name):
     # draw the circle and centroid on the frame,
     # then update the list of tracked points
+    font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.circle(image_np, (int(x), int(y)), int(radius),
                                 (0, 255, 255), 2)
-    cv2.circle(image_np, center, 5, (0, 0, 255), -1)
+    cv2.circle(image_np, center, 5, (0, 0, 255), -1) 
+    cv2.putText(image_np,name,(int(x),int(y)), font, 1,(255,255,255),2)   
 
 ## CLASS
 
@@ -150,7 +152,7 @@ class image_feature:
             y=temp[1] ## y-coordinate
             radius=temp[2] ## save the radius
             center=temp[3] ## coordinates of the center
-            caption(image_np,x,y,radius,center) ## put a caption on the circle
+            caption(image_np,x,y,radius,center,"???") ## put a caption on the circle
             # if the radius is between a minimum and and acceptable one move the robot
             # towards the ball
             if radius > 10 and radius <= max_rad:
@@ -170,7 +172,11 @@ class image_feature:
                     y=temp[1] ## y-coordinate
                     radius=temp[2] ## save the radius
                     center=temp[3] ## coordinates of the center
-                    caption(image_np,x,y,radius,center) ## put a caption on the circle
+                    if checked[i]:
+                        name_i=name[i]
+                    else:
+                        name_i="???"
+                    caption(image_np,x,y,radius,center,name) ## put a caption on the circle
                     
 						
         # Show the image to screen
