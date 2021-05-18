@@ -26,6 +26,6 @@
  
 
 <!-- Start the robot behaviors -->
-<node name="perception" pkg="exp_assignment3" type="Perception.py" /> <!-- Perception node of the robot -->
+<node name="perception" pkg="exp_assignment3" output="screen" type="Perception.py" /> <!-- Perception node of the robot -->
 
 </launch>	
