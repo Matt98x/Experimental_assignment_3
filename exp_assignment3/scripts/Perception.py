@@ -160,6 +160,7 @@ class image_feature:
         seen=[0]*len(seen)
         center = None
         cnts=[None]*len(seen)
+        active=0
 
         ## Check all colors to see if a ball is in the image
         for i in range(len(names)):
@@ -178,7 +179,8 @@ class image_feature:
             cnts[i] = imutils.grab_contours(cnts[i])
             if len(cnts[i])>0: ## if there is a ball of color with index i
                 if checked[i]==0: ## if the ball have never been seen before
-                    if rospy.get_param("state")!=4:
+                    ## if you are in a state where you are interested in tracking the ball
+                    if rospy.get_param("state")==1 or rospy.get_param("state")==2:
                         prev_state=rospy.get_param("state")
                         rospy.set_param("state",4)
                     active=1
@@ -217,7 +219,7 @@ class image_feature:
                     vel2=0
                 # unify the two velocities
                 ang_vel=gain1*angle1+gain2*angle2*(min_value-value_min)
-                lin_vel=gain3*vel1+gain4*vel2
+                lin_vel=gain3*vel1+gain4*vel2*1/(((min_value-value_min)+0.01)*((min_value-value_min)+0.01))
                 # apply the velocity
                 vel=Twist()
                 #if abs(ang_vel)>threshold:

@@ -3,7 +3,9 @@
 <!-- general parameters definition -->
   <!-- Robot deginition -->
   <arg name="model" default="$(find exp_assignment3)/urdf/Pet/robot.xacro" />
-
+  <param name="home/x" value="0" />
+  <param name="home/y" value="0" />
+  <param name="home/theta" value="0" />
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
 
@@ -13,19 +15,18 @@
     <arg name="des_y" default= "0.0"/>
     <param name="des_pos_x" value="$(arg des_x)" />
     <param name="des_pos_y" value="$(arg des_y)" />
-		<param name="state" value="0" />
+		<param name="state" value="1" />
     
-    <include file="$(find exp_assignment3)/launch/move_base.launch"></include> -
+    <include file="$(find exp_assignment3)/launch/move_base.launch"></include> 
 
 	
 <!-- Start the assignment implementation -->
   <node name="gmappping" pkg="exp_assignment3" type="gmapping_muting.sh" /> <!-- Launch gmapping in a secondary tab to avoid showing its output in the main shell --> 
   <include file="$(find exp_assignment3)/launch/simulation.launch"/> <!-- launch gazebo and initialize the simulation environment -->
   <include file="$(find exp_assignment3)/launch/rviz.launch"/> <!-- launch rviz -->
-
- 
+  <node name="m_action" pkg="exp_assignment3" output="screen" type="go_to_point_action.py" /> <!-- Behaviors node of the robot--> 
 
 <!-- Start the robot behaviors -->
-<node name="perception" pkg="exp_assignment3" output="screen" type="Perception.py" /> <!-- Perception node of the robot -->
-
+<node name="perception" pkg="exp_assignment3" output="screen" type="Perception.py" /> <!-- Perception node of the robot --> 
+<node name="behaviors" pkg="exp_assignment3" output="screen" type="Behaviors.py" /> <!-- Behaviors node of the robot-->
 </launch>	
