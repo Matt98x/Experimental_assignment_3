@@ -11,6 +11,8 @@ import rospy
 import time
 import math
 import sys
+import os
+import roslaunch
 import random
 import smach
 import smach_ros
@@ -54,10 +56,10 @@ def status_callback(rosdata):
 ## Subscribers definitions
 rospy.Subscriber("/odom",Odometry, angle_callback,  queue_size=1)
 vel_pub = rospy.Publisher("/cmd_vel",
-                                       Twist, queue_size=1)
-goal_pub= rospy.Publisher("/move_base_simple/goal", PoseStamped,queue_size=1)
-rospy.Subscriber("/move_base/status",GoalStatusArray,status_callback,queue_size=1)
-cancel_pub= rospy.Publisher("/move_base/cancel", GoalID,queue_size=1)
+                                       Twist, queue_size=1) # topic to command the velocity
+goal_pub= rospy.Publisher("/move_base_simple/goal", PoseStamped,queue_size=1) # topic to impose a goal in the map
+rospy.Subscriber("/move_base/status",GoalStatusArray,status_callback,queue_size=1) # topic to find the status of the move_base server
+cancel_pub= rospy.Publisher("/move_base/cancel", GoalID,queue_size=1) # topic to cancel the current objective of the move_base server
 
 ## Function to cancel the current move_base goal
 def cancel():
@@ -71,13 +73,13 @@ def setPosition(x,y,theta):
 	pose.position.x=x #assign the x component
 	pose.position.y=y #assign the y component
 	pose.position.z=0 # the z component will be switched from over to under and vice versa
-	temp=quaternion_from_euler(0,0,theta)
+	temp=quaternion_from_euler(0,0,theta) # generate a orientation quaternion from euler angles
 	pose.orientation.x=temp[0]
 	pose.orientation.y=temp[1]
  	pose.orientation.z=temp[2]
  	pose.orientation.w=temp[3]
 	msg=PoseStamped() # create the correct format
-	msg.header.frame_id="map"
+	msg.header.frame_id="map" # impose the map as the frame id
 	print(pose.position.x,pose.position.y)
 	msg.pose=pose # initialize a goal object with the correct format
 	goal_pub.publish(msg) # Sends the goal to the action server.
@@ -169,14 +171,22 @@ class Find(smach.State):
 
     def execute(self, userdata):
 				cancel() # cancel previous goals
+				package = 'explore_lite' # package of the exploration code
+				executable = 'explore' # exploration launcher
+				node = roslaunch.core.Node(package, executable) # node declaration
+				launch = roslaunch.scriptapi.ROSLaunch() # launcher initialization
+				launch.start() # launcher start
+				process = launch.launch(node) # launching the node
 				while True:
 					## check the state
-					state=rospy.get_param('/state')		
-					if state==0:
-						return 'outcome1'
-		
-					if state==4:
-						return 'outcome2'
+					state=rospy.get_param('/state')
+					if not state==3: # if we are not in find anymore
+						process.stop() # we stop the launcher 
+						if state==0: # if the robot want to go to sleep
+							return 'outcome1'
+			
+						if state==4: # if the robot found a ball to track
+							return 'outcome2'
 
 ## Track: class that describes the Track state
 class Track(smach.State):
@@ -185,14 +195,14 @@ class Track(smach.State):
         smach.State.__init__(self, outcomes=['outcome1','outcome2'])
 
     def execute(self, userdata):
-				cancel()
+				cancel() # cancel the current objective if any are present
 				while True:
 					## check the state
 					state=rospy.get_param('/state')		
-					if state==1:
+					if state==1: # return to normal
 						return 'outcome1'
 		
-					if state==2:
+					if state==2: # return to play
 						return 'outcome2'
 
 

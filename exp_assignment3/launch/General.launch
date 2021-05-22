@@ -15,7 +15,7 @@
     <arg name="des_y" default= "0.0"/>
     <param name="des_pos_x" value="$(arg des_x)" />
     <param name="des_pos_y" value="$(arg des_y)" />
-		<param name="state" value="1" />
+		<param name="state" value="3" />
     
     <include file="$(find exp_assignment3)/launch/move_base.launch"></include> 
 
@@ -28,5 +28,5 @@
 
 <!-- Start the robot behaviors -->
 <node name="perception" pkg="exp_assignment3" output="screen" type="Perception.py" /> <!-- Perception node of the robot --> 
-<node name="behaviors" pkg="exp_assignment3" output="screen" type="Behaviors.py" /> <!-- Behaviors node of the robot-->
+<!-- <node name="behaviors" pkg="exp_assignment3" output="screen" type="Behaviors.py" /> --><!-- Behaviors node of the robot-->
 </launch>	
