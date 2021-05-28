@@ -1,0 +1,49 @@
+ {\bfseries slam\+\_\+gmapping} is a wrapper around the G\+Mapping S\+L\+AM library. It reads laser scans and odometry and computes a map. This map can be written to a file using e.\+g. \char`\"{}rosrun map\+\_\+server map\+\_\+saver static\+\_\+map\+:=dynamic\+\_\+map\char`\"{} 
+
+ \hypertarget{index_topic}{}\section{R\+O\+S topics}\label{index_topic}
+Subscribes to (name/type)\+:
+\begin{DoxyItemize}
+\item {\bfseries \char`\"{}scan\char`\"{}/} \href{../../sensor_msgs/html/classstd__msgs_1_1LaserScan.html}{\tt sensor\+\_\+msgs/\+Laser\+Scan} \+: data from a laser range scanner
+\item {\bfseries \char`\"{}/tf\char`\"{}}\+: odometry from the robot Publishes to (name/type)\+:
+\item {\bfseries \char`\"{}/tf\char`\"{}/tf/tf\+Message}\+: position relative to the map 
+\end{DoxyItemize}\hypertarget{index_services}{}\section{services}\label{index_services}
+
+\begin{DoxyItemize}
+\item {\bfseries \char`\"{}$\sim$dynamic\+\_\+map\char`\"{}} \+: returns the map 
+\end{DoxyItemize}\hypertarget{index_parameters}{}\section{R\+O\+S parameters}\label{index_parameters}
+Reads the following parameters from the parameter server Parameters used by our G\+Mapping wrapper\+:
+\begin{DoxyItemize}
+\item {\bfseries \char`\"{}$\sim$throttle\+\_\+scans\char`\"{}}\+: {\bfseries }\mbox{[}int\mbox{]} throw away every nth laser scan
+\item {\bfseries \char`\"{}$\sim$base\+\_\+frame\char`\"{}}\+: {\bfseries }\mbox{[}string\mbox{]} the tf frame\+\_\+id to use for the robot base pose
+\item {\bfseries \char`\"{}$\sim$map\+\_\+frame\char`\"{}}\+: {\bfseries }\mbox{[}string\mbox{]} the tf frame\+\_\+id where the robot pose on the map is published
+\item {\bfseries \char`\"{}$\sim$odom\+\_\+frame\char`\"{}}\+: {\bfseries }\mbox{[}string\mbox{]} the tf frame\+\_\+id from which odometry is read
+\item {\bfseries \char`\"{}$\sim$map\+\_\+update\+\_\+interval\char`\"{}}\+: {\bfseries }\mbox{[}double\mbox{]} time in seconds between two recalculations of the map Parameters used by G\+Mapping itself\+: Laser Parameters\+:
+\item {\bfseries \char`\"{}$\sim$/max\+Range\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} maximum range of the laser scans. Rays beyond this range get discarded completely. (default\+: maximum laser range minus 1 cm, as received in the the first Laser\+Scan message)
+\item {\bfseries \char`\"{}$\sim$/max\+Urange\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} maximum range of the laser scanner that is used for map building (default\+: same as max\+Range)
+\item {\bfseries \char`\"{}$\sim$/sigma\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} standard deviation for the scan matching process (cell)
+\item {\bfseries \char`\"{}$\sim$/kernel\+Size\char`\"{}} {\bfseries }\mbox{[}int\mbox{]} search window for the scan matching process
+\item {\bfseries \char`\"{}$\sim$/lstep\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} initial search step for scan matching (linear)
+\item {\bfseries \char`\"{}$\sim$/astep\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} initial search step for scan matching (angular)
+\item {\bfseries \char`\"{}$\sim$/iterations\char`\"{}} {\bfseries }\mbox{[}int\mbox{]} number of refinement steps in the scan matching. The final \char`\"{}precision\char`\"{} for the match is lstep$\ast$2$^\wedge$(-\/iterations) or astep$\ast$2$^\wedge$(-\/iterations), respectively.
+\item {\bfseries \char`\"{}$\sim$/lsigma\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} standard deviation for the scan matching process (single laser beam)
+\item {\bfseries \char`\"{}$\sim$/ogain\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} gain for smoothing the likelihood
+\item {\bfseries \char`\"{}$\sim$/lskip\char`\"{}} {\bfseries }\mbox{[}int\mbox{]} take only every (n+1)th laser ray for computing a match (0 = take all rays)
+\item {\bfseries \char`\"{}$\sim$/minimum\+Score\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} minimum score for considering the outcome of the scanmatching good. Can avoid \textquotesingle{}jumping\textquotesingle{} pose estimates in large open spaces when using laser scanners with limited range (e.\+g. 5m). (0 = default. Scores go up to 600+, try 50 for example when experiencing \textquotesingle{}jumping\textquotesingle{} estimate issues) Motion Model Parameters (all standard deviations of a gaussian noise model)
+\item {\bfseries \char`\"{}$\sim$/srr\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} linear noise component (x and y)
+\item {\bfseries \char`\"{}$\sim$/stt\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} angular noise component (theta)
+\item {\bfseries \char`\"{}$\sim$/srt\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} linear -\/$>$ angular noise component
+\item {\bfseries \char`\"{}$\sim$/str\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} angular -\/$>$ linear noise component Others\+:
+\item {\bfseries \char`\"{}$\sim$/linear\+Update\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} the robot only processes new measurements if the robot has moved at least this many meters
+\item {\bfseries \char`\"{}$\sim$/angular\+Update\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} the robot only processes new measurements if the robot has turned at least this many rads
+\item {\bfseries \char`\"{}$\sim$/resample\+Threshold\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} threshold at which the particles get resampled. Higher means more frequent resampling.
+\item {\bfseries \char`\"{}$\sim$/particles\char`\"{}} {\bfseries }\mbox{[}int\mbox{]} (fixed) number of particles. Each particle represents a possible trajectory that the robot has traveled Likelihood sampling (used in scan matching)
+\item {\bfseries \char`\"{}$\sim$/llsamplerange\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} linear range
+\item {\bfseries \char`\"{}$\sim$/lasamplerange\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} linear step size
+\item {\bfseries \char`\"{}$\sim$/llsamplestep\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} linear range
+\item {\bfseries \char`\"{}$\sim$/lasamplestep\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} angular step size Initial map dimensions and resolution\+:
+\item {\bfseries \char`\"{}$\sim$/xmin\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} minimum x position in the map \mbox{[}m\mbox{]}
+\item {\bfseries \char`\"{}$\sim$/ymin\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} minimum y position in the map \mbox{[}m\mbox{]}
+\item {\bfseries \char`\"{}$\sim$/xmax\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} maximum x position in the map \mbox{[}m\mbox{]}
+\item {\bfseries \char`\"{}$\sim$/ymax\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} maximum y position in the map \mbox{[}m\mbox{]}
+\item {\bfseries \char`\"{}$\sim$/delta\char`\"{}} {\bfseries }\mbox{[}double\mbox{]} size of one pixel \mbox{[}m\mbox{]} 
+\end{DoxyItemize}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 ## @file robot_following.py
-# @brief Perception algorithm which handles the ball tracking and the swing routine
+# @brief Perception algorithm which handles the ball tracking and the obstacle avoidance while tracking
 #
 # Details: This node implements the perception algorithm to track the ball from images received from the simulation environment
 #
@@ -52,7 +52,7 @@ min_ang=0
 # scan data
 scans=[]
 # minimum distance from obstacles
-value_min=0.25
+value_min=0.30
 # robot position
 rob_x=0
 rob_y=0
@@ -63,8 +63,8 @@ prev_state=0
 
 ## ROOMS PARAMETERS
 names=["Entrance","Living_room","Closet","Kitchen","Bathroom","Bedroom"] ## rooms name
-lower=[0,100,50,25,125,0] ## lower value in first position of hsv
-upper=[5,130,70,35,150,5] ## upper value in first position of hsv
+lower=[100,50,0,25,125,0] ## lower value in first position of hsv
+upper=[130,70,5,35,150,5] ## upper value in first position of hsv
 checked=[0]*len(names) ## boolean of whether the ball have already been seen
 ## Track activate variable
 active=0
@@ -75,7 +75,7 @@ cnts=[None]*len(seen)
 
 ## GAINS
 gain1=0.003
-gain2=0.040
+gain2=0.042
 gain3=0.0035
 gain4=0.04
 
@@ -123,6 +123,57 @@ def caption(image_np,x,y,radius,center,name):
                                 (0, 255, 255), 2)
     cv2.circle(image_np, center, 5, (0, 0, 255), -1) 
     cv2.putText(image_np,name,(int(x),int(y)), font, 1,(255,255,255),2)   
+
+## action to take to avoid collisions
+def take_action(regions):
+    msg = Twist()
+    linear_x = 0
+    angular_z = 0
+
+    state_description = ''
+    p=0.2
+    if regions['front'] > 1 and regions['fleft'] > 1 and regions['fright'] > 1:
+        linear_x = 0.6
+        angular_z = 0
+    elif regions['front'] < 1 and regions['fleft'] > 1 and regions['fright'] > 1:
+        linear_x = 0
+        angular_z = -p
+    elif regions['front'] > 1 and regions['fleft'] > 1 and regions['fright'] < 1:
+        linear_x = 0
+        angular_z = -p
+    elif regions['front'] > 1 and regions['fleft'] < 1 and regions['fright'] > 1:
+        linear_x = 0
+        angular_z = p
+    elif regions['front'] < 1 and regions['fleft'] > 1 and regions['fright'] < 1:
+        linear_x = 0
+        angular_z = -p
+    elif regions['front'] < 1 and regions['fleft'] < 1 and regions['fright'] > 1:
+        linear_x = 0
+        angular_z = p
+    elif regions['front'] < 1 and regions['fleft'] < 1 and regions['fright'] < 1:
+        linear_x = 0
+        angular_z = -p
+    elif regions['front'] > 1 and regions['fleft'] < 1 and regions['fright'] < 1:
+        linear_x = 0
+        angular_z = -p
+    else:
+        state_description = 'unknown case'
+    msg.linear.x = linear_x
+    msg.angular.z = angular_z
+    return msg
+
+## obstacles region declaration to obstacle avoidance
+def clbk_laser(scan,k):
+    regions = {
+        'left':  min(min(scan[0:143]), k),
+        'fleft': min(min(scan[144:287]), k),
+        'front':  min(min(scan[288:431]), k),
+        'fright':  min(min(scan[432:575]), k),
+        'right':   min(min(scan[576:713]), k),
+    }
+
+    return take_action(regions)
+
 
 ## CLASS
 
@@ -175,23 +226,25 @@ class image_feature:
             mask = cv2.erode(mask, None, iterations=2)
             mask = cv2.dilate(mask, None, iterations=2)
             cnts[i] = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
-                                    cv2.CHAIN_APPROX_SIMPLE)
+                                cv2.CHAIN_APPROX_SIMPLE)
             cnts[i] = imutils.grab_contours(cnts[i])
+
             if len(cnts[i])>0: ## if there is a ball of color with index i
                 if checked[i]==0: ## if the ball have never been seen before
-                    ## if you are in a state where you are interested in tracking the ball
-                    if rospy.get_param("state")==1 or rospy.get_param("state")==2:
+                ## if you are in a state where you are interested in tracking the ball
+                    if rospy.get_param("state")==1 or rospy.get_param("state")==3:
                         prev_state=rospy.get_param("state")
+                        if prev_state==3:
+                            prev_state=2
                         rospy.set_param("state",4)
-                    active=1
                     break
-                else:
-                    seen[i]=1
+            else:
+                seen[i]=1
             
 
         # only proceed if at least one contour was found and the state is active(we have seen 
         #  a new ball)
-        if active and len(cnts[i])>0:
+        if rospy.get_param("state")==4 and len(cnts[i])>0:
             temp=enclosing_circle(cnts[i]) ## find the contour center and radius
             x=temp[0] ## x-coordinate
             y=temp[1] ## y-coordinate
@@ -202,31 +255,23 @@ class image_feature:
             # if the radius is between a minimum and and acceptable one move the robot
             # towards the ball
             if radius >0.01 and radius <= max_rad:
-                
-                # control to reach the ball(find angular and linear velocities)
-                angle1=-(x-800/2) # should put the width of the image as a variable
-                vel1=(max_rad-radius)
-                
-                # control to avoid the obstacle(find angular and linear velocities)
-                if len(scans)>0:
-                    min_value=min(scans) # find the distance to the closest obstacle
-                    min_index=scans.index(min_value) # find the index of the closest obstacle
-                    # find the angle of the closest obstacle with rispect to the robot
-                    angle2=min_ang+(min_index)*(max_ang-min_ang)/len(scans)
-                    vel2=(min_value-value_min)
+                if min(scans)>0.5:
+                    # control to reach the ball(find angular and linear velocities)
+                    angle1=-(x-800/2) # should put the width of the image as a variable
+                    vel1=(max_rad-radius)
+                    # unify the two velocities
+                    ang_vel=gain1*angle1
+                    lin_vel=gain3*vel1
+                    # apply the velocity
+                    vel=Twist()
+                    #if abs(ang_vel)>threshold:
+                    vel.angular.z=ang_vel
+                    #else:
+                    vel.linear.x=lin_vel
+                    self.vel_pub.publish(vel)
                 else:
-                    angle2=0
-                    vel2=0
-                # unify the two velocities
-                ang_vel=gain1*angle1+gain2*angle2*(min_value-value_min)
-                lin_vel=gain3*vel1+gain4*vel2*1/(((min_value-value_min)+0.01)*((min_value-value_min)+0.01))
-                # apply the velocity
-                vel=Twist()
-                #if abs(ang_vel)>threshold:
-                vel.angular.z=ang_vel
-                #else:
-                vel.linear.x=lin_vel
-                self.vel_pub.publish(vel)
+                    msg=clbk_laser(scans,2)
+                    self.vel_pub.publish(msg)
                 
             else: # in case the robot is close enough save the ball in the server and revert to
                   # the state the robot was in before it saw the ball
@@ -236,21 +281,26 @@ class image_feature:
                 rospy.set_param("/"+names[i]+"/x",rob_x)
                 rospy.set_param("/"+names[i]+"/y",rob_y)
                 rospy.set_param("/"+names[i]+"/theta",rob_theta)
-                rospy.set_param("state",prev_state)
+                rospy.set_param("cplace",names[i])
+                if not (names[i]==rospy.get_param("command")) and prev_state==3:
+                    rospy.set_param("state",3)
+                else:
+                    rospy.set_param("state",prev_state)
 
         else: # if a new ball is not observed
                 for i in range(len(seen)): ## put a circle around the ones that have been seen
-                    if len(cnts[i]):
-                        temp=enclosing_circle(cnts[i]) ## find the contour center and radius
-                        x=temp[0] ## x-coordinate
-                        y=temp[1] ## y-coordinate
-                        radius=temp[2] ## save the radius
-                        center=temp[3] ## coordinates of the center
-                        if checked[i]:
-                            name_i=names[i]
-                        else:
-                            name_i="???"
-                        caption(image_np,x,y,radius,center,name_i) ## put a caption on the circle
+                    if not cnts[i]==None:
+                        if len(cnts[i]):
+                            temp=enclosing_circle(cnts[i]) ## find the contour center and radius
+                            x=temp[0] ## x-coordinate
+                            y=temp[1] ## y-coordinate
+                            radius=temp[2] ## save the radius
+                            center=temp[3] ## coordinates of the center
+                            if checked[i]:
+                                name_i=names[i]
+                            else:
+                                name_i="???"
+                            caption(image_np,x,y,radius,center,name_i) ## put a caption on the circle
                     
 						
         # Show the image to screen
