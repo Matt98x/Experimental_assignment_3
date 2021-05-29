@@ -3,12 +3,13 @@
 <!-- general parameters definition -->
   <!-- Robot deginition -->
   <arg name="model" default="$(find exp_assignment3)/urdf/Pet/robot.xacro" />
-  <param name="home/x" value="0" />
-  <param name="home/y" value="0" />
+  <param name="home/x" value="4" />
+  <param name="home/y" value="1" />
   <param name="home/theta" value="0" />
-  <param name="owner/x" value="0" />
-  <param name="owner/y" value="0" />
-  <param name="owner/theta" value="0"/>
+  <param name="owner/x" value="-5" />
+  -x -6 -y 8.5 -z 0.34 -R 0 -P 0 -Y -0.75
+  <param name="owner/y" value="7.5" />
+  <param name="owner/theta" value="2.39"/>
   <param name="cplace" value="unknown" />
   <param name="destination/x" value="0" />
   <param name="destination/y" value="0" />
