@@ -1,111 +1,58 @@
 # Experimental robotic assignment 3
 
-<!-- <a href="http://htmlpreview.github.io/?https://github.com/Matt98x/Experimental_assignment_3/blob/main/html/index.html" title="Documentation">Documentation</a> -->
-
+<!-- <a href="http://htmlpreview.github.io/?https://github.com/Matt98x/Experimental_assignment_3/blob/main/html/index.html" title="Documentation">Documentation</a>
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/pet.PNG?raw=true "Title"">
+</p>
+<p align="center">
+  Pet
+</p> -->
 Documentation might take some time to load completely
 
 ## Introduction
 
 The aim of this assignment is to create a software architecture, which simulates a pet able to move autonomously inside a domestic environment, change its behavior and interact with a user, following its orders and exploring when asked to find unseen objectives.  
 
-The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it.  
+The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner.
+Here's a visual representation obtained from the simulation environment:  
 
-The robot itself was created for this assignment to allow for all the required features: it is a differential drive device with a camera(for the objectives detection and tracking), and a range-finder(to allow the obstacles avoidance).  
+The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
 
-<!-- 
-The pet has three states representing behaviours, that are simulated as a finite state machine with 3 states:  
-* Play 
-* Sleep 
-* Normal  
-  
-These states determine the way the robot act inside the grid, whether moving randomly as in normal, going to targets determined by the position of a ball guided by the human or simply sleeping in the home position.  
 
-The robot will change between states randomly, eccept for play, which is received by the user indirectly: by imposing a positive height with respect to the ground to the ball which can now be seen by the robot and activate the play routine.  
+It is a differential drive device with a camera(for the objectives detection and tracking) mounted on the head, and a range-finder(to allow the obstacles avoidance), which can be seen as the white box protruding from its chest.
+The differential drive regulates the posterior wheels speed to achieve forward and backward movements and the robot turning around the vertical axis. The smaller front castor wheel allow for a stable support of the robot and the proper working of the differential drive. 
 
-With respect to the first assignment, with the new simulation environment, both the world and the pet have been modified:
-* The pet is composed of: a 2 wheeled robot, with balance handled by a sphere(spherical wheel), a long neck in the front and a rgb camera which can oscillate by 90° in both directions, resembling a stylized dog. The movement is handled by a differential drive.
-<!--
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/pet.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  Pet
-</p>
-
-* The pet world is a delimited planar surface of dimension 16x16 with center at 0x0, the only objects inside the map are the user(a person sitted on a chair), the ball(a green sphere) and the pet, there can be no obstacles between the robot and the ball, which means that obstacle avoidance algorithms are not required.
-<!--
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/world.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  World
-</p>
- 
--->
 ## Software Architecture, State Machine and communications
 
+Here we show the main characteristics of the implemented system: the software architecture, the state machine and the communication methods.
+
 ### Architecture
-The software architecture consists in three main aspects:  
-* The Perception: which includes the obstacles avoidance feature while tracking and the objectives recognition
-* The Behaviors: which handles the sleep, normal and play behaviors and the change between all states 
-* The User-interface: which allow the interaction between the user and the pet and all the randomic behaviors of the latter(randomic state changes, destinations in case the user don't give any input for a prolonged time interval and so on)  
+The software architecture is built around a finite state machine which encodes all the robot behaviors and the conditions which govern the change of states. The logic being that all required features are just aspects of the states and their interaction, obtained by appropriately activating or deactivating parts of code depending on the system state.
 
-In general the architecture 
-  
-<!--
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/Component_diagrams.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  Component Diagram
-</p>
--->
-Going in depth of the components, we have:  
-* Random command generator(Command_giver.py): randomically sends a string representing a commands of the form: 'play'(to start the play state),'point to x y'(to simulate the pointing gesture to x y),'go to x y'(to simulate the voice command to x y) and 'hide'(to stop the play state without entering the sleep state)
-* Interpreter(Pet_logic.py): to interpret the string commands and translate them to movement of the ball, moreover, it handles the switch from play and normal to sleep and from sleep to normal
-* Pet behaviours(Pet_behaviours.py): that simulates behaviours as a finite state, in the already mentioned states
-* Perception(robot_following.py): which is the node that handles the camera inputs(target identification and research) and the hardware control for these tasks(control of the neck joint(target tracking) and body(target search) ) 
-* Actor: may or may not be present and provides the same type of messages that the Command_giver provides, adding also symbolical location such as "home" and "owner", moreover can query or set the state of the robot and interact with the parameters.
-* Ball: representation of the logic controlling the ball
-* Robot Control: representation of the low-level control of the ball
-* Gazebo: although not a logic part of the component diagram, it represent the way ball, robot control and perception are fundamentally part of the simulation and communicate with it
+A representation of the architecture can be given in the following image:
 
-Here we can see how these elements communicate between themselves and with the Gazebo simulation environment: 
-<!-- 
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/rqt_graph.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  RQT graph of the implementation
-</p>
--->
+This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture:
+* The "Behavior" component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.
+* The "Perception" component is an always active script which handles the features related to the camera. These are: the objective recognition(recognise the colored balls inside the image), the tracking and the obstacle avoidance while tracking(these two while moving closer to the recognised ball)
+* The "Explore_lite" refers to a package which is activated each time the pet is in the play state and is asked to go in a never previously seen room(and it deactivates otherwise). This package is not implemented by the author, but allow the exploration of the environment as a frontier elimination process, where the exploration is done when all the frontiers have been explored.
+* The "MoveBase"  package is another external source which handles the motion of the robot to specific destinations. It can be imagined as the high-level controller and generates from the input the differential control output to achieve the objective while avoiding the obstacles and detecting whether the objective is achievable.
+* The "User interface" handles both the randomic aspects of the robot(as the change of the states, and the inputs in case the user do not give one) and the interaction with the user, which can select when to enter the play state and where to go when the robot is at the user.
+* The "Gazebo" environment handles the simulation of the entire system both of the robot movement and of the sensor data, which it distributes via publish/subscribe topics.
+
+Althought they might seem disconnected, these nodes share information via a global parameter server which allow all nodes to have a singular always updated source of information.
+
 ### State Machine
-Now, we can discuss the finite state machine. This, can be described by the following image:
-<!--
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/general_state_machine.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  Finite state machine diagram
-</p>
--->
-The Normal state is the simplest in nature of the three states, it simply consist of a loop of setting random destinations inside the grid without other interventions while the targets are not achieved.  
+The state machine is implemented as a python script implementing a smach class.
+This is composed by the following 6 states:
+* Sleep: this state makes the robot go from its current position to its "home" or "doghouse" situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.
+* Normal: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)
+* Play:
+* Find:
+* Track:
+* Recovery:
 
-On the other hand, the sleep consists in setting the target to 'home' (set in the parameter server), and, when the position is achieved, just wait ignoring all signals exept for the change of state.  
+More concisely, we can see the interaction between the states in the following diagram:
 
-While the 'Sleep' and 'Normal' states are quite simple in nature, the 'Play' state is quite more complex in nature.  
-
-Of course, having to consider the position of the ball without having it, we have to construct a control with the few notions we have: the relative radius of the ball and the angle of the neck with respect to the principal axis of the chassis(that is the principal axis of the robot).  
-
-With this, the algorithm is to first minimize the angular offset of the neck w.r.t. the body rotating the body itself and then set a linear velocity while the robot receives the two data from the Perception node.  
-
-Obviously, while this process is happening, the state is checked and change if the change conditions are satisfied.  
-
-Although this is the part of the state explicitely coded in the finite state machine, an additional part is present inside the Perception node and is related to how the target is handled and searched.  
-
-When the target is achieved, the robot proceeds to what has been defined as "swing routine", in which it moves the neck 45° to the left and to the right before centering back again to the target.  
-
-When, eventually, the robot loose sight of the ball (always inside the perception code), the robot align the camera to the body and start spinning in the same direction of the last velocity of the body(right if the velocity was to be zero), to try and find it back again, if it cannot manage it, it will switch to the normal state.  
 
 ### Messages and parameters
 
