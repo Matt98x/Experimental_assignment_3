@@ -16,6 +16,7 @@ The aim of this assignment is to create a software architecture, which simulates
 The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner.
 Here's a visual representation obtained from the simulation environment:  
 
+### The robot
 The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
 
 
@@ -183,118 +184,101 @@ Final_assignment/
 
 ```
 
-
-As already said, the implementation is based on two packages: exp_assignment2 and pet_2.  
-The first handle the simulation of the environment and the movements of the elements in it. In particular, it contains the world, robot and ball description, with the additional control parameters and related topics.  
-The script present in this package are just 2:  
-* go_to_point_action.py: action server to handle the movement of the robot to a specified target
-* go_to_point_ball.py: action server to move the ball to a specified target
-Going over to the pet_2 package, this handles the pet from perception to behaviours, plus the ball movement:  
-* Command_giver.py: randomically generate command for the ball to follow
-* Pet_logic: receives the commands from the command_giver and convert them to movements of the ball, apart from changing the state from play and normal to sleep and sleep to normal.
-* Pet_behaviours.py: is the implementation of the finite state machine, or at least, the entirety of the sleep and normal phase and the control part of the play state
-* robot_following.py: implement the perception part of the robot(in particular the vision), and handles the control of the neck joint, the swing routine and the switch from normal to play and vice versa
-
-This were the scripts which are at the core of this implementation, but, at the side, there are other scripts.  
-Starting from exp_assignment2:
-* gazebo_world.launch: inside the "launch" folder: handles the definition of the simulation environment and of the elements inside it, and the controller for them.
-* The urdf folder contains the xacro and gazebo description of the ball and robot
-* the config folder containing the motor_config.yaml, with the controller description
-* Planning.action is the message of the action server
-* Finally the world folder contains the world description  
-
 ## Installation and running procedure
+Here we will show the installation procedures and how to run the code, with the instructions to reproduce the behaviors obtained in this project.
+
+### Prerequisites
+* ROS melodic
+* Smach
+* Gazebo
 
 ### Installation
-
-* Download the package from the github repository
-* Set the package in the src folder of the catkin workspace
+To download the package on the desired machines there are two ways
+* Download the package from the github repository and put the whole content in the src folder of the desired catkin workspace
+* Set the package in the src folder of the catkin workspace with a gi command
 ```sh
-	 git clone https://github.com/Matt98x/Experimental_assignment_2.git
+	 git clone https://github.com/Matt98x/Experimental_assignment_3.git
  ```
-* Go to the main folder of the catkin workspace and launch
+ After the installation we can source the setup.bash file inside the devel folder of the catkin workspace 
 ```sh
+	(Inside the catkin workspace)
 	 source /devel/setup.bash
-	.catkin_make
+	catkin_make
  ```
+ 
 ### Running
 
 * After the compiler has completed its task we can use the same shell to launch the simulation environment.
 ```sh
-	roslauch exp_assignment2 gazebo_world.launch
+	roslauch exp_assignment3 General.launch
  ```
-* On a differrent shell we can launch the pet control
-```sh
-	roslauch pet_2 launcher.launch
- ```
-* Now the implementation is up and running
-* One can observe the world and ball behaviour in the first shell, on the other there shell there is the robot states, and whether the target is achieved
+
+When completed the launch will result in the following windows being open:
+* The shell where the code have been launched: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement
+* A second shell reporting the LaserScan data status
+* A third shell with the possibility to introduce user commands
+* The Gazebo simulation environment
+* The Rviz visualizer
+* A window showing what the robot sees
+
+With this one can decide to just leave the robot roam and change state inside the environment or can give commands via the user interface as it will be explained in the next section.
 
 ### User commands
 
-While there is the Command_giver to generate random commands, a human user can interface with the implementation, giving command using the following command.  
-* To write a command:
-```sh
-	rostopic pub /commander std_msgs/String "data: ''" 
- ```
-where, in place of '', you can put any commands as presented before.  
-* Moreover, one can set the state(play(2),normal(1) and sleep(0)), writing:
-```sh
-	rosparam /state state_code 
- ```
-state_code is to be substitute with one of the integer code stated
-
+* User Interface (In the proper shell, type one of the following commands being sure to respect the case of each letter and pressing ENTER after that)
+	* help: will display the list of possible commands with a brief description
+	* play: will set the robot in play state(waking up the robot if the user use it during the robot sleep state)
+	* room_list: will display the list of all available rooms
+	* go to 'room name' (with the name of the rooms in room_list, respecting the casing of the letters): when the robot is at the user, it can receive a command with the name of a room, if the room has been seen it will go to the memorized pose and come back, if not it will start exploring till a new ball have been found and then it will come back to the user
+* Rviz
+	* Selecting the command 2D navigation tool in the top part of the Rviz GUI and selecting an achievable point in the map will set the robot in the recovery state. In this, the robot will forget everything it was doing and achieve that position, after that it will come back to the normal state 
 
 ## Working assumptions
 
 The working assumptions will be discussed as the following list:
-* The robot, simulating a pet, interact with a human with a ball moving in the environment and moves in a 2D surface in a simulation environment.
-* Both the robot targets and its positions belongs exclusively to the map(16 by 16 grid with center in (0,0))representing the 2D environment.
-* The robot has 3 main states:
-	- Play
-	- Normal
-	- Sleep
-* The logic receive forms in strings with possible form:
-	- "play"
-	- "hide"	
-	- "go to x1 y1" (equivalent to voice command)
-	- "point to x1 y1" (equivalent to pointing commands)
-* Once logic receives the message it applies it to the ball
-* if the command is "play", the ball is positioned above ground, if "hide", it is positioned below the ground  .
-* The robot activates the play mode only when the robot perceives the ball.
-* When the ball is percieved the robot tries to get to it
-* When achieved the "swing routine" is initialized, for which the neck is first angled to pi/4 and then too -pi/4 and then back to center
-* If the ball is not in sight anymore, the robot procede to a full rotation to find if the ball is still in the environment, if not, it switch to the normal state..
-* Two predifined positions inside the map are "Owner" and "Home", which cannot be changed during the execution, and can be used instead of coordinates in giving commands.
+* The robot, simulating a pet move in a completely static world, so there are no moving or variable obstacles.
+* The world is composed of 6 rooms containing a colored ball each, and is completely unknown to the robot at the beginning of program execution.
+* It is in one and only one state at a time
+* The objectives are represented by uniform color balls, which can not be found anywhere else in the entire environment. 
+* Each color is mapped to a specific room name (e.g. blue ball: kitchen).
+* A new ball can only be recognise when the robot is in the normal or find state
+* The commands can be just received when the robot is at the user 
 
 ## System features and limitations
 
-Starting from the limitations:
-* The system is not scalable in the number of individually controllable robots, but if all robots have the same state, it is scalable, even if collision between robots are not handled
+### Limitations
+Here some systemic limitation given by the structure of the architecture:
+* The system is not scalable in the number of individually controllable robots, but if all robots have the same state, it is scalable
 * It is not scalable in the number of symbolic locations
 * It is not really scalable in the number of states
-* Does not distinguish between the pointing action and the vocal command, since the ball act
-* The robot control is not too responsive, since the control can't have a too high gain to avoid instability and the robot toppling over.
-* The movement speed is high but make a trade-off for instability
-* There are some problems with the target reaching when it is on the side of the robot especially when really close to the chassis(It cannot handle small curvature radii and the robot tends to run in circles around the target)
-* Underline jittering in the motors, observable when control is not yet active
+* There are some problems with the target reaching the robot when it really close to the chassis
+* The method to launch the find state is slow since every time a roslaunch must be called
 
-Going on to the features:
-* The robot is controlled in almost its entirety by the pet package, which means a high scalability and modularity
-* We have the robot perspective in a separate window 
-* Can show the location of the robot in the map
-* The robot can check the state without being stuck in an action server loop
-* The implementation is stable even with random commands and long running tests
+Apart from these we have some limitations in the working procedures:
+* For some still unidentified reasons, sometimes, the robot have have a false positive in the recognition of an already seen ball and end up moving against a wall(To correct it one can use the recovery state)
+* There is some collision between the obstacle avoidance and the tracking control which mean that the angular position of the robot might swing when approaching a ball close to the wall
+* If the robot is interrupted during a tracking phase derived from the find state it might miss the identification of a ball
+
+### Features
+Talking about the system features, they can be divided in required and not required.
+As part of the first category we have:
+* autonomous navigation of a robot in an ideal indoor environment
+* building a map autonomously with frontier bases exploration and SLAM
+* Reliable detection of colored balls in a controlled environment
+* Perform visual servoing to approach a target detected by the camera while avoiding obstacles
+* Visualization of the map, and costmap in RVIZ including the colored balls, that have been found, as colored markers
+
+For the second, we have:
+* The simplicity of the system makes it robust enough for long using(it performed up to 6 hours without problems before interrupting the test)
+* Using the perception node as the track state allow for a modular design, and using just one track state instead of two separate
 
 
 ## Possible technical improvements
 
-There are many possible technical improvements to this architecture:  
-* Modify the simulation component to make it more scalable, introducing the state change from and to sleep inside the pet_package
-* Improve the control, of both the camera and the robot chassis in such a way to perform both linear and angular velocities, and in a way that the robot do not topple over
-* Handle the situation when the ball is close to the side of the robot, in order to have it centered inside the robot perspective
-* Add a way to avoid collisions with other obstacles, with the possible introduction of a proximity sensor of some sort
-* Add multiple robots to the simulation  
+* Add multiple robots to the simulation possibly adding namespaces to represent the knowledge of each robot
+* Integrate the explore-lite to run continuously and find a way to activate and deactivate it
+* Find a way to stop the exploration if all frontiers have been explored and give a way to explore after that if a ball have been missed(It has not appened during testing but it might happen if the robot is interrupted while tracking, the current solution is to use the normal state to eventually find them)   
+* Add a user readable debugging tool
 
 ## Author and contacts
 Matteo Palmas: matteo.palmas7gmail.com
