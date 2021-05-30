@@ -80,325 +80,106 @@ Regarding the messages, they will be listed as
 ## Packages and file list
 ```sh
 Final_assignment/
-\u251c\u2500\u2500 Doxyfile
-\u251c\u2500\u2500 Output
-\u2502   \u251c\u2500\u2500 html
-\u2502   \u2502   \u251c\u2500\u2500 annotated.html
-\u2502   \u2502   \u251c\u2500\u2500 annotated_dup.js
-\u2502   \u2502   \u251c\u2500\u2500 arrowdown.png
-\u2502   \u2502   \u251c\u2500\u2500 arrowright.png
-\u2502   \u2502   \u251c\u2500\u2500 bc_s.png
-\u2502   \u2502   \u251c\u2500\u2500 bdwn.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track.html
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track.js
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature.html
-\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature.js
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet-members.html
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet.html
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet.js
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.map
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.md5
-\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.png
-\u2502   \u2502   \u251c\u2500\u2500 classes.html
-\u2502   \u2502   \u251c\u2500\u2500 closed.png
-\u2502   \u2502   \u251c\u2500\u2500 dir_0136a534909667e9cbf2a898cb5153b9.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_116596e0c729dc38d37cfe0fe56b0dcf.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_759eff52ee33e92141c35462e7d596f0.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_7c9c90449ab1b5d80ba53974162999c9.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_994e7a8b085fdbb2ba4c7924a58d5edc.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_be4942ffe1a87acd682939009f47bbc5.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_c4e379ddd84f01aa8654d40405866908.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_e1ec3933232776542ad5c2f6e6441b3c.html
-\u2502   \u2502   \u251c\u2500\u2500 dir_e6add6e1e4d3a6f847ec1265a5533f0d.html
-\u2502   \u2502   \u251c\u2500\u2500 doc.png
-\u2502   \u2502   \u251c\u2500\u2500 doxygen.css
-\u2502   \u2502   \u251c\u2500\u2500 doxygen.png
-\u2502   \u2502   \u251c\u2500\u2500 dynsections.js
-\u2502   \u2502   \u251c\u2500\u2500 folderclosed.png
-\u2502   \u2502   \u251c\u2500\u2500 folderopen.png
-\u2502   \u2502   \u251c\u2500\u2500 functions.html
-\u2502   \u2502   \u251c\u2500\u2500 functions_func.html
-\u2502   \u2502   \u251c\u2500\u2500 graph_legend.html
-\u2502   \u2502   \u251c\u2500\u2500 graph_legend.md5
-\u2502   \u2502   \u251c\u2500\u2500 graph_legend.png
-\u2502   \u2502   \u251c\u2500\u2500 hierarchy.html
-\u2502   \u2502   \u251c\u2500\u2500 hierarchy.js
-\u2502   \u2502   \u251c\u2500\u2500 index.html
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.map
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.md5
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.png
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.map
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.md5
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.png
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.map
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.md5
-\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.png
-\u2502   \u2502   \u251c\u2500\u2500 inherits.html
-\u2502   \u2502   \u251c\u2500\u2500 jquery.js
-\u2502   \u2502   \u251c\u2500\u2500 nav_f.png
-\u2502   \u2502   \u251c\u2500\u2500 nav_g.png
-\u2502   \u2502   \u251c\u2500\u2500 nav_h.png
-\u2502   \u2502   \u251c\u2500\u2500 navtree.css
-\u2502   \u2502   \u251c\u2500\u2500 navtree.js
-\u2502   \u2502   \u251c\u2500\u2500 navtreedata.js
-\u2502   \u2502   \u251c\u2500\u2500 navtreeindex0.js
-\u2502   \u2502   \u251c\u2500\u2500 open.png
-\u2502   \u2502   \u251c\u2500\u2500 resize.js
-\u2502   \u2502   \u251c\u2500\u2500 search
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_0.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_0.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_1.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_1.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_2.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_2.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_3.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_3.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_4.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_4.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_5.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_5.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_6.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_6.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_7.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_7.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_0.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_0.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_1.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_1.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_2.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_2.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_3.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_3.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_4.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_4.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_5.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_5.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_6.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_6.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 close.png
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 functions_0.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 functions_0.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 mag_sel.png
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 nomatches.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 pages_0.html
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 pages_0.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 search.css
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 search.js
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_l.png
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_m.png
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_r.png
-\u2502   \u2502   \u2502   \u2514\u2500\u2500 searchdata.js
-\u2502   \u2502   \u251c\u2500\u2500 splitbar.png
-\u2502   \u2502   \u251c\u2500\u2500 sync_off.png
-\u2502   \u2502   \u251c\u2500\u2500 sync_on.png
-\u2502   \u2502   \u251c\u2500\u2500 tab_a.png
-\u2502   \u2502   \u251c\u2500\u2500 tab_b.png
-\u2502   \u2502   \u251c\u2500\u2500 tab_h.png
-\u2502   \u2502   \u251c\u2500\u2500 tab_s.png
-\u2502   \u2502   \u2514\u2500\u2500 tabs.css
-\u2502   \u2514\u2500\u2500 latex
-\u2502       \u251c\u2500\u2500 Makefile
-\u2502       \u251c\u2500\u2500 annotated.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track.tex
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 classPerception_1_1image__feature.tex
-\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet.tex
-\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.md5
-\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.pdf
-\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.md5
-\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.pdf
-\u2502       \u251c\u2500\u2500 dir_0136a534909667e9cbf2a898cb5153b9.tex
-\u2502       \u251c\u2500\u2500 dir_116596e0c729dc38d37cfe0fe56b0dcf.tex
-\u2502       \u251c\u2500\u2500 dir_759eff52ee33e92141c35462e7d596f0.tex
-\u2502       \u251c\u2500\u2500 dir_7c9c90449ab1b5d80ba53974162999c9.tex
-\u2502       \u251c\u2500\u2500 dir_994e7a8b085fdbb2ba4c7924a58d5edc.tex
-\u2502       \u251c\u2500\u2500 dir_be4942ffe1a87acd682939009f47bbc5.tex
-\u2502       \u251c\u2500\u2500 dir_c4e379ddd84f01aa8654d40405866908.tex
-\u2502       \u251c\u2500\u2500 dir_e1ec3933232776542ad5c2f6e6441b3c.tex
-\u2502       \u251c\u2500\u2500 dir_e6add6e1e4d3a6f847ec1265a5533f0d.tex
-\u2502       \u251c\u2500\u2500 doxygen.sty
-\u2502       \u251c\u2500\u2500 hierarchy.tex
-\u2502       \u251c\u2500\u2500 index.tex
-\u2502       \u2514\u2500\u2500 refman.tex
-\u251c\u2500\u2500 README.md
-\u251c\u2500\u2500 exp_assignment3
-\u2502   \u251c\u2500\u2500 CMakeLists.txt
-\u2502   \u251c\u2500\u2500 action
-\u2502   \u2502   \u2514\u2500\u2500 Planning.action
-\u2502   \u251c\u2500\u2500 launch
-\u2502   \u2502   \u251c\u2500\u2500 General.launch
-\u2502   \u2502   \u251c\u2500\u2500 gmapping.launch
-\u2502   \u2502   \u251c\u2500\u2500 launcher.launch
-\u2502   \u2502   \u251c\u2500\u2500 move_base.launch
-\u2502   \u2502   \u251c\u2500\u2500 move_plan.launch
-\u2502   \u2502   \u251c\u2500\u2500 rviz.launch
-\u2502   \u2502   \u2514\u2500\u2500 simulation.launch
-\u2502   \u251c\u2500\u2500 nodelet_plugins.xml
-\u2502   \u251c\u2500\u2500 package.xml
-\u2502   \u251c\u2500\u2500 param
-\u2502   \u2502   \u251c\u2500\u2500 base_local_planner_params.yaml
-\u2502   \u2502   \u251c\u2500\u2500 costmap_common_params.yaml
-\u2502   \u2502   \u251c\u2500\u2500 global_costmap_params.yaml
-\u2502   \u2502   \u251c\u2500\u2500 local_costmap_params.yaml
-\u2502   \u2502   \u2514\u2500\u2500 move_base_params.yaml
-\u2502   \u251c\u2500\u2500 rviz
-\u2502   \u2502   \u2514\u2500\u2500 sim.rviz
-\u2502   \u251c\u2500\u2500 scripts
-\u2502   \u2502   \u251c\u2500\u2500 Behaviors.py
-\u2502   \u2502   \u251c\u2500\u2500 Perception.py
-\u2502   \u2502   \u251c\u2500\u2500 bug_m.py
-\u2502   \u2502   \u251c\u2500\u2500 gmapping_muting.sh
-\u2502   \u2502   \u251c\u2500\u2500 go_to_point_action.py
-\u2502   \u2502   \u251c\u2500\u2500 go_to_point_service_m.py
-\u2502   \u2502   \u251c\u2500\u2500 interface.sh
-\u2502   \u2502   \u251c\u2500\u2500 user_interface.py
-\u2502   \u2502   \u2514\u2500\u2500 wall_follow_service_m.py
-\u2502   \u251c\u2500\u2500 src
-\u2502   \u2502   \u251c\u2500\u2500 main.cpp
-\u2502   \u2502   \u251c\u2500\u2500 nodelet.cpp
-\u2502   \u2502   \u251c\u2500\u2500 replay.cpp
-\u2502   \u2502   \u251c\u2500\u2500 slam_gmapping.cpp
-\u2502   \u2502   \u2514\u2500\u2500 slam_gmapping.h
-\u2502   \u251c\u2500\u2500 urdf
-\u2502   \u2502   \u251c\u2500\u2500 Pet
-\u2502   \u2502   \u2502   \u251c\u2500\u2500 robot.gazebo
-\u2502   \u2502   \u2502   \u2514\u2500\u2500 robot.xacro
-\u2502   \u2502   \u2514\u2500\u2500 human.urdf
-\u2502   \u2514\u2500\u2500 worlds
-\u2502       \u2514\u2500\u2500 house2.world
-\u251c\u2500\u2500 m-explore
-\u2502   \u251c\u2500\u2500 LICENSE
-\u2502   \u251c\u2500\u2500 README.md
-\u2502   \u2514\u2500\u2500 explore
-\u2502       \u251c\u2500\u2500 CHANGELOG.rst
-\u2502       \u251c\u2500\u2500 CMakeLists.txt
-\u2502       \u251c\u2500\u2500 doc
-\u2502       \u2502   \u251c\u2500\u2500 architecture.dia
-\u2502       \u2502   \u251c\u2500\u2500 screenshot.png
-\u2502       \u2502   \u2514\u2500\u2500 wiki_doc.txt
-\u2502       \u251c\u2500\u2500 include
-\u2502       \u2502   \u2514\u2500\u2500 explore
-\u2502       \u2502       \u251c\u2500\u2500 costmap_client.h
-\u2502       \u2502       \u251c\u2500\u2500 costmap_tools.h
-\u2502       \u2502       \u251c\u2500\u2500 explore.h
-\u2502       \u2502       \u2514\u2500\u2500 frontier_search.h
-\u2502       \u251c\u2500\u2500 launch
-\u2502       \u2502   \u251c\u2500\u2500 explore.launch
-\u2502       \u2502   \u2514\u2500\u2500 explore_costmap.launch
-\u2502       \u251c\u2500\u2500 package.xml
-\u2502       \u2514\u2500\u2500 src
-\u2502           \u251c\u2500\u2500 costmap_client.cpp
-\u2502           \u251c\u2500\u2500 explore.cpp
-\u2502           \u2514\u2500\u2500 frontier_search.cpp
-\u251c\u2500\u2500 motion_plan
-\u2502   \u251c\u2500\u2500 CMakeLists.txt
-\u2502   \u251c\u2500\u2500 action
-\u2502   \u2502   \u2514\u2500\u2500 Planning.action
-\u2502   \u251c\u2500\u2500 config
-\u2502   \u2502   \u2514\u2500\u2500 motors_config2.yaml
-\u2502   \u251c\u2500\u2500 launch
-\u2502   \u2502   \u2514\u2500\u2500 gazebo_arm3.launch
-\u2502   \u251c\u2500\u2500 package.xml
-\u2502   \u251c\u2500\u2500 scripts
-\u2502   \u2502   \u251c\u2500\u2500 go_to_point.py
-\u2502   \u2502   \u2514\u2500\u2500 go_to_point_action.py
-\u2502   \u251c\u2500\u2500 src
-\u2502   \u2502   \u2514\u2500\u2500 move_client.cpp
-\u2502   \u2514\u2500\u2500 urdf
-\u2502       \u251c\u2500\u2500 m2wr_arm3.gazebo
-\u2502       \u251c\u2500\u2500 m2wr_arm3.xacro
-\u2502       \u2514\u2500\u2500 materials.xacro
-\u2514\u2500\u2500 slam_gmapping
-    \u251c\u2500\u2500 README.md
-    \u2514\u2500\u2500 slam_gmapping
-        \u251c\u2500\u2500 CHANGELOG.rst
-        \u251c\u2500\u2500 CMakeLists.txt
-        \u2514\u2500\u2500 package.xml
-
+├── Doxyfile
+├── Output
+│   ├── html
+│   │   ...
+│   └── latex
+│       ...
+├── README.md
+├── exp_assignment3
+│   ├── CMakeLists.txt
+│   ├── action
+│   │   └── Planning.action
+│   ├── launch
+│   │   ├── General.launch
+│   │   ├── gmapping.launch
+│   │   ├── launcher.launch
+│   │   ├── move_base.launch
+│   │   ├── move_plan.launch
+│   │   ├── rviz.launch
+│   │   └── simulation.launch
+│   ├── nodelet_plugins.xml
+│   ├── package.xml
+│   ├── param
+│   │   ├── base_local_planner_params.yaml
+│   │   ├── costmap_common_params.yaml
+│   │   ├── global_costmap_params.yaml
+│   │   ├── local_costmap_params.yaml
+│   │   └── move_base_params.yaml
+│   ├── rviz
+│   │   └── sim.rviz
+│   ├── scripts
+│   │   ├── Behaviors.py
+│   │   ├── Perception.py
+│   │   ├── bug_m.py
+│   │   ├── gmapping_muting.sh
+│   │   ├── go_to_point_action.py
+│   │   ├── go_to_point_service_m.py
+│   │   ├── interface.sh
+│   │   ├── user_interface.py
+│   │   └── wall_follow_service_m.py
+│   ├── src
+│   │   ├── main.cpp
+│   │   ├── nodelet.cpp
+│   │   ├── replay.cpp
+│   │   ├── slam_gmapping.cpp
+│   │   └── slam_gmapping.h
+│   ├── urdf
+│   │   ├── Pet
+│   │   │   ├── robot.gazebo
+│   │   │   └── robot.xacro
+│   │   └── human.urdf
+│   └── worlds
+│       └── house2.world
+├── m-explore
+│   ├── LICENSE
+│   ├── README.md
+│   └── explore
+│       ├── CHANGELOG.rst
+│       ├── CMakeLists.txt
+│       ├── doc
+│       │   ├── architecture.dia
+│       │   ├── screenshot.png
+│       │   └── wiki_doc.txt
+│       ├── include
+│       │   └── explore
+│       │       ├── costmap_client.h
+│       │       ├── costmap_tools.h
+│       │       ├── explore.h
+│       │       └── frontier_search.h
+│       ├── launch
+│       │   ├── explore.launch
+│       │   └── explore_costmap.launch
+│       ├── package.xml
+│       └── src
+│           ├── costmap_client.cpp
+│           ├── explore.cpp
+│           └── frontier_search.cpp
+├── motion_plan
+│   ├── CMakeLists.txt
+│   ├── action
+│   │   └── Planning.action
+│   ├── config
+│   │   └── motors_config2.yaml
+│   ├── launch
+│   │   └── gazebo_arm3.launch
+│   ├── package.xml
+│   ├── scripts
+│   │   ├── go_to_point.py
+│   │   └── go_to_point_action.py
+│   ├── src
+│   │   └── move_client.cpp
+│   └── urdf
+│       ├── m2wr_arm3.gazebo
+│       ├── m2wr_arm3.xacro
+│       └── materials.xacro
+└── slam_gmapping
+    ├── README.md
+    └── slam_gmapping
+        ├── CHANGELOG.rst
+        ├── CMakeLists.txt
+        └── package.xml
 
 ```
 
