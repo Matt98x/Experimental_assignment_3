@@ -46,10 +46,10 @@ The state machine is implemented as a python script implementing a smach class.
 This is composed by the following 6 states:
 * Sleep: this state makes the robot go from its current position to its "home" or "doghouse" situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.
 * Normal: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)
-* Play:
-* Find:
-* Track:
-* Recovery:
+* Play: Although more complex in the implementation, this states simply allow the pet to come back to the owner every time it is sent to a known or an unknown destination. Most of the logic inside it is mostly to handle the various scenarios that can arise. For example, if the objective has never been seen, the robot will explore the environment until a ball have been found thanks to the interaction between the find state and the track state.
+* Find: This node use in its implementation the code from the explore-lite package. Inside the finite state machine, in fact, there is just some code to launch the external code and to shut it down when the robot decide to go to sleep or if a ball have been found, switching to the track behavior.
+* Track: As the previous, this code is implemented in an external script. The Perception script is an always running process which handles the camera feed. When a new ball is recognised and the state is appropriate, the robot use the camera and the rangefinder data to approach it, while avoiding obstacles. When it is close enough the robot saves its pose to the parameter server to be later use as the objective pose when the owner ask it to go to the room associated with that ball. In the other cases, the robot will display a contour around the identified balls and the respective room name. 
+* Recovery: This state, although not included in the requirements, allow the user to temporarily override the robot to a more useful position if it gets stuck in a wall. It is activated using the 2D navigation goal tool on rviz, and just guide the robot from its current position to the goal and then switch the state back to normal.
 
 More concisely, we can see the interaction between the states in the following diagram:
 
@@ -57,22 +57,16 @@ More concisely, we can see the interaction between the states in the following d
 ### Messages and parameters
 
 The main parameters used for this implementation are:  
-* ball/ball_description: the gazebo description of the ball
-* /home x&y: coordinates of the home, location where the pet sleeps
-* /human_description: gazebo description of the human model
-* /robot/camera1: set of parameters of the camera sensor
-* /robot/joint1_position_controller: parameters for the neck joint
-* /robot/joint_state_controller: parameters for the robot controller
-* /robot/robot_description: gazebo robot description
-* /state: state of the pet(2 play,1 normal,0 sleep)
+* /state: state of the pet(0-sleep,1-normal,2-play,3-find,4-track,5-recovery)
+* /home/{x,y,theta}: pose assigned to the place where the robot goes to sleep(defined a priori)
+* /owner/{x,y,theta}: pose assigned to the place where the robot owner resides(defined a priori)
+* /"room name"/{x,y,theta}: pose assigned by the robot to the ball assigned to the room with a generic "room name" after the tracking action have been completed(it is not defined at startup)
+* /cplace: string indicating the current location of the robot, during movement it is "unknown"
+* /destination/{x,y,theta,name}: contains the information of the destination of the movement  
 * /gazebo: gazebo anvironment parameters  
 
 Regarding the messages, they will be listed as  
-* std_msgs.String: used by the commander to the logic, in order to send the command for the ball
-* std_msgs.Float64: used by the Perception and Behavious to control the neck joint
-* geometry_msgs:Pose2D: used by Perception to send the radius and camera angle for the control in the play behaviour 
 * geometry_msgs:Twist: used by Behaviours and Following to Gazebo in order to control the twist of the robot
-* sensor_msgs:JointStates: Used to read the values of the robot states
 * sensor_msgs:Image: Message with the image camera information
 * exp_assignment.PlanningAction: message of the action server, it is used by the Pet_logic and Behaviour to use the action server of the ball and robot respectively
 ```sh
@@ -85,44 +79,327 @@ Regarding the messages, they will be listed as
 
 ## Packages and file list
 ```sh
-Experimental_assignment_2
-   Lexp_assignment2
-   |   L__ action
-   |   |   L__ Planning.action
-   |   L__ CMakeLists.txt
-   |   L__ config
-   |   |   L__ motors_config.yaml
-   |   L__ launch
-   |   |   L__ gazebo_world.launch
-   |   L__ package.xml
-   |   L__ scripts
-   |   |   L__ go_to_point_action.py
-   |   |   L__ go_to_point_ball.py
-   |   L__ urdf
-   |   |   L__ ball.gazebo
-   |   |   L__ ball.xacro
-   |   |   L__ human.urdf
-   |   |   L__ robot.gazebo
-   |   |   L__ robot.xacro
-   |   L__ worlds
-   |       L__ world_assignment.world
-   Lpet_2
-   |   L__ CMakeLists.txt
-   |   L__ launch
-   |   |   L__ launcher.launch
-   |   L__ package.xml
-   |   L__ scripts
-   |       L__Command_giver.py
-   |       L__Pet_logic.py
-   |       L__Pet_behaviours.py
-   |       L__state_outfit_simulation_node.py
-   LImages
-   Lhtml
-   |   LSearch
-   |   |   L....
-   |   ...
-   LReadme.md
-   LReadme1.md
+Final_assignment/
+\u251c\u2500\u2500 Doxyfile
+\u251c\u2500\u2500 Output
+\u2502   \u251c\u2500\u2500 html
+\u2502   \u2502   \u251c\u2500\u2500 annotated.html
+\u2502   \u2502   \u251c\u2500\u2500 annotated_dup.js
+\u2502   \u2502   \u251c\u2500\u2500 arrowdown.png
+\u2502   \u2502   \u251c\u2500\u2500 arrowright.png
+\u2502   \u2502   \u251c\u2500\u2500 bc_s.png
+\u2502   \u2502   \u251c\u2500\u2500 bdwn.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track.html
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track.js
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature.html
+\u2502   \u2502   \u251c\u2500\u2500 classPerception_1_1image__feature.js
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet-members.html
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet.html
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet.js
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.map
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.md5
+\u2502   \u2502   \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.png
+\u2502   \u2502   \u251c\u2500\u2500 classes.html
+\u2502   \u2502   \u251c\u2500\u2500 closed.png
+\u2502   \u2502   \u251c\u2500\u2500 dir_0136a534909667e9cbf2a898cb5153b9.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_116596e0c729dc38d37cfe0fe56b0dcf.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_759eff52ee33e92141c35462e7d596f0.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_7c9c90449ab1b5d80ba53974162999c9.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_994e7a8b085fdbb2ba4c7924a58d5edc.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_be4942ffe1a87acd682939009f47bbc5.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_c4e379ddd84f01aa8654d40405866908.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_e1ec3933232776542ad5c2f6e6441b3c.html
+\u2502   \u2502   \u251c\u2500\u2500 dir_e6add6e1e4d3a6f847ec1265a5533f0d.html
+\u2502   \u2502   \u251c\u2500\u2500 doc.png
+\u2502   \u2502   \u251c\u2500\u2500 doxygen.css
+\u2502   \u2502   \u251c\u2500\u2500 doxygen.png
+\u2502   \u2502   \u251c\u2500\u2500 dynsections.js
+\u2502   \u2502   \u251c\u2500\u2500 folderclosed.png
+\u2502   \u2502   \u251c\u2500\u2500 folderopen.png
+\u2502   \u2502   \u251c\u2500\u2500 functions.html
+\u2502   \u2502   \u251c\u2500\u2500 functions_func.html
+\u2502   \u2502   \u251c\u2500\u2500 graph_legend.html
+\u2502   \u2502   \u251c\u2500\u2500 graph_legend.md5
+\u2502   \u2502   \u251c\u2500\u2500 graph_legend.png
+\u2502   \u2502   \u251c\u2500\u2500 hierarchy.html
+\u2502   \u2502   \u251c\u2500\u2500 hierarchy.js
+\u2502   \u2502   \u251c\u2500\u2500 index.html
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.map
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.md5
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_0.png
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.map
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.md5
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_1.png
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.map
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.md5
+\u2502   \u2502   \u251c\u2500\u2500 inherit_graph_2.png
+\u2502   \u2502   \u251c\u2500\u2500 inherits.html
+\u2502   \u2502   \u251c\u2500\u2500 jquery.js
+\u2502   \u2502   \u251c\u2500\u2500 nav_f.png
+\u2502   \u2502   \u251c\u2500\u2500 nav_g.png
+\u2502   \u2502   \u251c\u2500\u2500 nav_h.png
+\u2502   \u2502   \u251c\u2500\u2500 navtree.css
+\u2502   \u2502   \u251c\u2500\u2500 navtree.js
+\u2502   \u2502   \u251c\u2500\u2500 navtreedata.js
+\u2502   \u2502   \u251c\u2500\u2500 navtreeindex0.js
+\u2502   \u2502   \u251c\u2500\u2500 open.png
+\u2502   \u2502   \u251c\u2500\u2500 resize.js
+\u2502   \u2502   \u251c\u2500\u2500 search
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_0.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_0.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_1.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_1.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_2.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_2.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_3.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_3.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_4.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_4.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_5.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_5.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_6.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_6.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_7.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 all_7.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_0.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_0.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_1.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_1.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_2.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_2.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_3.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_3.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_4.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_4.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_5.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_5.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_6.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 classes_6.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 close.png
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 functions_0.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 functions_0.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 mag_sel.png
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 nomatches.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 pages_0.html
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 pages_0.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 search.css
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 search.js
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_l.png
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_m.png
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 search_r.png
+\u2502   \u2502   \u2502   \u2514\u2500\u2500 searchdata.js
+\u2502   \u2502   \u251c\u2500\u2500 splitbar.png
+\u2502   \u2502   \u251c\u2500\u2500 sync_off.png
+\u2502   \u2502   \u251c\u2500\u2500 sync_on.png
+\u2502   \u2502   \u251c\u2500\u2500 tab_a.png
+\u2502   \u2502   \u251c\u2500\u2500 tab_b.png
+\u2502   \u2502   \u251c\u2500\u2500 tab_h.png
+\u2502   \u2502   \u251c\u2500\u2500 tab_s.png
+\u2502   \u2502   \u2514\u2500\u2500 tabs.css
+\u2502   \u2514\u2500\u2500 latex
+\u2502       \u251c\u2500\u2500 Makefile
+\u2502       \u251c\u2500\u2500 annotated.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Find__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Normal__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Play__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Recovery__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Sleep__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track.tex
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classBehaviors_1_1Track__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 classPerception_1_1image__feature.tex
+\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet.tex
+\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.md5
+\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__coll__graph.pdf
+\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.md5
+\u2502       \u251c\u2500\u2500 classSlamGMappingNodelet__inherit__graph.pdf
+\u2502       \u251c\u2500\u2500 dir_0136a534909667e9cbf2a898cb5153b9.tex
+\u2502       \u251c\u2500\u2500 dir_116596e0c729dc38d37cfe0fe56b0dcf.tex
+\u2502       \u251c\u2500\u2500 dir_759eff52ee33e92141c35462e7d596f0.tex
+\u2502       \u251c\u2500\u2500 dir_7c9c90449ab1b5d80ba53974162999c9.tex
+\u2502       \u251c\u2500\u2500 dir_994e7a8b085fdbb2ba4c7924a58d5edc.tex
+\u2502       \u251c\u2500\u2500 dir_be4942ffe1a87acd682939009f47bbc5.tex
+\u2502       \u251c\u2500\u2500 dir_c4e379ddd84f01aa8654d40405866908.tex
+\u2502       \u251c\u2500\u2500 dir_e1ec3933232776542ad5c2f6e6441b3c.tex
+\u2502       \u251c\u2500\u2500 dir_e6add6e1e4d3a6f847ec1265a5533f0d.tex
+\u2502       \u251c\u2500\u2500 doxygen.sty
+\u2502       \u251c\u2500\u2500 hierarchy.tex
+\u2502       \u251c\u2500\u2500 index.tex
+\u2502       \u2514\u2500\u2500 refman.tex
+\u251c\u2500\u2500 README.md
+\u251c\u2500\u2500 exp_assignment3
+\u2502   \u251c\u2500\u2500 CMakeLists.txt
+\u2502   \u251c\u2500\u2500 action
+\u2502   \u2502   \u2514\u2500\u2500 Planning.action
+\u2502   \u251c\u2500\u2500 launch
+\u2502   \u2502   \u251c\u2500\u2500 General.launch
+\u2502   \u2502   \u251c\u2500\u2500 gmapping.launch
+\u2502   \u2502   \u251c\u2500\u2500 launcher.launch
+\u2502   \u2502   \u251c\u2500\u2500 move_base.launch
+\u2502   \u2502   \u251c\u2500\u2500 move_plan.launch
+\u2502   \u2502   \u251c\u2500\u2500 rviz.launch
+\u2502   \u2502   \u2514\u2500\u2500 simulation.launch
+\u2502   \u251c\u2500\u2500 nodelet_plugins.xml
+\u2502   \u251c\u2500\u2500 package.xml
+\u2502   \u251c\u2500\u2500 param
+\u2502   \u2502   \u251c\u2500\u2500 base_local_planner_params.yaml
+\u2502   \u2502   \u251c\u2500\u2500 costmap_common_params.yaml
+\u2502   \u2502   \u251c\u2500\u2500 global_costmap_params.yaml
+\u2502   \u2502   \u251c\u2500\u2500 local_costmap_params.yaml
+\u2502   \u2502   \u2514\u2500\u2500 move_base_params.yaml
+\u2502   \u251c\u2500\u2500 rviz
+\u2502   \u2502   \u2514\u2500\u2500 sim.rviz
+\u2502   \u251c\u2500\u2500 scripts
+\u2502   \u2502   \u251c\u2500\u2500 Behaviors.py
+\u2502   \u2502   \u251c\u2500\u2500 Perception.py
+\u2502   \u2502   \u251c\u2500\u2500 bug_m.py
+\u2502   \u2502   \u251c\u2500\u2500 gmapping_muting.sh
+\u2502   \u2502   \u251c\u2500\u2500 go_to_point_action.py
+\u2502   \u2502   \u251c\u2500\u2500 go_to_point_service_m.py
+\u2502   \u2502   \u251c\u2500\u2500 interface.sh
+\u2502   \u2502   \u251c\u2500\u2500 user_interface.py
+\u2502   \u2502   \u2514\u2500\u2500 wall_follow_service_m.py
+\u2502   \u251c\u2500\u2500 src
+\u2502   \u2502   \u251c\u2500\u2500 main.cpp
+\u2502   \u2502   \u251c\u2500\u2500 nodelet.cpp
+\u2502   \u2502   \u251c\u2500\u2500 replay.cpp
+\u2502   \u2502   \u251c\u2500\u2500 slam_gmapping.cpp
+\u2502   \u2502   \u2514\u2500\u2500 slam_gmapping.h
+\u2502   \u251c\u2500\u2500 urdf
+\u2502   \u2502   \u251c\u2500\u2500 Pet
+\u2502   \u2502   \u2502   \u251c\u2500\u2500 robot.gazebo
+\u2502   \u2502   \u2502   \u2514\u2500\u2500 robot.xacro
+\u2502   \u2502   \u2514\u2500\u2500 human.urdf
+\u2502   \u2514\u2500\u2500 worlds
+\u2502       \u2514\u2500\u2500 house2.world
+\u251c\u2500\u2500 m-explore
+\u2502   \u251c\u2500\u2500 LICENSE
+\u2502   \u251c\u2500\u2500 README.md
+\u2502   \u2514\u2500\u2500 explore
+\u2502       \u251c\u2500\u2500 CHANGELOG.rst
+\u2502       \u251c\u2500\u2500 CMakeLists.txt
+\u2502       \u251c\u2500\u2500 doc
+\u2502       \u2502   \u251c\u2500\u2500 architecture.dia
+\u2502       \u2502   \u251c\u2500\u2500 screenshot.png
+\u2502       \u2502   \u2514\u2500\u2500 wiki_doc.txt
+\u2502       \u251c\u2500\u2500 include
+\u2502       \u2502   \u2514\u2500\u2500 explore
+\u2502       \u2502       \u251c\u2500\u2500 costmap_client.h
+\u2502       \u2502       \u251c\u2500\u2500 costmap_tools.h
+\u2502       \u2502       \u251c\u2500\u2500 explore.h
+\u2502       \u2502       \u2514\u2500\u2500 frontier_search.h
+\u2502       \u251c\u2500\u2500 launch
+\u2502       \u2502   \u251c\u2500\u2500 explore.launch
+\u2502       \u2502   \u2514\u2500\u2500 explore_costmap.launch
+\u2502       \u251c\u2500\u2500 package.xml
+\u2502       \u2514\u2500\u2500 src
+\u2502           \u251c\u2500\u2500 costmap_client.cpp
+\u2502           \u251c\u2500\u2500 explore.cpp
+\u2502           \u2514\u2500\u2500 frontier_search.cpp
+\u251c\u2500\u2500 motion_plan
+\u2502   \u251c\u2500\u2500 CMakeLists.txt
+\u2502   \u251c\u2500\u2500 action
+\u2502   \u2502   \u2514\u2500\u2500 Planning.action
+\u2502   \u251c\u2500\u2500 config
+\u2502   \u2502   \u2514\u2500\u2500 motors_config2.yaml
+\u2502   \u251c\u2500\u2500 launch
+\u2502   \u2502   \u2514\u2500\u2500 gazebo_arm3.launch
+\u2502   \u251c\u2500\u2500 package.xml
+\u2502   \u251c\u2500\u2500 scripts
+\u2502   \u2502   \u251c\u2500\u2500 go_to_point.py
+\u2502   \u2502   \u2514\u2500\u2500 go_to_point_action.py
+\u2502   \u251c\u2500\u2500 src
+\u2502   \u2502   \u2514\u2500\u2500 move_client.cpp
+\u2502   \u2514\u2500\u2500 urdf
+\u2502       \u251c\u2500\u2500 m2wr_arm3.gazebo
+\u2502       \u251c\u2500\u2500 m2wr_arm3.xacro
+\u2502       \u2514\u2500\u2500 materials.xacro
+\u2514\u2500\u2500 slam_gmapping
+    \u251c\u2500\u2500 README.md
+    \u2514\u2500\u2500 slam_gmapping
+        \u251c\u2500\u2500 CHANGELOG.rst
+        \u251c\u2500\u2500 CMakeLists.txt
+        \u2514\u2500\u2500 package.xml
+
+
 ```
 
 
