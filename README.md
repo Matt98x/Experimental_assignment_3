@@ -36,7 +36,7 @@ The software architecture is built around a finite state machine which encodes a
 
 A representation of the architecture can be given in the following image:
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Component_Diagram.PNG?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Component_Diagram.png?raw=true "Title"">
 </p>
 <p align="center">
   Architecture
