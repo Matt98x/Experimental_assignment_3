@@ -53,6 +53,12 @@ Althought they might seem disconnected, these nodes share information via a glob
 
 ### State Machine
 The state machine is implemented as a python script implementing a smach class.
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Finite_States_Machine.png?raw=true "Title"">
+</p>
+<p align="center">
+  Architecture
+</p> 
 This is composed by the following 6 states:
 * Sleep: this state makes the robot go from its current position to its "home" or "doghouse" situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.
 * Normal: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)
