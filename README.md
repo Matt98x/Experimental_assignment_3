@@ -2,7 +2,7 @@
 
 <!-- <a href="http://htmlpreview.github.io/?https://github.com/Matt98x/Experimental_assignment_3/blob/main/html/index.html" title="Documentation">Documentation</a>
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Images/pet.PNG?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_2/blob/main/Media/Image1.PNG?raw=true "Title"">
 </p>
 <p align="center">
   Pet
