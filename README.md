@@ -13,9 +13,7 @@ Here's a visual representation obtained from the simulation environment:
 <p align="center">
   <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image1.PNG?raw=true "Title"">
 </p>
-<p align="center">
-  Environment
-</p>   
+ 
 ### The robot
 The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
 <p align="center">
