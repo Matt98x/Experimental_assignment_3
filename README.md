@@ -36,9 +36,7 @@ A representation of the architecture can be given in the following image:
 <p align="center">
   <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Component_Diagram.png?raw=true "Title"">
 </p>
-<p align="center">
-  Architecture
-</p> 
+
 This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture:
 - The "Behavior" component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.
 - The "Perception" component is an always active script which handles the features related to the camera. These are: the objective recognition(recognise the colored balls inside the image), the tracking and the obstacle avoidance while tracking(these two while moving closer to the recognised ball)
