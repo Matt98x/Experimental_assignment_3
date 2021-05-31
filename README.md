@@ -18,8 +18,12 @@ Here's a visual representation obtained from the simulation environment:
 </p> 
 ### The robot
 The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
-
-
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image2.PNG?raw=true "Title"">
+</p>
+<p align="center">
+  Robot
+</p> 
 It is a differential drive device with a camera(for the objectives detection and tracking) mounted on the head, and a range-finder(to allow the obstacles avoidance), which can be seen as the white box protruding from its chest.
 The differential drive regulates the posterior wheels speed to achieve forward and backward movements and the robot turning around the vertical axis. The smaller front castor wheel allow for a stable support of the robot and the proper working of the differential drive. 
 
@@ -31,7 +35,12 @@ Here we show the main characteristics of the implemented system: the software ar
 The software architecture is built around a finite state machine which encodes all the robot behaviors and the conditions which govern the change of states. The logic being that all required features are just aspects of the states and their interaction, obtained by appropriately activating or deactivating parts of code depending on the system state.
 
 A representation of the architecture can be given in the following image:
-
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Component_Diagram.PNG?raw=true "Title"">
+</p>
+<p align="center">
+  Architecture
+</p> 
 This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture:
 * The "Behavior" component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.
 * The "Perception" component is an always active script which handles the features related to the camera. These are: the objective recognition(recognise the colored balls inside the image), the tracking and the obstacle avoidance while tracking(these two while moving closer to the recognised ball)
