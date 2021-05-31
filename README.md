@@ -1,12 +1,7 @@
 # Experimental robotic assignment 3
 
 <!-- <a href="http://htmlpreview.github.io/?https://github.com/Matt98x/Experimental_assignment_3/blob/main/html/index.html" title="Documentation">Documentation</a> -->
-<p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image1.PNG?raw=true "Title"">
-</p>
-<p align="center">
-  Pet
-</p> 
+
 Documentation might take some time to load completely
 
 ## Introduction
@@ -15,7 +10,12 @@ The aim of this assignment is to create a software architecture, which simulates
 
 The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner.
 Here's a visual representation obtained from the simulation environment:  
-
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image1.PNG?raw=true "Title"">
+</p>
+<p align="center">
+  Environment
+</p> 
 ### The robot
 The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
 
