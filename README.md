@@ -236,11 +236,35 @@ To download the package on the desired machines there are two ways
 
 When completed the launch will result in the following windows being open:
 * The shell where the code have been launched: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image5.png?raw=true "Title"">
+</p>
+<p align="center">
+  Main shell
+</p> 
 * A second shell reporting the LaserScan data status
 * A third shell with the possibility to introduce user commands
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image4.png?raw=true "Title"">
+</p>
+<p align="center">
+  User interface
+</p> 
 * The Gazebo simulation environment
 * The Rviz visualizer
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image6.png?raw=true "Title"">
+</p>
+<p align="center">
+  Mapping in Rviz
+</p> 
 * A window showing what the robot sees
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image3.png?raw=true "Title"">
+</p>
+<p align="center">
+  Robot camera
+</p> 
 
 With this one can decide to just leave the robot roam and change state inside the environment or can give commands via the user interface as it will be explained in the next section.
 
