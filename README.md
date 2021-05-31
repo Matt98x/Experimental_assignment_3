@@ -59,7 +59,8 @@ This is composed by the following 6 states:
 - Play: Although more complex in the implementation, this states simply allow the pet to come back to the owner every time it is sent to a known or an unknown destination. Most of the logic inside it is mostly to handle the various scenarios that can arise. For example, if the objective has never been seen, the robot will explore the environment until a ball have been found thanks to the interaction between the find state and the track state.
 <p align="center">
   <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Play_state.png?raw=true "Title"">
-</p>   
+</p>
+
 * Find: This node use in its implementation the code from the explore-lite package. Inside the finite state machine, in fact, there is just some code to launch the external code and to shut it down when the robot decide to go to sleep or if a ball have been found, switching to the track behavior.
 * Track: As the previous, this code is implemented in an external script. The Perception script is an always running process which handles the camera feed. When a new ball is recognised and the state is appropriate, the robot use the camera and the rangefinder data to approach it, while avoiding obstacles. When it is close enough the robot saves its pose to the parameter server to be later use as the objective pose when the owner ask it to go to the room associated with that ball. In the other cases, the robot will display a contour around the identified balls and the respective room name. 
 * Recovery: This state, although not included in the requirements, allow the user to temporarily override the robot to a more useful position if it gets stuck in a wall. It is activated using the 2D navigation goal tool on rviz, and just guide the robot from its current position to the goal and then switch the state back to normal.
@@ -233,6 +234,7 @@ When completed the launch will result in the following windows being open:
 <p align="center">
   Main shell
 </p> 
+
 * A second shell reporting the LaserScan data status
 * A third shell with the possibility to introduce user commands
 <p align="center">
@@ -241,6 +243,7 @@ When completed the launch will result in the following windows being open:
 <p align="center">
   User interface
 </p> 
+
 * The Gazebo simulation environment
 * The Rviz visualizer
 <p align="center">
@@ -249,6 +252,7 @@ When completed the launch will result in the following windows being open:
 <p align="center">
   Mapping in Rviz
 </p> 
+
 * A window showing what the robot sees
 <p align="center">
   <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image3.PNG?raw=true "Title"">
