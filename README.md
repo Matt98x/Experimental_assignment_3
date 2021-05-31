@@ -237,7 +237,7 @@ To download the package on the desired machines there are two ways
 When completed the launch will result in the following windows being open:
 * The shell where the code have been launched: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image5.png?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image5.PNG?raw=true "Title"">
 </p>
 <p align="center">
   Main shell
@@ -245,7 +245,7 @@ When completed the launch will result in the following windows being open:
 * A second shell reporting the LaserScan data status
 * A third shell with the possibility to introduce user commands
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image4.png?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image4.PNG?raw=true "Title"">
 </p>
 <p align="center">
   User interface
@@ -253,14 +253,14 @@ When completed the launch will result in the following windows being open:
 * The Gazebo simulation environment
 * The Rviz visualizer
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image6.png?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image6.PNG?raw=true "Title"">
 </p>
 <p align="center">
   Mapping in Rviz
 </p> 
 * A window showing what the robot sees
 <p align="center">
-  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image3.png?raw=true "Title"">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image3.PNG?raw=true "Title"">
 </p>
 <p align="center">
   Robot camera
