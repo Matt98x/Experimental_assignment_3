@@ -1,6 +1,6 @@
 # Experimental robotic assignment 3
 
- <a href="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Output/html/index.html" title="Documentation">Documentation</a> 
+[Documentation]{https://github.com/Matt98x/Experimental_assignment_3/blob/main/Output/html/index.html}
 
 Documentation might take some time to load completely
 
