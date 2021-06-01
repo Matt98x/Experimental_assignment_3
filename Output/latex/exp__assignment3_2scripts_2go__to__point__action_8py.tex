@@ -1,0 +1,61 @@
+\hypertarget{exp__assignment3_2scripts_2go__to__point__action_8py}{}\section{exp\+\_\+assignment3/scripts/go\+\_\+to\+\_\+point\+\_\+action.py File Reference}
+\label{exp__assignment3_2scripts_2go__to__point__action_8py}\index{exp\+\_\+assignment3/scripts/go\+\_\+to\+\_\+point\+\_\+action.\+py@{exp\+\_\+assignment3/scripts/go\+\_\+to\+\_\+point\+\_\+action.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacego__to__point__action}{go\+\_\+to\+\_\+point\+\_\+action}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacego__to__point__action_a071343dec01124a125b208f881e350ff}{go\+\_\+to\+\_\+point\+\_\+action.\+clbk\+\_\+odom} (msg)
+\begin{DoxyCompactList}\small\item\em callbacks \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a228c91a7de8ba144bebc1621674878da}{go\+\_\+to\+\_\+point\+\_\+action.\+change\+\_\+state} (state)
+\begin{DoxyCompactList}\small\item\em change state \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a595bc16b669d1573a921f2fc42d61961}{go\+\_\+to\+\_\+point\+\_\+action.\+normalize\+\_\+angle} (angle)
+\item 
+def \hyperlink{namespacego__to__point__action_a4a5f8180b546da8703ac2dddf1a70e5d}{go\+\_\+to\+\_\+point\+\_\+action.\+fix\+\_\+yaw} (des\+\_\+pos)
+\item 
+def \hyperlink{namespacego__to__point__action_a15dbc5b1176cdaf104c33ce8eb7e6103}{go\+\_\+to\+\_\+point\+\_\+action.\+go\+\_\+straight\+\_\+ahead} (des\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em function to go straight ahead \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a99cfe9dae88227814c5387387fe794c5}{go\+\_\+to\+\_\+point\+\_\+action.\+done} ()
+\begin{DoxyCompactList}\small\item\em Function to terminate the control when target is achieved. \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a5bba71b4503c075067b2bbfcdf64556e}{go\+\_\+to\+\_\+point\+\_\+action.\+planning} (goal)
+\begin{DoxyCompactList}\small\item\em Function to plan the control to reach the target. \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_ad5e10fe384fcab186e405aac29aece7b}{go\+\_\+to\+\_\+point\+\_\+action.\+main} ()
+\begin{DoxyCompactList}\small\item\em main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacego__to__point__action_a4aafc5721803ca4d208e9e0a686f8e65}{go\+\_\+to\+\_\+point\+\_\+action.\+position\+\_\+} = Point()
+\begin{DoxyCompactList}\small\item\em robot state variables \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_ac843a0e43a672ed873017530721ce2d9}{go\+\_\+to\+\_\+point\+\_\+action.\+pose\+\_\+} = Pose()
+\item 
+int \hyperlink{namespacego__to__point__action_a880fb089b41232984ae49355b6f46a39}{go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+} = 0
+\item 
+int \hyperlink{namespacego__to__point__action_aadf404dc66c95a101e7e05dfafd92c3d}{go\+\_\+to\+\_\+point\+\_\+action.\+state\+\_\+} = 0
+\begin{DoxyCompactList}\small\item\em machine state \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a57e8782cf693baab2ca4390e2e917155}{go\+\_\+to\+\_\+point\+\_\+action.\+desired\+\_\+position\+\_\+} = Point()
+\begin{DoxyCompactList}\small\item\em goal \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a8848541ff0d9e1607e1d715de007aa03}{go\+\_\+to\+\_\+point\+\_\+action.\+z}
+\item 
+int \hyperlink{namespacego__to__point__action_a914253ff638fc05f3f0fd3d9536503c2}{go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+precision\+\_\+} = math.\+pi/9
+\begin{DoxyCompactList}\small\item\em parameters \end{DoxyCompactList}\item 
+int \hyperlink{namespacego__to__point__action_a65f4bbc971a7e33d9441aa79dcbfa1ae}{go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+precision\+\_\+2\+\_\+} = math.\+pi/90
+\begin{DoxyCompactList}\small\item\em +/-\/ 20 degree allowed \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a2b67a832bde842bf565341c5fc606f81}{go\+\_\+to\+\_\+point\+\_\+action.\+dist\+\_\+precision\+\_\+} = 0.\+1
+\begin{DoxyCompactList}\small\item\em +/-\/ 2 degree allowed \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a9f06acd5d2562909e122242d328755df}{go\+\_\+to\+\_\+point\+\_\+action.\+kp\+\_\+a} = 3.\+0
+\item 
+float \hyperlink{namespacego__to__point__action_a34be7fb79cc4f03e9b8671df19275132}{go\+\_\+to\+\_\+point\+\_\+action.\+kp\+\_\+d} = 0.\+2
+\begin{DoxyCompactList}\small\item\em In R\+OS Noetic, it may be necessary to change the sign of this proportional controller. \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a2c03541662b19da8a707e89f121e25a5}{go\+\_\+to\+\_\+point\+\_\+action.\+ub\+\_\+a} = 0.\+9
+\item 
+float \hyperlink{namespacego__to__point__action_ac93d2080cb249db79a1bba87a42c1a44}{go\+\_\+to\+\_\+point\+\_\+action.\+lb\+\_\+a} = -\/0.\+9
+\item 
+float \hyperlink{namespacego__to__point__action_a6450364749bdc94394b2251c68e2ceee}{go\+\_\+to\+\_\+point\+\_\+action.\+ub\+\_\+d} = 0.\+6
+\item 
+\hyperlink{namespacego__to__point__action_a3e555da71db618b9165bb58fe9ef160e}{go\+\_\+to\+\_\+point\+\_\+action.\+pub} = None
+\begin{DoxyCompactList}\small\item\em publisher \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a3994b1577d1a499ce8c7352036ee6486}{go\+\_\+to\+\_\+point\+\_\+action.\+act\+\_\+s} = None
+\begin{DoxyCompactList}\small\item\em action\+\_\+server \end{DoxyCompactList}\end{DoxyCompactItemize}

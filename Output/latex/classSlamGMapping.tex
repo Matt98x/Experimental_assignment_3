@@ -1,0 +1,123 @@
+\hypertarget{classSlamGMapping}{}\section{Slam\+G\+Mapping Class Reference}
+\label{classSlamGMapping}\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+
+
+{\ttfamily \#include $<$slam\+\_\+gmapping.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSlamGMapping_aa40ca229b3db4d0cf5bf7448c475a4c3}{Slam\+G\+Mapping} ()
+\item 
+\hyperlink{classSlamGMapping_a3f9432f78c6eff17041a4b0b0f87a1ad}{Slam\+G\+Mapping} (ros\+::\+Node\+Handle \&nh, ros\+::\+Node\+Handle \&pnh)
+\item 
+\hyperlink{classSlamGMapping_a6a4853715facc1ee2591955180e830a2}{Slam\+G\+Mapping} (unsigned long int seed, unsigned long int max\+\_\+duration\+\_\+buffer)
+\item 
+\hyperlink{classSlamGMapping_ae4a539b79ee1f11b7430f313ad445667}{$\sim$\+Slam\+G\+Mapping} ()
+\item 
+void \hyperlink{classSlamGMapping_aca7f6aaa57c8ac675068701adda348ea}{init} ()
+\item 
+void \hyperlink{classSlamGMapping_ab0d5567e7a8e010ff11068fcce0d9c04}{start\+Live\+Slam} ()
+\item 
+void \hyperlink{classSlamGMapping_a90bee18e7c96af13916caae4a4bfd618}{start\+Replay} (const std\+::string \&bag\+\_\+fname, std\+::string scan\+\_\+topic)
+\item 
+void \hyperlink{classSlamGMapping_a2447af8faad253af05c7dc9f492b8489}{publish\+Transform} ()
+\item 
+void \hyperlink{classSlamGMapping_a49172a6ae33df4daf397959789dc1c34}{laser\+Callback} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&scan)
+\item 
+bool \hyperlink{classSlamGMapping_a780899c48f753bf4768580fb46580d83}{map\+Callback} (nav\+\_\+msgs\+::\+Get\+Map\+::\+Request \&req, nav\+\_\+msgs\+::\+Get\+Map\+::\+Response \&res)
+\item 
+void \hyperlink{classSlamGMapping_a00a01ecfacccbfcfccc3e138de6bd00f}{publish\+Loop} (double transform\+\_\+publish\+\_\+period)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{Slam\+G\+Mapping()}{SlamGMapping()}}]{\setlength{\rightskip}{0pt plus 5cm}Slam\+G\+Mapping\+::\+Slam\+G\+Mapping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_aa40ca229b3db4d0cf5bf7448c475a4c3}{}\label{classSlamGMapping_aa40ca229b3db4d0cf5bf7448c475a4c3}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{Slam\+G\+Mapping(ros\+::\+Node\+Handle \&nh, ros\+::\+Node\+Handle \&pnh)}{SlamGMapping(ros::NodeHandle &nh, ros::NodeHandle &pnh)}}]{\setlength{\rightskip}{0pt plus 5cm}Slam\+G\+Mapping\+::\+Slam\+G\+Mapping (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Node\+Handle \&}]{nh, }
+\item[{ros\+::\+Node\+Handle \&}]{pnh}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a3f9432f78c6eff17041a4b0b0f87a1ad}{}\label{classSlamGMapping_a3f9432f78c6eff17041a4b0b0f87a1ad}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{Slam\+G\+Mapping(unsigned long int seed, unsigned long int max\+\_\+duration\+\_\+buffer)}{SlamGMapping(unsigned long int seed, unsigned long int max_duration_buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}Slam\+G\+Mapping\+::\+Slam\+G\+Mapping (
+\begin{DoxyParamCaption}
+\item[{unsigned long int}]{seed, }
+\item[{unsigned long int}]{max\+\_\+duration\+\_\+buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a6a4853715facc1ee2591955180e830a2}{}\label{classSlamGMapping_a6a4853715facc1ee2591955180e830a2}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!````~Slam\+G\+Mapping@{$\sim$\+Slam\+G\+Mapping}}
+\index{````~Slam\+G\+Mapping@{$\sim$\+Slam\+G\+Mapping}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{$\sim$\+Slam\+G\+Mapping()}{~SlamGMapping()}}]{\setlength{\rightskip}{0pt plus 5cm}Slam\+G\+Mapping\+::$\sim$\+Slam\+G\+Mapping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_ae4a539b79ee1f11b7430f313ad445667}{}\label{classSlamGMapping_ae4a539b79ee1f11b7430f313ad445667}
+
+
+\subsection{Member Function Documentation}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!init@{init}}
+\index{init@{init}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{init()}{init()}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_aca7f6aaa57c8ac675068701adda348ea}{}\label{classSlamGMapping_aca7f6aaa57c8ac675068701adda348ea}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!laser\+Callback@{laser\+Callback}}
+\index{laser\+Callback@{laser\+Callback}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{laser\+Callback(const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&scan)}{laserCallback(const sensor_msgs::LaserScan::ConstPtr &scan)}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::laser\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{scan}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a49172a6ae33df4daf397959789dc1c34}{}\label{classSlamGMapping_a49172a6ae33df4daf397959789dc1c34}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!map\+Callback@{map\+Callback}}
+\index{map\+Callback@{map\+Callback}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{map\+Callback(nav\+\_\+msgs\+::\+Get\+Map\+::\+Request \&req, nav\+\_\+msgs\+::\+Get\+Map\+::\+Response \&res)}{mapCallback(nav_msgs::GetMap::Request &req, nav_msgs::GetMap::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Slam\+G\+Mapping\+::map\+Callback (
+\begin{DoxyParamCaption}
+\item[{nav\+\_\+msgs\+::\+Get\+Map\+::\+Request \&}]{req, }
+\item[{nav\+\_\+msgs\+::\+Get\+Map\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a780899c48f753bf4768580fb46580d83}{}\label{classSlamGMapping_a780899c48f753bf4768580fb46580d83}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!publish\+Loop@{publish\+Loop}}
+\index{publish\+Loop@{publish\+Loop}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{publish\+Loop(double transform\+\_\+publish\+\_\+period)}{publishLoop(double transform_publish_period)}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::publish\+Loop (
+\begin{DoxyParamCaption}
+\item[{double}]{transform\+\_\+publish\+\_\+period}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a00a01ecfacccbfcfccc3e138de6bd00f}{}\label{classSlamGMapping_a00a01ecfacccbfcfccc3e138de6bd00f}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!publish\+Transform@{publish\+Transform}}
+\index{publish\+Transform@{publish\+Transform}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{publish\+Transform()}{publishTransform()}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::publish\+Transform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a2447af8faad253af05c7dc9f492b8489}{}\label{classSlamGMapping_a2447af8faad253af05c7dc9f492b8489}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!start\+Live\+Slam@{start\+Live\+Slam}}
+\index{start\+Live\+Slam@{start\+Live\+Slam}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{start\+Live\+Slam()}{startLiveSlam()}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::start\+Live\+Slam (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_ab0d5567e7a8e010ff11068fcce0d9c04}{}\label{classSlamGMapping_ab0d5567e7a8e010ff11068fcce0d9c04}
+\index{Slam\+G\+Mapping@{Slam\+G\+Mapping}!start\+Replay@{start\+Replay}}
+\index{start\+Replay@{start\+Replay}!Slam\+G\+Mapping@{Slam\+G\+Mapping}}
+\subsubsection[{\texorpdfstring{start\+Replay(const std\+::string \&bag\+\_\+fname, std\+::string scan\+\_\+topic)}{startReplay(const std::string &bag_fname, std::string scan_topic)}}]{\setlength{\rightskip}{0pt plus 5cm}void Slam\+G\+Mapping\+::start\+Replay (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{bag\+\_\+fname, }
+\item[{std\+::string}]{scan\+\_\+topic}
+\end{DoxyParamCaption}
+)}\hypertarget{classSlamGMapping_a90bee18e7c96af13916caae4a4bfd618}{}\label{classSlamGMapping_a90bee18e7c96af13916caae4a4bfd618}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+exp\+\_\+assignment3/src/\hyperlink{slam__gmapping_8h}{slam\+\_\+gmapping.\+h}\end{DoxyCompactItemize}

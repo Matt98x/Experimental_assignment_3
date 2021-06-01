@@ -1,0 +1,74 @@
+\hypertarget{Behaviors_8py}{}\section{exp\+\_\+assignment3/scripts/\+Behaviors.py File Reference}
+\label{Behaviors_8py}\index{exp\+\_\+assignment3/scripts/\+Behaviors.\+py@{exp\+\_\+assignment3/scripts/\+Behaviors.\+py}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classBehaviors_1_1Sleep}{Behaviors.\+Sleep}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Sleep}{Sleep}\+: class that describes the \hyperlink{classBehaviors_1_1Sleep}{Sleep} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Normal}{Behaviors.\+Normal}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Normal}{Normal}\+: class that describes the \hyperlink{classBehaviors_1_1Normal}{Normal} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Play}{Behaviors.\+Play}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Play}{Play}\+: class that describes the \hyperlink{classBehaviors_1_1Play}{Play} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Find}{Behaviors.\+Find}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Find}{Find}\+: class that describes the \hyperlink{classBehaviors_1_1Find}{Find} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Track}{Behaviors.\+Track}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Track}{Track}\+: class that describes the \hyperlink{classBehaviors_1_1Track}{Track} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Recovery}{Behaviors.\+Recovery}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Recovery}{Recovery}\+: class that describes the \hyperlink{classBehaviors_1_1Recovery}{Recovery} state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceBehaviors}{Behaviors}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceBehaviors_ab583cdd0339b053bae9c90edfa3ac54e}{Behaviors.\+odom\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Callback to retreive the odometry. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a90e1204c5a8da2ddecfa10a3341445a2}{Behaviors.\+status\+\_\+callback} (rosdata)
+\begin{DoxyCompactList}\small\item\em Callback to retreive the status of the action server of the motion. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a28e96174292117b887235e69fca82ca5}{Behaviors.\+recovery\+\_\+callback} (rosdata)
+\begin{DoxyCompactList}\small\item\em Function to set the recovery state if a signal is sent from R\+V\+IZ. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a7cc21a6fee5a1d2a1139df067ef86299}{Behaviors.\+cancel} ()
+\begin{DoxyCompactList}\small\item\em Function to cancel the current move\+\_\+base goal. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a7cc66788be2327e620e1093febba1bcd}{Behaviors.\+set\+Position} (x, y, theta)
+\begin{DoxyCompactList}\small\item\em Function to assign the robot position via the action server. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a8c0daf846b80162d86c3e45a605579be}{Behaviors.\+roam} ()
+\begin{DoxyCompactList}\small\item\em roam\+: function to simulate the roaming behaviour of normal \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceBehaviors_a480c99d5a0219bba3f364d4022512bda}{Behaviors.\+client} = actionlib.\+Simple\+Action\+Client(\textquotesingle{}/move\+\_\+base\textquotesingle{},Move\+Base\+Action)
+\begin{DoxyCompactList}\small\item\em action service client definition \end{DoxyCompactList}\item 
+int \hyperlink{namespaceBehaviors_a7ea0e9c25ae327630daf14912540597f}{Behaviors.\+status} = 0
+\begin{DoxyCompactList}\small\item\em Variables declaration. \end{DoxyCompactList}\item 
+list \hyperlink{namespaceBehaviors_a7fda1c0de76b996b876dad16ed5c7cf5}{Behaviors.\+robot\+\_\+state} = \mbox{[}0,0,0\mbox{]}
+\item 
+int \hyperlink{namespaceBehaviors_a2de241e90497b66cefc28211136d938b}{Behaviors.\+prev\+\_\+state} = 0
+\item 
+\hyperlink{namespaceBehaviors_a458a2eb75561d95075537ee82dea289c}{Behaviors.\+Odometry}
+\begin{DoxyCompactList}\small\item\em Subscribers definitions. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_a53b9b8729733e5fde4c917a2068d6c92}{Behaviors.\+odom\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}{Behaviors.\+queue\+\_\+size}
+\item 
+\hyperlink{namespaceBehaviors_a56b79b8920b23a79eb3459479c6342eb}{Behaviors.\+vel\+\_\+pub}
+\item 
+\hyperlink{namespaceBehaviors_ad0289fe265166267c21567f44c2ecba7}{Behaviors.\+goal\+\_\+pub} = rospy.\+Publisher(\char`\"{}/move\+\_\+base\+\_\+simple/goal\char`\"{}, Pose\+Stamped,queue\+\_\+size=1)
+\item 
+\hyperlink{namespaceBehaviors_a53817d008ea8a92222a7b07415fd0e7e}{Behaviors.\+Goal\+Status\+Array}
+\item 
+\hyperlink{namespaceBehaviors_a151c2aa7ae62991aea8bc9a08e0e641b}{Behaviors.\+status\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a2fecce674af17c4fbb23fc449c84f934}{Behaviors.\+cancel\+\_\+pub} = rospy.\+Publisher(\char`\"{}/move\+\_\+base/cancel\char`\"{}, Goal\+ID,queue\+\_\+size=1)
+\item 
+\hyperlink{namespaceBehaviors_a46e25ae172a62cf80114356ad513b371}{Behaviors.\+Pose\+Stamped}
+\item 
+\hyperlink{namespaceBehaviors_a58f5bdd371d18a7f2a82d97b0db5a536}{Behaviors.\+recovery\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a8d923766f9ce0a45edee2abc4ddd7dfd}{Behaviors.\+sm\+\_\+s\+\_\+a} = smach.\+State\+Machine(outcomes=\mbox{[}\textquotesingle{}outcome6\textquotesingle{}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function declaration. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_a37367cb6a42ce97b27fc6b024c7fe079}{Behaviors.\+transitions}
+\begin{DoxyCompactList}\small\item\em Open the container. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_ae349e339b61a19499bcd34baefbd77ba}{Behaviors.\+outcome} = sm\+\_\+s\+\_\+a.\+execute()
+\begin{DoxyCompactList}\small\item\em Execute S\+M\+A\+CH plan. \end{DoxyCompactList}\end{DoxyCompactItemize}

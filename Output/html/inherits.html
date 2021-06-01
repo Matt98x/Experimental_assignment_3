@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,7 +39,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -75,20 +70,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('hierarchy.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -121,26 +102,48 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <area shape="rect" id="node7" href="classBehaviors_1_1Track.html" title="Track: class that describes the Track state. " alt="" coords="123,259,245,285"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#Perception_8image__feature"/>
+<tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#explore_1_1Costmap2DClient"/>
+<map name="explore_1_1Costmap2DClient" id="explore_1_1Costmap2DClient">
+<area shape="rect" id="node1" href="classexplore_1_1Costmap2DClient.html" title="explore::Costmap2DClient" alt="" coords="5,5,195,32"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#explore_1_1Explore"/>
+<map name="explore_1_1Explore" id="explore_1_1Explore">
+<area shape="rect" id="node1" href="classexplore_1_1Explore.html" title="A class adhering to the robot_actions::Action interface that moves the robot base to explore its envi..." alt="" coords="5,5,129,32"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#frontier__exploration_1_1Frontier"/>
+<map name="frontier__exploration_1_1Frontier" id="frontier__exploration_1_1Frontier">
+<area shape="rect" id="node1" href="structfrontier__exploration_1_1Frontier.html" title="Represents a frontier. " alt="" coords="5,5,152,47"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#frontier__exploration_1_1FrontierSearch"/>
+<map name="frontier__exploration_1_1FrontierSearch" id="frontier__exploration_1_1FrontierSearch">
+<area shape="rect" id="node1" href="classfrontier__exploration_1_1FrontierSearch.html" title="Thread&#45;safe implementation of a frontier&#45;search task for an input costmap. " alt="" coords="5,5,152,47"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#Perception_8image__feature"/>
 <map name="Perception_8image__feature" id="Perception_8image__feature">
 <area shape="rect" id="node1" href="classPerception_1_1image__feature.html" title="CLASS. " alt="" coords="5,5,192,32"/>
 </map>
 </td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#SlamGMappingNodelet"/>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#SlamGMapping"/>
+<map name="SlamGMapping" id="SlamGMapping">
+<area shape="rect" id="node1" href="classSlamGMapping.html" title="SlamGMapping" alt="" coords="5,5,124,32"/>
+</map>
+</td></tr>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#SlamGMappingNodelet"/>
 <map name="SlamGMappingNodelet" id="SlamGMappingNodelet">
 <area shape="rect" id="node2" href="classSlamGMappingNodelet.html" title="SlamGMappingNodelet" alt="" coords="125,5,295,32"/>
 </map>
 </td></tr>
 </table>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

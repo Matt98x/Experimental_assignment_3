@@ -1,0 +1,286 @@
+\hypertarget{namespacePerception}{}\section{Perception Namespace Reference}
+\label{namespacePerception}\index{Perception@{Perception}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classPerception_1_1image__feature}{image\+\_\+feature}
+\begin{DoxyCompactList}\small\item\em C\+L\+A\+SS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacePerception_ae23dae157a1ef4e00fb8d4d11ed4cfd7}{rob\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em C\+A\+L\+L\+B\+A\+C\+KS A\+ND F\+U\+N\+C\+T\+I\+O\+NS. \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a34e5d1ea23bca609f6613f955a102c8f}{laser\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em callback function to read the laser scan \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a235ca282efe20cd6f6553cf69dfa3416}{enclosing\+\_\+circle} (\hyperlink{namespacePerception_ae9b407646d9596cc4c837cadcc084168}{cnts})
+\begin{DoxyCompactList}\small\item\em find the enclosing circle of the ball in the image \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_aad4a17a04d9de153f903bec742d3f1c4}{caption} (image\+\_\+np, x, y, radius, center, name)
+\begin{DoxyCompactList}\small\item\em Put a caption and an enclosing circle around a perceived ball. \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a2fca011fd161b10ca2292edbb9897af5}{take\+\_\+action} (regions)
+\begin{DoxyCompactList}\small\item\em action to take to avoid collisions \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a9210db14d4f3a53190632b2097f7444c}{clbk\+\_\+laser} (scan, k)
+\begin{DoxyCompactList}\small\item\em obstacles region declaration to obstacle avoidance \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a4fe5d026a2ef743aa57777be689aeb43}{main} (args)
+\begin{DoxyCompactList}\small\item\em M\+A\+IN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacePerception_a45c9a255f6f96422822a1134c6200451}{V\+E\+R\+B\+O\+SE} = False
+\item 
+int \hyperlink{namespacePerception_a30f922540fc81da4abe1a1cf48cf96ac}{angle} = 0
+\begin{DoxyCompactList}\small\item\em V\+A\+R\+I\+A\+B\+L\+ES. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a9f6f9cf6f9b5895bb39924b3682a262b}{threshold} = 10
+\begin{DoxyCompactList}\small\item\em Threshold precision. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a25e59ac83c977a1cd1752b677923c0d8}{max\+\_\+rad} = 180
+\begin{DoxyCompactList}\small\item\em Dimension of the proximity radius. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a6f826a3f390ba3a185e2aa8a43013701}{rob\+\_\+angle} = 0
+\begin{DoxyCompactList}\small\item\em robot angle \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_ad0534f9c1df13d7a2b48ff2a983f0cc6}{rob\+\_\+vel} = 0
+\begin{DoxyCompactList}\small\item\em robot vel \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a32c9e49968ea4ea21f1afbe28dc236cc}{max\+\_\+ang} = 0
+\begin{DoxyCompactList}\small\item\em maximum and minimum angle of the scan \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a0aca0fa8eb3415fe07777168f37774ff}{min\+\_\+ang} = 0
+\item 
+list \hyperlink{namespacePerception_a649811d3cb5680f5481c7d612e159825}{scans} = \mbox{[}$\,$\mbox{]}
+\item 
+float \hyperlink{namespacePerception_ac133c0d0f793260fe4d078d02ec777b6}{value\+\_\+min} = 0.\+30
+\item 
+int \hyperlink{namespacePerception_a47402108dd4d75ac8a27e5d917aa022c}{rob\+\_\+x} = 0
+\item 
+int \hyperlink{namespacePerception_ace15e3c972e7a909673f2280e02954a5}{rob\+\_\+y} = 0
+\item 
+int \hyperlink{namespacePerception_ab4a40230ffe1d9f53908c2c5c6fd6ebb}{rob\+\_\+theta} = 0
+\item 
+int \hyperlink{namespacePerception_ad34a03e4d4afc6f3f824f912c28692ff}{prev\+\_\+state} = 0
+\item 
+list \hyperlink{namespacePerception_ade020d1959a087b5a07fd0936a5f489d}{names} = \mbox{[}\char`\"{}Entrance\char`\"{},\char`\"{}Living\+\_\+room\char`\"{},\char`\"{}Closet\char`\"{},\char`\"{}Kitchen\char`\"{},\char`\"{}Bathroom\char`\"{},\char`\"{}Bedroom\char`\"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em R\+O\+O\+MS P\+A\+R\+A\+M\+E\+T\+E\+RS. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_a4166a4d5dfba1d1c65be4e69bed3a442}{lower} = \mbox{[}100,50,0,25,125,0\mbox{]}
+\item 
+list \hyperlink{namespacePerception_a0d76072dc5634b931abcd5275677b670}{upper} = \mbox{[}130,70,5,35,150,5\mbox{]}
+\item 
+list \hyperlink{namespacePerception_a47f799f9c4dfa904981d74938dcd5e49}{checked} = \mbox{[}0\mbox{]}$\ast$len(\hyperlink{namespacePerception_ade020d1959a087b5a07fd0936a5f489d}{names})
+\item 
+int \hyperlink{namespacePerception_a78a55345c0afe004ebc5bd95007dccf0}{active} = 0
+\begin{DoxyCompactList}\small\item\em Track activate variable. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_a2df199890febf0c129179eacf940dbaa}{seen} = \mbox{[}0\mbox{]}$\ast$len(\hyperlink{namespacePerception_a47f799f9c4dfa904981d74938dcd5e49}{checked})
+\begin{DoxyCompactList}\small\item\em Seen balls. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_ae9b407646d9596cc4c837cadcc084168}{cnts} = \mbox{[}None\mbox{]}$\ast$len(\hyperlink{namespacePerception_a2df199890febf0c129179eacf940dbaa}{seen})
+\begin{DoxyCompactList}\small\item\em Contours. \end{DoxyCompactList}\item 
+float \hyperlink{namespacePerception_a353d9d2be3d3ef1de098a6dd0354b5fe}{gain1} = 0.\+003
+\begin{DoxyCompactList}\small\item\em G\+A\+I\+NS. \end{DoxyCompactList}\item 
+float \hyperlink{namespacePerception_a2520defc2fe01293181f48cc9c93d552}{gain2} = 0.\+042
+\item 
+float \hyperlink{namespacePerception_a229e55dde1fafbfa34e1ed76f9dab9a7}{gain3} = 0.\+0035
+\item 
+float \hyperlink{namespacePerception_a1149af80a55cce4661c985f8d4ca15ae}{gain4} = 0.\+04
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Perception@{Perception}!caption@{caption}}
+\index{caption@{caption}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{caption(image\+\_\+np, x, y, radius, center, name)}{caption(image_np, x, y, radius, center, name)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+caption (
+\begin{DoxyParamCaption}
+\item[{}]{image\+\_\+np, }
+\item[{}]{x, }
+\item[{}]{y, }
+\item[{}]{radius, }
+\item[{}]{center, }
+\item[{}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_aad4a17a04d9de153f903bec742d3f1c4}{}\label{namespacePerception_aad4a17a04d9de153f903bec742d3f1c4}
+
+
+Put a caption and an enclosing circle around a perceived ball. 
+
+\index{Perception@{Perception}!clbk\+\_\+laser@{clbk\+\_\+laser}}
+\index{clbk\+\_\+laser@{clbk\+\_\+laser}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{clbk\+\_\+laser(scan, k)}{clbk_laser(scan, k)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+clbk\+\_\+laser (
+\begin{DoxyParamCaption}
+\item[{}]{scan, }
+\item[{}]{k}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_a9210db14d4f3a53190632b2097f7444c}{}\label{namespacePerception_a9210db14d4f3a53190632b2097f7444c}
+
+
+obstacles region declaration to obstacle avoidance 
+
+\index{Perception@{Perception}!enclosing\+\_\+circle@{enclosing\+\_\+circle}}
+\index{enclosing\+\_\+circle@{enclosing\+\_\+circle}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{enclosing\+\_\+circle(cnts)}{enclosing_circle(cnts)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+enclosing\+\_\+circle (
+\begin{DoxyParamCaption}
+\item[{}]{cnts}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_a235ca282efe20cd6f6553cf69dfa3416}{}\label{namespacePerception_a235ca282efe20cd6f6553cf69dfa3416}
+
+
+find the enclosing circle of the ball in the image 
+
+\index{Perception@{Perception}!laser\+\_\+callback@{laser\+\_\+callback}}
+\index{laser\+\_\+callback@{laser\+\_\+callback}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{laser\+\_\+callback(ros\+\_\+data)}{laser_callback(ros_data)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+laser\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{}]{ros\+\_\+data}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_a34e5d1ea23bca609f6613f955a102c8f}{}\label{namespacePerception_a34e5d1ea23bca609f6613f955a102c8f}
+
+
+callback function to read the laser scan 
+
+\index{Perception@{Perception}!main@{main}}
+\index{main@{main}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{main(args)}{main(args)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+main (
+\begin{DoxyParamCaption}
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_a4fe5d026a2ef743aa57777be689aeb43}{}\label{namespacePerception_a4fe5d026a2ef743aa57777be689aeb43}
+
+
+M\+A\+IN. 
+
+\begin{DoxyVerb}Initializes and cleanup ros node\end{DoxyVerb}
+ \index{Perception@{Perception}!rob\+\_\+callback@{rob\+\_\+callback}}
+\index{rob\+\_\+callback@{rob\+\_\+callback}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+callback(ros\+\_\+data)}{rob_callback(ros_data)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+rob\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{}]{ros\+\_\+data}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_ae23dae157a1ef4e00fb8d4d11ed4cfd7}{}\label{namespacePerception_ae23dae157a1ef4e00fb8d4d11ed4cfd7}
+
+
+C\+A\+L\+L\+B\+A\+C\+KS A\+ND F\+U\+N\+C\+T\+I\+O\+NS. 
+
+callback function to update the robot position and orientation \index{Perception@{Perception}!take\+\_\+action@{take\+\_\+action}}
+\index{take\+\_\+action@{take\+\_\+action}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{take\+\_\+action(regions)}{take_action(regions)}}]{\setlength{\rightskip}{0pt plus 5cm}def Perception.\+take\+\_\+action (
+\begin{DoxyParamCaption}
+\item[{}]{regions}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacePerception_a2fca011fd161b10ca2292edbb9897af5}{}\label{namespacePerception_a2fca011fd161b10ca2292edbb9897af5}
+
+
+action to take to avoid collisions 
+
+
+
+\subsection{Variable Documentation}
+\index{Perception@{Perception}!active@{active}}
+\index{active@{active}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{active}{active}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+active = 0}\hypertarget{namespacePerception_a78a55345c0afe004ebc5bd95007dccf0}{}\label{namespacePerception_a78a55345c0afe004ebc5bd95007dccf0}
+
+
+Track activate variable. 
+
+\index{Perception@{Perception}!angle@{angle}}
+\index{angle@{angle}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{angle}{angle}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+angle = 0}\hypertarget{namespacePerception_a30f922540fc81da4abe1a1cf48cf96ac}{}\label{namespacePerception_a30f922540fc81da4abe1a1cf48cf96ac}
+
+
+V\+A\+R\+I\+A\+B\+L\+ES. 
+
+Initial angle definition \index{Perception@{Perception}!checked@{checked}}
+\index{checked@{checked}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{checked}{checked}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+checked = \mbox{[}0\mbox{]}$\ast$len({\bf names})}\hypertarget{namespacePerception_a47f799f9c4dfa904981d74938dcd5e49}{}\label{namespacePerception_a47f799f9c4dfa904981d74938dcd5e49}
+\index{Perception@{Perception}!cnts@{cnts}}
+\index{cnts@{cnts}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{cnts}{cnts}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+cnts = \mbox{[}None\mbox{]}$\ast$len({\bf seen})}\hypertarget{namespacePerception_ae9b407646d9596cc4c837cadcc084168}{}\label{namespacePerception_ae9b407646d9596cc4c837cadcc084168}
+
+
+Contours. 
+
+\index{Perception@{Perception}!gain1@{gain1}}
+\index{gain1@{gain1}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{gain1}{gain1}}]{\setlength{\rightskip}{0pt plus 5cm}float Perception.\+gain1 = 0.\+003}\hypertarget{namespacePerception_a353d9d2be3d3ef1de098a6dd0354b5fe}{}\label{namespacePerception_a353d9d2be3d3ef1de098a6dd0354b5fe}
+
+
+G\+A\+I\+NS. 
+
+\index{Perception@{Perception}!gain2@{gain2}}
+\index{gain2@{gain2}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{gain2}{gain2}}]{\setlength{\rightskip}{0pt plus 5cm}float Perception.\+gain2 = 0.\+042}\hypertarget{namespacePerception_a2520defc2fe01293181f48cc9c93d552}{}\label{namespacePerception_a2520defc2fe01293181f48cc9c93d552}
+\index{Perception@{Perception}!gain3@{gain3}}
+\index{gain3@{gain3}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{gain3}{gain3}}]{\setlength{\rightskip}{0pt plus 5cm}float Perception.\+gain3 = 0.\+0035}\hypertarget{namespacePerception_a229e55dde1fafbfa34e1ed76f9dab9a7}{}\label{namespacePerception_a229e55dde1fafbfa34e1ed76f9dab9a7}
+\index{Perception@{Perception}!gain4@{gain4}}
+\index{gain4@{gain4}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{gain4}{gain4}}]{\setlength{\rightskip}{0pt plus 5cm}float Perception.\+gain4 = 0.\+04}\hypertarget{namespacePerception_a1149af80a55cce4661c985f8d4ca15ae}{}\label{namespacePerception_a1149af80a55cce4661c985f8d4ca15ae}
+\index{Perception@{Perception}!lower@{lower}}
+\index{lower@{lower}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{lower}{lower}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+lower = \mbox{[}100,50,0,25,125,0\mbox{]}}\hypertarget{namespacePerception_a4166a4d5dfba1d1c65be4e69bed3a442}{}\label{namespacePerception_a4166a4d5dfba1d1c65be4e69bed3a442}
+\index{Perception@{Perception}!max\+\_\+ang@{max\+\_\+ang}}
+\index{max\+\_\+ang@{max\+\_\+ang}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{max\+\_\+ang}{max_ang}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+max\+\_\+ang = 0}\hypertarget{namespacePerception_a32c9e49968ea4ea21f1afbe28dc236cc}{}\label{namespacePerception_a32c9e49968ea4ea21f1afbe28dc236cc}
+
+
+maximum and minimum angle of the scan 
+
+\index{Perception@{Perception}!max\+\_\+rad@{max\+\_\+rad}}
+\index{max\+\_\+rad@{max\+\_\+rad}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{max\+\_\+rad}{max_rad}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+max\+\_\+rad = 180}\hypertarget{namespacePerception_a25e59ac83c977a1cd1752b677923c0d8}{}\label{namespacePerception_a25e59ac83c977a1cd1752b677923c0d8}
+
+
+Dimension of the proximity radius. 
+
+\index{Perception@{Perception}!min\+\_\+ang@{min\+\_\+ang}}
+\index{min\+\_\+ang@{min\+\_\+ang}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{min\+\_\+ang}{min_ang}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+min\+\_\+ang = 0}\hypertarget{namespacePerception_a0aca0fa8eb3415fe07777168f37774ff}{}\label{namespacePerception_a0aca0fa8eb3415fe07777168f37774ff}
+\index{Perception@{Perception}!names@{names}}
+\index{names@{names}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{names}{names}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+names = \mbox{[}\char`\"{}Entrance\char`\"{},\char`\"{}Living\+\_\+room\char`\"{},\char`\"{}Closet\char`\"{},\char`\"{}Kitchen\char`\"{},\char`\"{}Bathroom\char`\"{},\char`\"{}Bedroom\char`\"{}\mbox{]}}\hypertarget{namespacePerception_ade020d1959a087b5a07fd0936a5f489d}{}\label{namespacePerception_ade020d1959a087b5a07fd0936a5f489d}
+
+
+R\+O\+O\+MS P\+A\+R\+A\+M\+E\+T\+E\+RS. 
+
+\index{Perception@{Perception}!prev\+\_\+state@{prev\+\_\+state}}
+\index{prev\+\_\+state@{prev\+\_\+state}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{prev\+\_\+state}{prev_state}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+prev\+\_\+state = 0}\hypertarget{namespacePerception_ad34a03e4d4afc6f3f824f912c28692ff}{}\label{namespacePerception_ad34a03e4d4afc6f3f824f912c28692ff}
+\index{Perception@{Perception}!rob\+\_\+angle@{rob\+\_\+angle}}
+\index{rob\+\_\+angle@{rob\+\_\+angle}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+angle}{rob_angle}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+rob\+\_\+angle = 0}\hypertarget{namespacePerception_a6f826a3f390ba3a185e2aa8a43013701}{}\label{namespacePerception_a6f826a3f390ba3a185e2aa8a43013701}
+
+
+robot angle 
+
+\index{Perception@{Perception}!rob\+\_\+theta@{rob\+\_\+theta}}
+\index{rob\+\_\+theta@{rob\+\_\+theta}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+theta}{rob_theta}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+rob\+\_\+theta = 0}\hypertarget{namespacePerception_ab4a40230ffe1d9f53908c2c5c6fd6ebb}{}\label{namespacePerception_ab4a40230ffe1d9f53908c2c5c6fd6ebb}
+\index{Perception@{Perception}!rob\+\_\+vel@{rob\+\_\+vel}}
+\index{rob\+\_\+vel@{rob\+\_\+vel}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+vel}{rob_vel}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+rob\+\_\+vel = 0}\hypertarget{namespacePerception_ad0534f9c1df13d7a2b48ff2a983f0cc6}{}\label{namespacePerception_ad0534f9c1df13d7a2b48ff2a983f0cc6}
+
+
+robot vel 
+
+\index{Perception@{Perception}!rob\+\_\+x@{rob\+\_\+x}}
+\index{rob\+\_\+x@{rob\+\_\+x}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+x}{rob_x}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+rob\+\_\+x = 0}\hypertarget{namespacePerception_a47402108dd4d75ac8a27e5d917aa022c}{}\label{namespacePerception_a47402108dd4d75ac8a27e5d917aa022c}
+\index{Perception@{Perception}!rob\+\_\+y@{rob\+\_\+y}}
+\index{rob\+\_\+y@{rob\+\_\+y}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{rob\+\_\+y}{rob_y}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+rob\+\_\+y = 0}\hypertarget{namespacePerception_ace15e3c972e7a909673f2280e02954a5}{}\label{namespacePerception_ace15e3c972e7a909673f2280e02954a5}
+\index{Perception@{Perception}!scans@{scans}}
+\index{scans@{scans}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{scans}{scans}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+scans = \mbox{[}$\,$\mbox{]}}\hypertarget{namespacePerception_a649811d3cb5680f5481c7d612e159825}{}\label{namespacePerception_a649811d3cb5680f5481c7d612e159825}
+\index{Perception@{Perception}!seen@{seen}}
+\index{seen@{seen}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{seen}{seen}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+seen = \mbox{[}0\mbox{]}$\ast$len({\bf checked})}\hypertarget{namespacePerception_a2df199890febf0c129179eacf940dbaa}{}\label{namespacePerception_a2df199890febf0c129179eacf940dbaa}
+
+
+Seen balls. 
+
+\index{Perception@{Perception}!threshold@{threshold}}
+\index{threshold@{threshold}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{threshold}{threshold}}]{\setlength{\rightskip}{0pt plus 5cm}int Perception.\+threshold = 10}\hypertarget{namespacePerception_a9f6f9cf6f9b5895bb39924b3682a262b}{}\label{namespacePerception_a9f6f9cf6f9b5895bb39924b3682a262b}
+
+
+Threshold precision. 
+
+\index{Perception@{Perception}!upper@{upper}}
+\index{upper@{upper}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{upper}{upper}}]{\setlength{\rightskip}{0pt plus 5cm}list Perception.\+upper = \mbox{[}130,70,5,35,150,5\mbox{]}}\hypertarget{namespacePerception_a0d76072dc5634b931abcd5275677b670}{}\label{namespacePerception_a0d76072dc5634b931abcd5275677b670}
+\index{Perception@{Perception}!value\+\_\+min@{value\+\_\+min}}
+\index{value\+\_\+min@{value\+\_\+min}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{value\+\_\+min}{value_min}}]{\setlength{\rightskip}{0pt plus 5cm}float Perception.\+value\+\_\+min = 0.\+30}\hypertarget{namespacePerception_ac133c0d0f793260fe4d078d02ec777b6}{}\label{namespacePerception_ac133c0d0f793260fe4d078d02ec777b6}
+\index{Perception@{Perception}!V\+E\+R\+B\+O\+SE@{V\+E\+R\+B\+O\+SE}}
+\index{V\+E\+R\+B\+O\+SE@{V\+E\+R\+B\+O\+SE}!Perception@{Perception}}
+\subsubsection[{\texorpdfstring{V\+E\+R\+B\+O\+SE}{VERBOSE}}]{\setlength{\rightskip}{0pt plus 5cm}bool Perception.\+V\+E\+R\+B\+O\+SE = False}\hypertarget{namespacePerception_a45c9a255f6f96422822a1134c6200451}{}\label{namespacePerception_a45c9a255f6f96422822a1134c6200451}

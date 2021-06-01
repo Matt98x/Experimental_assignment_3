@@ -1,0 +1,34 @@
+\hypertarget{costmap__tools_8h}{}\section{m-\/explore/explore/include/explore/costmap\+\_\+tools.h File Reference}
+\label{costmap__tools_8h}\index{m-\/explore/explore/include/explore/costmap\+\_\+tools.\+h@{m-\/explore/explore/include/explore/costmap\+\_\+tools.\+h}}
+{\ttfamily \#include $<$costmap\+\_\+2d/costmap\+\_\+2d.\+h$>$}\\*
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Point\+Stamped.\+h$>$}\\*
+{\ttfamily \#include $<$geometry\+\_\+msgs/\+Polygon\+Stamped.\+h$>$}\\*
+{\ttfamily \#include $<$ros/ros.\+h$>$}\\*
+Include dependency graph for costmap\+\_\+tools.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{costmap__tools_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{costmap__tools_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacefrontier__exploration}{frontier\+\_\+exploration}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ unsigned int $>$ \hyperlink{namespacefrontier__exploration_affc5c02b52db13456c62dc5f707efa6f}{frontier\+\_\+exploration\+::nhood4} (unsigned int idx, const costmap\+\_\+2d\+::\+Costmap2D \&costmap)
+\begin{DoxyCompactList}\small\item\em Determine 4-\/connected neighbourhood of an input cell, checking for map edges. \end{DoxyCompactList}\item 
+std\+::vector$<$ unsigned int $>$ \hyperlink{namespacefrontier__exploration_aff5530dc70914d4cfde4f455ecaa0cd6}{frontier\+\_\+exploration\+::nhood8} (unsigned int idx, const costmap\+\_\+2d\+::\+Costmap2D \&costmap)
+\begin{DoxyCompactList}\small\item\em Determine 8-\/connected neighbourhood of an input cell, checking for map edges. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacefrontier__exploration_a1919c053e430083b7fb366501fff518c}{frontier\+\_\+exploration\+::nearest\+Cell} (unsigned int \&result, unsigned int start, unsigned char val, const costmap\+\_\+2d\+::\+Costmap2D \&costmap)
+\begin{DoxyCompactList}\small\item\em Find nearest cell of a specified value. \end{DoxyCompactList}\end{DoxyCompactItemize}

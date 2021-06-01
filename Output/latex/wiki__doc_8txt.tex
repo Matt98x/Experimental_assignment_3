@@ -1,0 +1,58 @@
+\hypertarget{wiki__doc_8txt}{}\section{m-\/explore/explore/doc/wiki\+\_\+doc.txt File Reference}
+\label{wiki__doc_8txt}\index{m-\/explore/explore/doc/wiki\+\_\+doc.\+txt@{m-\/explore/explore/doc/wiki\+\_\+doc.\+txt}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+$<$$<$ Package\+Header(explore\+\_\+lite)$>$$<$$<$ Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$ T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} configure and more \hyperlink{wiki__doc_8txt_af39469afb7931f3c1518b0fc5776008f}{efficient} (lighter on resources).Node simply subscribes \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to}$<$$<$ Msg\+Link(nav\+\_\+msgs/Occupancy\+Grid)$>$$>$ messages.\+Commands for robot movement are send \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to}\mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]} node.\+Node can do frontier filtering and can operate even on non-\/inflated maps.\+Goal blacklisting allows \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} deal \hyperlink{wiki__doc_8txt_a110243189100ad190f1295ade52a39a6}{with} places inaccessible for robot.$<$$<$ Youtube(op0\+L0\+Ly\+G\+NwY \&rel=0)$>$$>$
+\item 
+$<$$<$ Package\+Header(explore\+\_\+lite)$>$$<$$<$ Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$ T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} configure and more planning and navigating should work With most planners this should work by refer \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to}\mbox{[}\mbox{[}navfn\#Parameters\mbox{]}\mbox{]} if you need \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} setup this for\mbox{[}\mbox{[}navfn\mbox{]}\mbox{]} \hyperlink{wiki__doc_8txt_a1e6f68edc2fdd58ace512f96917cd16e}{planner} (but should be enabled by \hyperlink{wiki__doc_8txt_a2da1dda6a041d7dbeb3aef440c695a60}{default}).Navigation through unknown space is required for
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+$<$$<$ Package\+Header(explore\+\_\+lite)$>$$<$$<$ Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$ T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} \mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]}
+\item 
+$<$$<$ Package\+Header(explore\+\_\+lite)$>$$<$$<$ Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$ T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} configure and more planning and navigating should work With most planners this should work by \hyperlink{wiki__doc_8txt_a2da1dda6a041d7dbeb3aef440c695a60}{default}
+\item 
+If you want \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} use costmap provided by\mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]} you need \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} enable unknown space tracking by setting \hyperlink{wiki__doc_8txt_aae8355eda2c5eda5fc33ae2b62ba937c}{track\+\_\+unknown\+\_\+space}
+\item 
+If you want \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} use costmap provided by\mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]} you need \hyperlink{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{to} enable unknown space tracking by setting you can start experimenting \hyperlink{wiki__doc_8txt_a110243189100ad190f1295ade52a39a6}{with} \{\{\{explore\+\_\+lite\}\}\}. Provided `explore.\+launch` should work out-\/of-\/the box in most cases
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!efficient@{efficient}}
+\index{efficient@{efficient}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{efficient(lighter on resources).\+Node simply subscribes to$<$$<$ Msg\+Link(nav\+\_\+msgs/\+Occupancy\+Grid)$>$$>$ messages.\+Commands for robot movement are send to[[move\+\_\+base]] node.\+Node can do frontier filtering and can operate even on non-\/inflated maps.\+Goal blacklisting allows to deal with places inaccessible for robot.$<$$<$ Youtube(op0\+L0\+Ly\+G\+Nw\+Y \&rel=0)$>$$>$}{efficient(lighter on resources).Node simply subscribes to<< MsgLink(nav_msgs/OccupancyGrid)>> messages.Commands for robot movement are send to[[move_base]] node.Node can do frontier filtering and can operate even on non-inflated maps.Goal blacklisting allows to deal with places inaccessible for robot.<< Youtube(op0L0LyGNwY &rel=0)>>}}]{\setlength{\rightskip}{0pt plus 5cm}$<$$<$Package\+Header(explore\+\_\+lite)$>$$<$$<$Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier {\bf to} configure and more efficient (
+\begin{DoxyParamCaption}
+\item[{lighter on}]{resources}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{wiki__doc_8txt_af39469afb7931f3c1518b0fc5776008f}{}\label{wiki__doc_8txt_af39469afb7931f3c1518b0fc5776008f}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!planner@{planner}}
+\index{planner@{planner}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{planner(but should be enabled by default).\+Navigation through unknown space is required for}{planner(but should be enabled by default).Navigation through unknown space is required for}}]{\setlength{\rightskip}{0pt plus 5cm}$<$$<$Package\+Header(explore\+\_\+lite)$>$$<$$<$Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier {\bf to} configure and more planning and navigating should work With most planners this should work by refer {\bf to} \mbox{[}\mbox{[}navfn\#Parameters\mbox{]}\mbox{]} if you need {\bf to} setup this for \mbox{[}\mbox{[}navfn\mbox{]}\mbox{]} planner (
+\begin{DoxyParamCaption}
+\item[{but should be enabled by}]{default}
+\end{DoxyParamCaption}
+)}\hypertarget{wiki__doc_8txt_a1e6f68edc2fdd58ace512f96917cd16e}{}\label{wiki__doc_8txt_a1e6f68edc2fdd58ace512f96917cd16e}
+
+
+\subsection{Variable Documentation}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!default@{default}}
+\index{default@{default}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{default}{default}}]{\setlength{\rightskip}{0pt plus 5cm}$<$$<$Package\+Header(explore\+\_\+lite)$>$$<$$<$Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send which makes it easier {\bf to} configure and more planning and navigating should work With most planners this should work by default}\hypertarget{wiki__doc_8txt_a2da1dda6a041d7dbeb3aef440c695a60}{}\label{wiki__doc_8txt_a2da1dda6a041d7dbeb3aef440c695a60}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!to@{to}}
+\index{to@{to}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{to}{to}}]{\setlength{\rightskip}{0pt plus 5cm}$<$$<$Package\+Header(explore\+\_\+lite)$>$$<$$<$Git\+Hub\+Issues(hrnr/m-\/explore)$>$$<$$<$T\+OC(4)$>$ robot will greedily explore its environment until no frontiers could be found Movement commands will be send to\mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]}}\hypertarget{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}{}\label{wiki__doc_8txt_a59f010b39e38734a32109cf8c8310f81}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+\{\{attachment:screenshot.png||width=\textcolor{stringliteral}{"755px"}\}\}
+
+Unlike similar packages
+\end{DoxyCode}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!track\+\_\+unknown\+\_\+space@{track\+\_\+unknown\+\_\+space}}
+\index{track\+\_\+unknown\+\_\+space@{track\+\_\+unknown\+\_\+space}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{track\+\_\+unknown\+\_\+space}{track_unknown_space}}]{\setlength{\rightskip}{0pt plus 5cm}If you want {\bf to} use costmap provided by \mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]} you need {\bf to} enable unknown space tracking by setting track\+\_\+unknown\+\_\+space}\hypertarget{wiki__doc_8txt_aae8355eda2c5eda5fc33ae2b62ba937c}{}\label{wiki__doc_8txt_aae8355eda2c5eda5fc33ae2b62ba937c}
+\index{wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}!with@{with}}
+\index{with@{with}!wiki\+\_\+doc.\+txt@{wiki\+\_\+doc.\+txt}}
+\subsubsection[{\texorpdfstring{with}{with}}]{\setlength{\rightskip}{0pt plus 5cm}If you want {\bf to} use costmap provided by \mbox{[}\mbox{[}move\+\_\+base\mbox{]}\mbox{]} you need {\bf to} enable unknown space tracking by setting you can start experimenting with \{\{\{explore\+\_\+lite\}\}\}. Provided `explore.\+launch` should work out-\/of-\/the box in most cases}\hypertarget{wiki__doc_8txt_a110243189100ad190f1295ade52a39a6}{}\label{wiki__doc_8txt_a110243189100ad190f1295ade52a39a6}

@@ -1,0 +1,42 @@
+\hypertarget{slam__gmapping_8cpp}{}\section{exp\+\_\+assignment3/src/slam\+\_\+gmapping.cpp File Reference}
+\label{slam__gmapping_8cpp}\index{exp\+\_\+assignment3/src/slam\+\_\+gmapping.\+cpp@{exp\+\_\+assignment3/src/slam\+\_\+gmapping.\+cpp}}
+{\ttfamily \#include \char`\"{}slam\+\_\+gmapping.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ros/console.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nav\+\_\+msgs/\+Map\+Meta\+Data.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gmapping/sensor/sensor\+\_\+range/rangesensor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gmapping/sensor/sensor\+\_\+odometry/odometrysensor.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$rosbag/bag.\+h$>$}\\*
+{\ttfamily \#include $<$rosbag/view.\+h$>$}\\*
+{\ttfamily \#include $<$boost/foreach.\+hpp$>$}\\*
+Include dependency graph for slam\+\_\+gmapping.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{slam__gmapping_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{slam__gmapping_8cpp_a85d9ac269eba33293361f4ed7c2a697b}{foreach}~B\+O\+O\+S\+T\+\_\+\+F\+O\+R\+E\+A\+CH
+\item 
+\#define \hyperlink{slam__gmapping_8cpp_a2388723427585df03b86ed963c9de575}{M\+A\+P\+\_\+\+I\+DX}(sx,  i,  j)~((sx) $\ast$ (j) + (i))
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{slam\+\_\+gmapping.\+cpp@{slam\+\_\+gmapping.\+cpp}!foreach@{foreach}}
+\index{foreach@{foreach}!slam\+\_\+gmapping.\+cpp@{slam\+\_\+gmapping.\+cpp}}
+\subsubsection[{\texorpdfstring{foreach}{foreach}}]{\setlength{\rightskip}{0pt plus 5cm}\#define foreach~B\+O\+O\+S\+T\+\_\+\+F\+O\+R\+E\+A\+CH}\hypertarget{slam__gmapping_8cpp_a85d9ac269eba33293361f4ed7c2a697b}{}\label{slam__gmapping_8cpp_a85d9ac269eba33293361f4ed7c2a697b}
+\index{slam\+\_\+gmapping.\+cpp@{slam\+\_\+gmapping.\+cpp}!M\+A\+P\+\_\+\+I\+DX@{M\+A\+P\+\_\+\+I\+DX}}
+\index{M\+A\+P\+\_\+\+I\+DX@{M\+A\+P\+\_\+\+I\+DX}!slam\+\_\+gmapping.\+cpp@{slam\+\_\+gmapping.\+cpp}}
+\subsubsection[{\texorpdfstring{M\+A\+P\+\_\+\+I\+DX}{MAP_IDX}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+P\+\_\+\+I\+DX(
+\begin{DoxyParamCaption}
+\item[{}]{sx, }
+\item[{}]{i, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)~((sx) $\ast$ (j) + (i))}\hypertarget{slam__gmapping_8cpp_a2388723427585df03b86ed963c9de575}{}\label{slam__gmapping_8cpp_a2388723427585df03b86ed963c9de575}

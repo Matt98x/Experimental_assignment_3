@@ -1,0 +1,364 @@
+Documentation might take some time to load completely
+
+\subsection*{Introduction}
+
+The aim of this assignment is to create a software architecture, which simulates a pet able to move autonomously inside a domestic environment, change its behavior and interact with a user, following its orders and exploring when asked to find unseen objectives.
+
+The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner. Here\textquotesingle{}s a visual representation obtained from the simulation environment\+:
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image1.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}/$>$
+
+\subsubsection*{The robot}
+
+The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture\+: 
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image2.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+Robot 
+
+It is a differential drive device with a camera(for the objectives detection and tracking) mounted on the head, and a range-\/finder(to allow the obstacles avoidance), which can be seen as the white box protruding from its chest. The differential drive regulates the posterior wheels speed to achieve forward and backward movements and the robot turning around the vertical axis. The smaller front castor wheel allow for a stable support of the robot and the proper working of the differential drive.
+
+\subsection*{Software Architecture, State Machine and communications}
+
+Here we show the main characteristics of the implemented system\+: the software architecture, the state machine and the communication methods.
+
+\subsubsection*{Architecture}
+
+The software architecture is built around a finite state machine which encodes all the robot behaviors and the conditions which govern the change of states. The logic being that all required features are just aspects of the states and their interaction, obtained by appropriately activating or deactivating parts of code depending on the system state.
+
+A representation of the architecture can be given in the following image\+: 
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Component\+\_\+\+Diagram.\+png?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture\+:
+\begin{DoxyItemize}
+\item The \char`\"{}\+Behavior\char`\"{} component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.
+\item The \char`\"{}\+Perception\char`\"{} component is an always active script which handles the features related to the camera. These are\+: the objective recognition(recognise the colored balls inside the image), the tracking and the obstacle avoidance while tracking(these two while moving closer to the recognised ball)
+\item The \char`\"{}\+Explore\+\_\+lite\char`\"{} refers to a package which is activated each time the pet is in the play state and is asked to go in a never previously seen room(and it deactivates otherwise). This package is not implemented by the author, but allow the exploration of the environment as a frontier elimination process, where the exploration is done when all the frontiers have been explored.
+\item The \char`\"{}\+Move\+Base\char`\"{} package is another external source which handles the motion of the robot to specific destinations. It can be imagined as the high-\/level controller and generates from the input the differential control output to achieve the objective while avoiding the obstacles and detecting whether the objective is achievable.
+\item The \char`\"{}\+User interface\char`\"{} handles both the randomic aspects of the robot(as the change of the states, and the inputs in case the user do not give one) and the interaction with the user, which can select when to enter the play state and where to go when the robot is at the user.
+\item The \char`\"{}\+Gazebo\char`\"{} environment handles the simulation of the entire system both of the robot movement and of the sensor data, which it distributes via publish/subscribe topics.
+\end{DoxyItemize}
+
+Althought they might seem disconnected, these nodes share information via a global parameter server which allow all nodes to have a singular always updated source of information.
+
+\subsubsection*{State Machine}
+
+The state machine is implemented as a python script implementing a smach class. 
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Finite\+\_\+\+States\+\_\+\+Machine.\+png?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+This is composed by the following 6 states\+:
+\begin{DoxyItemize}
+\item Sleep\+: this state makes the robot go from its current position to its \char`\"{}home\char`\"{} or \char`\"{}doghouse\char`\"{} situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.
+\item Normal\+: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)
+\item Play\+: Although more complex in the implementation, this states simply allow the pet to come back to the owner every time it is sent to a known or an unknown destination. Most of the logic inside it is mostly to handle the various scenarios that can arise. For example, if the objective has never been seen, the robot will explore the environment until a ball have been found thanks to the interaction between the find state and the track state. 
+\end{DoxyItemize}
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Play\+\_\+state.\+png?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+
+\begin{DoxyItemize}
+\item Find\+: This node use in its implementation the code from the explore-\/lite package. Inside the finite state machine, in fact, there is just some code to launch the external code and to shut it down when the robot decide to go to sleep or if a ball have been found, switching to the track behavior.
+\item Track\+: As the previous, this code is implemented in an external script. The \hyperlink{namespacePerception}{Perception} script is an always running process which handles the camera feed. When a new ball is recognised and the state is appropriate, the robot use the camera and the rangefinder data to approach it, while avoiding obstacles. When it is close enough the robot saves its pose to the parameter server to be later use as the objective pose when the owner ask it to go to the room associated with that ball. In the other cases, the robot will display a contour around the identified balls and the respective room name.
+\item Recovery\+: This state, although not included in the requirements, allow the user to temporarily override the robot to a more useful position if it gets stuck in a wall. It is activated using the 2D navigation goal tool on rviz, and just guide the robot from its current position to the goal and then switch the state back to normal.
+\end{DoxyItemize}
+
+More concisely, we can see the interaction between the states in the following diagram\+:
+
+\subsubsection*{Messages and parameters}
+
+The main parameters used for this implementation are\+:
+\begin{DoxyItemize}
+\item /state\+: state of the pet(0-\/sleep,1-\/normal,2-\/play,3-\/find,4-\/track,5-\/recovery)
+\item /home/\{x,y,theta\}\+: pose assigned to the place where the robot goes to sleep(defined a priori)
+\item /owner/\{x,y,theta\}\+: pose assigned to the place where the robot owner resides(defined a priori)
+\item /\char`\"{}room name\char`\"{}/\{x,y,theta\}\+: pose assigned by the robot to the ball assigned to the room with a generic \char`\"{}room name\char`\"{} after the tracking action have been completed(it is not defined at startup)
+\item /cplace\+: string indicating the current location of the robot, during movement it is \char`\"{}unknown\char`\"{}
+\item /destination/\{x,y,theta,name\}\+: contains the information of the destination of the movement
+\item /gazebo\+: gazebo anvironment parameters
+\end{DoxyItemize}
+
+Regarding the messages, they will be listed as
+\begin{DoxyItemize}
+\item geometry\+\_\+msgs\+:\+Twist\+: used by Behaviours and Following to Gazebo in order to control the twist of the robot
+\item sensor\+\_\+msgs\+:\+Image\+: Message with the image camera information
+\item exp\+\_\+assignment.\+Planning\+Action\+: message of the action server, it is used by the Pet\+\_\+logic and Behaviour to use the action server of the ball and robot respectively 
+\begin{DoxyCode}
+1 .geometry\_msgs/PoseStamped target\_pose
+2 ---
+3 ---
+4 string stat
+5 geometry\_msgs/Pose position
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\#\# Packages and file list 
+\begin{DoxyCode}
+1 Final\_assignment/
+2 ├── Doxyfile
+3 ├── Output
+4 │   ├── html
+5 │   │   ...
+6 │   └── latex
+7 │       ...
+8 ├── README.md
+9 ├── exp\_assignment3
+10 │   ├── CMakeLists.txt
+11 │   ├── action
+12 │   │   └── Planning.action
+13 │   ├── launch
+14 │   │   ├── General.launch
+15 │   │   ├── gmapping.launch
+16 │   │   ├── launcher.launch
+17 │   │   ├── move\_base.launch
+18 │   │   ├── move\_plan.launch
+19 │   │   ├── rviz.launch
+20 │   │   └── simulation.launch
+21 │   ├── nodelet\_plugins.xml
+22 │   ├── package.xml
+23 │   ├── param
+24 │   │   ├── base\_local\_planner\_params.yaml
+25 │   │   ├── costmap\_common\_params.yaml
+26 │   │   ├── global\_costmap\_params.yaml
+27 │   │   ├── local\_costmap\_params.yaml
+28 │   │   └── move\_base\_params.yaml
+29 │   ├── rviz
+30 │   │   └── sim.rviz
+31 │   ├── scripts
+32 │   │   ├── Behaviors.py
+33 │   │   ├── Perception.py
+34 │   │   ├── bug\_m.py
+35 │   │   ├── gmapping\_muting.sh
+36 │   │   ├── go\_to\_point\_action.py
+37 │   │   ├── go\_to\_point\_service\_m.py
+38 │   │   ├── interface.sh
+39 │   │   ├── user\_interface.py
+40 │   │   └── wall\_follow\_service\_m.py
+41 │   ├── src
+42 │   │   ├── main.cpp
+43 │   │   ├── nodelet.cpp
+44 │   │   ├── replay.cpp
+45 │   │   ├── slam\_gmapping.cpp
+46 │   │   └── slam\_gmapping.h
+47 │   ├── urdf
+48 │   │   ├── Pet
+49 │   │   │   ├── robot.gazebo
+50 │   │   │   └── robot.xacro
+51 │   │   └── human.urdf
+52 │   └── worlds
+53 │       └── house2.world
+54 ├── m-explore
+55 │   ├── LICENSE
+56 │   ├── README.md
+57 │   └── explore
+58 │       ├── CHANGELOG.rst
+59 │       ├── CMakeLists.txt
+60 │       ├── doc
+61 │       │   ├── architecture.dia
+62 │       │   ├── screenshot.png
+63 │       │   └── wiki\_doc.txt
+64 │       ├── include
+65 │       │   └── explore
+66 │       │       ├── costmap\_client.h
+67 │       │       ├── costmap\_tools.h
+68 │       │       ├── explore.h
+69 │       │       └── frontier\_search.h
+70 │       ├── launch
+71 │       │   ├── explore.launch
+72 │       │   └── explore\_costmap.launch
+73 │       ├── package.xml
+74 │       └── src
+75 │           ├── costmap\_client.cpp
+76 │           ├── explore.cpp
+77 │           └── frontier\_search.cpp
+78 ├── motion\_plan
+79 │   ├── CMakeLists.txt
+80 │   ├── action
+81 │   │   └── Planning.action
+82 │   ├── config
+83 │   │   └── motors\_config2.yaml
+84 │   ├── launch
+85 │   │   └── gazebo\_arm3.launch
+86 │   ├── package.xml
+87 │   ├── scripts
+88 │   │   ├── go\_to\_point.py
+89 │   │   └── go\_to\_point\_action.py
+90 │   ├── src
+91 │   │   └── move\_client.cpp
+92 │   └── urdf
+93 │       ├── m2wr\_arm3.gazebo
+94 │       ├── m2wr\_arm3.xacro
+95 │       └── materials.xacro
+96 └── slam\_gmapping
+97     ├── README.md
+98     └── slam\_gmapping
+99         ├── CHANGELOG.rst
+100         ├── CMakeLists.txt
+101         └── package.xml
+\end{DoxyCode}
+
+
+\subsection*{Installation and running procedure}
+
+Here we will show the installation procedures and how to run the code, with the instructions to reproduce the behaviors obtained in this project.
+
+\subsubsection*{Prerequisites}
+
+
+\begin{DoxyItemize}
+\item R\+OS melodic
+\item Smach
+\item Gazebo
+\end{DoxyItemize}
+
+\subsubsection*{Installation}
+
+To download the package on the desired machines there are two ways
+\begin{DoxyItemize}
+\item Download the package from the github repository and put the whole content in the src folder of the desired catkin workspace
+\item Set the package in the src folder of the catkin workspace with a gi command 
+\begin{DoxyCode}
+1 git clone https://github.com/Matt98x/Experimental\_assignment\_3.git
+\end{DoxyCode}
+ After the installation we can source the setup.\+bash file inside the devel folder of the catkin workspace 
+\begin{DoxyCode}
+1 (Inside the catkin workspace)
+2  source /devel/setup.bash
+3 catkin\_make
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+\subsubsection*{Running}
+
+
+\begin{DoxyItemize}
+\item After the compiler has completed its task we can use the same shell to launch the simulation environment. 
+\begin{DoxyCode}
+1 roslauch exp\_assignment3 General.launch
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+When completed the launch will result in the following windows being open\+:
+\begin{DoxyItemize}
+\item The shell where the code have been launched\+: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement 
+\end{DoxyItemize}
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image5.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+Main shell 
+
+
+\begin{DoxyItemize}
+\item A second shell reporting the Laser\+Scan data status
+\item A third shell with the possibility to introduce user commands 
+\end{DoxyItemize}
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image4.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+User interface 
+
+
+\begin{DoxyItemize}
+\item The Gazebo simulation environment
+\item The Rviz visualizer 
+\end{DoxyItemize}
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image6.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+Mapping in Rviz 
+
+
+\begin{DoxyItemize}
+\item A window showing what the robot sees 
+\end{DoxyItemize}
+
+$<$img src=\char`\"{}https\+://github.\+com/\+Matt98x/\+Experimental\+\_\+assignment\+\_\+3/blob/main/\+Media/\+Image3.\+P\+N\+G?raw=true \char`\"{}Title\char`\"{}\char`\"{}$>$ 
+
+Robot camera 
+
+With this one can decide to just leave the robot roam and change state inside the environment or can give commands via the user interface as it will be explained in the next section.
+
+\subsubsection*{User commands}
+
+
+\begin{DoxyItemize}
+\item User Interface (In the proper shell, type one of the following commands being sure to respect the case of each letter and pressing E\+N\+T\+ER after that)
+\begin{DoxyItemize}
+\item help\+: will display the list of possible commands with a brief description
+\item play\+: will set the robot in play state(waking up the robot if the user use it during the robot sleep state)
+\item room\+\_\+list\+: will display the list of all available rooms
+\item go to \textquotesingle{}room name\textquotesingle{} (with the name of the rooms in room\+\_\+list, respecting the casing of the letters)\+: when the robot is at the user, it can receive a command with the name of a room, if the room has been seen it will go to the memorized pose and come back, if not it will start exploring till a new ball have been found and then it will come back to the user
+\end{DoxyItemize}
+\item Rviz
+\begin{DoxyItemize}
+\item Selecting the command 2D navigation tool in the top part of the Rviz G\+UI and selecting an achievable point in the map will set the robot in the recovery state. In this, the robot will forget everything it was doing and achieve that position, after that it will come back to the normal state
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsection*{Working assumptions}
+
+The working assumptions will be discussed as the following list\+:
+\begin{DoxyItemize}
+\item The robot, simulating a pet move in a completely static world, so there are no moving or variable obstacles.
+\item The world is composed of 6 rooms containing a colored ball each, and is completely unknown to the robot at the beginning of program execution.
+\item It is in one and only one state at a time
+\item The objectives are represented by uniform color balls, which can not be found anywhere else in the entire environment.
+\item Each color is mapped to a specific room name (e.\+g. blue ball\+: kitchen).
+\item A new ball can only be recognise when the robot is in the normal or find state
+\item The commands can be just received when the robot is at the user
+\end{DoxyItemize}
+
+\subsection*{System features and limitations}
+
+\subsubsection*{Limitations}
+
+Here some systemic limitation given by the structure of the architecture\+:
+\begin{DoxyItemize}
+\item The system is not scalable in the number of individually controllable robots, but if all robots have the same state, it is scalable
+\item It is not scalable in the number of symbolic locations
+\item It is not really scalable in the number of states
+\item There are some problems with the target reaching the robot when it really close to the chassis
+\item The method to launch the find state is slow since every time a roslaunch must be called
+\end{DoxyItemize}
+
+Apart from these we have some limitations in the working procedures\+:
+\begin{DoxyItemize}
+\item For some still unidentified reasons, sometimes, the robot have have a false positive in the recognition of an already seen ball and end up moving against a wall(\+To correct it one can use the recovery state)
+\item There is some collision between the obstacle avoidance and the tracking control which mean that the angular position of the robot might swing when approaching a ball close to the wall
+\item If the robot is interrupted during a tracking phase derived from the find state it might miss the identification of a ball
+\end{DoxyItemize}
+
+\subsubsection*{Features}
+
+Talking about the system features, they can be divided in required and not required. As part of the first category we have\+:
+\begin{DoxyItemize}
+\item autonomous navigation of a robot in an ideal indoor environment
+\item building a map autonomously with frontier bases exploration and S\+L\+AM
+\item Reliable detection of colored balls in a controlled environment
+\item Perform visual servoing to approach a target detected by the camera while avoiding obstacles
+\item Visualization of the map, and costmap in R\+V\+IZ including the colored balls, that have been found, as colored markers
+\end{DoxyItemize}
+
+For the second, we have\+:
+\begin{DoxyItemize}
+\item The simplicity of the system makes it robust enough for long using(it performed up to 6 hours without problems before interrupting the test)
+\item Using the perception node as the track state allow for a modular design, and using just one track state instead of two separate
+\end{DoxyItemize}
+
+\subsection*{Possible technical improvements}
+
+
+\begin{DoxyItemize}
+\item Add multiple robots to the simulation possibly adding namespaces to represent the knowledge of each robot
+\item Integrate the explore-\/lite to run continuously and find a way to activate and deactivate it
+\item Find a way to stop the exploration if all frontiers have been explored and give a way to explore after that if a ball have been missed(\+It has not appened during testing but it might happen if the robot is interrupted while tracking, the current solution is to use the normal state to eventually find them)
+\item Add a user readable debugging tool
+\end{DoxyItemize}
+
+\subsection*{Author and contacts}
+
+Matteo Palmas\+: matteo.\+palmas7gmail.\+com 

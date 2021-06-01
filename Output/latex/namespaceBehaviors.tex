@@ -1,0 +1,225 @@
+\hypertarget{namespaceBehaviors}{}\section{Behaviors Namespace Reference}
+\label{namespaceBehaviors}\index{Behaviors@{Behaviors}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classBehaviors_1_1Find}{Find}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Find}{Find}\+: class that describes the \hyperlink{classBehaviors_1_1Find}{Find} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Normal}{Normal}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Normal}{Normal}\+: class that describes the \hyperlink{classBehaviors_1_1Normal}{Normal} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Play}{Play}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Play}{Play}\+: class that describes the \hyperlink{classBehaviors_1_1Play}{Play} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Recovery}{Recovery}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Recovery}{Recovery}\+: class that describes the \hyperlink{classBehaviors_1_1Recovery}{Recovery} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Sleep}{Sleep}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Sleep}{Sleep}\+: class that describes the \hyperlink{classBehaviors_1_1Sleep}{Sleep} state. \end{DoxyCompactList}\item 
+class \hyperlink{classBehaviors_1_1Track}{Track}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classBehaviors_1_1Track}{Track}\+: class that describes the \hyperlink{classBehaviors_1_1Track}{Track} state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceBehaviors_ab583cdd0339b053bae9c90edfa3ac54e}{odom\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Callback to retreive the odometry. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a90e1204c5a8da2ddecfa10a3341445a2}{status\+\_\+callback} (rosdata)
+\begin{DoxyCompactList}\small\item\em Callback to retreive the status of the action server of the motion. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a28e96174292117b887235e69fca82ca5}{recovery\+\_\+callback} (rosdata)
+\begin{DoxyCompactList}\small\item\em Function to set the recovery state if a signal is sent from R\+V\+IZ. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a7cc21a6fee5a1d2a1139df067ef86299}{cancel} ()
+\begin{DoxyCompactList}\small\item\em Function to cancel the current move\+\_\+base goal. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a7cc66788be2327e620e1093febba1bcd}{set\+Position} (x, y, theta)
+\begin{DoxyCompactList}\small\item\em Function to assign the robot position via the action server. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceBehaviors_a8c0daf846b80162d86c3e45a605579be}{roam} ()
+\begin{DoxyCompactList}\small\item\em roam\+: function to simulate the roaming behaviour of normal \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceBehaviors_a480c99d5a0219bba3f364d4022512bda}{client} = actionlib.\+Simple\+Action\+Client(\textquotesingle{}/move\+\_\+base\textquotesingle{},Move\+Base\+Action)
+\begin{DoxyCompactList}\small\item\em action service client definition \end{DoxyCompactList}\item 
+int \hyperlink{namespaceBehaviors_a7ea0e9c25ae327630daf14912540597f}{status} = 0
+\begin{DoxyCompactList}\small\item\em Variables declaration. \end{DoxyCompactList}\item 
+list \hyperlink{namespaceBehaviors_a7fda1c0de76b996b876dad16ed5c7cf5}{robot\+\_\+state} = \mbox{[}0,0,0\mbox{]}
+\item 
+int \hyperlink{namespaceBehaviors_a2de241e90497b66cefc28211136d938b}{prev\+\_\+state} = 0
+\item 
+\hyperlink{namespaceBehaviors_a458a2eb75561d95075537ee82dea289c}{Odometry}
+\begin{DoxyCompactList}\small\item\em Subscribers definitions. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_a53b9b8729733e5fde4c917a2068d6c92}{odom\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}{queue\+\_\+size}
+\item 
+\hyperlink{namespaceBehaviors_a56b79b8920b23a79eb3459479c6342eb}{vel\+\_\+pub}
+\item 
+\hyperlink{namespaceBehaviors_ad0289fe265166267c21567f44c2ecba7}{goal\+\_\+pub} = rospy.\+Publisher(\char`\"{}/move\+\_\+base\+\_\+simple/goal\char`\"{}, Pose\+Stamped,\hyperlink{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}{queue\+\_\+size}=1)
+\item 
+\hyperlink{namespaceBehaviors_a53817d008ea8a92222a7b07415fd0e7e}{Goal\+Status\+Array}
+\item 
+\hyperlink{namespaceBehaviors_a151c2aa7ae62991aea8bc9a08e0e641b}{status\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a2fecce674af17c4fbb23fc449c84f934}{cancel\+\_\+pub} = rospy.\+Publisher(\char`\"{}/move\+\_\+base/\hyperlink{namespaceBehaviors_a7cc21a6fee5a1d2a1139df067ef86299}{cancel}\char`\"{}, Goal\+ID,\hyperlink{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}{queue\+\_\+size}=1)
+\item 
+\hyperlink{namespaceBehaviors_a46e25ae172a62cf80114356ad513b371}{Pose\+Stamped}
+\item 
+\hyperlink{namespaceBehaviors_a58f5bdd371d18a7f2a82d97b0db5a536}{recovery\+\_\+callback}
+\item 
+\hyperlink{namespaceBehaviors_a8d923766f9ce0a45edee2abc4ddd7dfd}{sm\+\_\+s\+\_\+a} = smach.\+State\+Machine(outcomes=\mbox{[}\textquotesingle{}outcome6\textquotesingle{}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function declaration. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_a37367cb6a42ce97b27fc6b024c7fe079}{transitions}
+\begin{DoxyCompactList}\small\item\em Open the container. \end{DoxyCompactList}\item 
+\hyperlink{namespaceBehaviors_ae349e339b61a19499bcd34baefbd77ba}{outcome} = sm\+\_\+s\+\_\+a.\+execute()
+\begin{DoxyCompactList}\small\item\em Execute S\+M\+A\+CH plan. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{Behaviors@{Behaviors}!cancel@{cancel}}
+\index{cancel@{cancel}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{cancel()}{cancel()}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+cancel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_a7cc21a6fee5a1d2a1139df067ef86299}{}\label{namespaceBehaviors_a7cc21a6fee5a1d2a1139df067ef86299}
+
+
+Function to cancel the current move\+\_\+base goal. 
+
+\index{Behaviors@{Behaviors}!odom\+\_\+callback@{odom\+\_\+callback}}
+\index{odom\+\_\+callback@{odom\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{odom\+\_\+callback(ros\+\_\+data)}{odom_callback(ros_data)}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+odom\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{}]{ros\+\_\+data}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_ab583cdd0339b053bae9c90edfa3ac54e}{}\label{namespaceBehaviors_ab583cdd0339b053bae9c90edfa3ac54e}
+
+
+Callback to retreive the odometry. 
+
+\index{Behaviors@{Behaviors}!recovery\+\_\+callback@{recovery\+\_\+callback}}
+\index{recovery\+\_\+callback@{recovery\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{recovery\+\_\+callback(rosdata)}{recovery_callback(rosdata)}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+recovery\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{}]{rosdata}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_a28e96174292117b887235e69fca82ca5}{}\label{namespaceBehaviors_a28e96174292117b887235e69fca82ca5}
+
+
+Function to set the recovery state if a signal is sent from R\+V\+IZ. 
+
+\index{Behaviors@{Behaviors}!roam@{roam}}
+\index{roam@{roam}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{roam()}{roam()}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+roam (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_a8c0daf846b80162d86c3e45a605579be}{}\label{namespaceBehaviors_a8c0daf846b80162d86c3e45a605579be}
+
+
+roam\+: function to simulate the roaming behaviour of normal 
+
+\index{Behaviors@{Behaviors}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{set\+Position(x, y, theta)}{setPosition(x, y, theta)}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+set\+Position (
+\begin{DoxyParamCaption}
+\item[{}]{x, }
+\item[{}]{y, }
+\item[{}]{theta}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_a7cc66788be2327e620e1093febba1bcd}{}\label{namespaceBehaviors_a7cc66788be2327e620e1093febba1bcd}
+
+
+Function to assign the robot position via the action server. 
+
+\index{Behaviors@{Behaviors}!status\+\_\+callback@{status\+\_\+callback}}
+\index{status\+\_\+callback@{status\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{status\+\_\+callback(rosdata)}{status_callback(rosdata)}}]{\setlength{\rightskip}{0pt plus 5cm}def Behaviors.\+status\+\_\+callback (
+\begin{DoxyParamCaption}
+\item[{}]{rosdata}
+\end{DoxyParamCaption}
+)}\hypertarget{namespaceBehaviors_a90e1204c5a8da2ddecfa10a3341445a2}{}\label{namespaceBehaviors_a90e1204c5a8da2ddecfa10a3341445a2}
+
+
+Callback to retreive the status of the action server of the motion. 
+
+
+
+\subsection{Variable Documentation}
+\index{Behaviors@{Behaviors}!cancel\+\_\+pub@{cancel\+\_\+pub}}
+\index{cancel\+\_\+pub@{cancel\+\_\+pub}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{cancel\+\_\+pub}{cancel_pub}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+cancel\+\_\+pub = rospy.\+Publisher(\char`\"{}/move\+\_\+base/{\bf cancel}\char`\"{}, Goal\+ID,{\bf queue\+\_\+size}=1)}\hypertarget{namespaceBehaviors_a2fecce674af17c4fbb23fc449c84f934}{}\label{namespaceBehaviors_a2fecce674af17c4fbb23fc449c84f934}
+\index{Behaviors@{Behaviors}!client@{client}}
+\index{client@{client}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{client}{client}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+client = actionlib.\+Simple\+Action\+Client(\textquotesingle{}/move\+\_\+base\textquotesingle{},Move\+Base\+Action)}\hypertarget{namespaceBehaviors_a480c99d5a0219bba3f364d4022512bda}{}\label{namespaceBehaviors_a480c99d5a0219bba3f364d4022512bda}
+
+
+action service client definition 
+
+\index{Behaviors@{Behaviors}!goal\+\_\+pub@{goal\+\_\+pub}}
+\index{goal\+\_\+pub@{goal\+\_\+pub}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{goal\+\_\+pub}{goal_pub}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+goal\+\_\+pub = rospy.\+Publisher(\char`\"{}/move\+\_\+base\+\_\+simple/goal\char`\"{}, Pose\+Stamped,{\bf queue\+\_\+size}=1)}\hypertarget{namespaceBehaviors_ad0289fe265166267c21567f44c2ecba7}{}\label{namespaceBehaviors_ad0289fe265166267c21567f44c2ecba7}
+\index{Behaviors@{Behaviors}!Goal\+Status\+Array@{Goal\+Status\+Array}}
+\index{Goal\+Status\+Array@{Goal\+Status\+Array}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{Goal\+Status\+Array}{GoalStatusArray}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+Goal\+Status\+Array}\hypertarget{namespaceBehaviors_a53817d008ea8a92222a7b07415fd0e7e}{}\label{namespaceBehaviors_a53817d008ea8a92222a7b07415fd0e7e}
+\index{Behaviors@{Behaviors}!odom\+\_\+callback@{odom\+\_\+callback}}
+\index{odom\+\_\+callback@{odom\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{odom\+\_\+callback}{odom_callback}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+odom\+\_\+callback}\hypertarget{namespaceBehaviors_a53b9b8729733e5fde4c917a2068d6c92}{}\label{namespaceBehaviors_a53b9b8729733e5fde4c917a2068d6c92}
+\index{Behaviors@{Behaviors}!Odometry@{Odometry}}
+\index{Odometry@{Odometry}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{Odometry}{Odometry}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+Odometry}\hypertarget{namespaceBehaviors_a458a2eb75561d95075537ee82dea289c}{}\label{namespaceBehaviors_a458a2eb75561d95075537ee82dea289c}
+
+
+Subscribers definitions. 
+
+\index{Behaviors@{Behaviors}!outcome@{outcome}}
+\index{outcome@{outcome}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{outcome}{outcome}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+outcome = sm\+\_\+s\+\_\+a.\+execute()}\hypertarget{namespaceBehaviors_ae349e339b61a19499bcd34baefbd77ba}{}\label{namespaceBehaviors_ae349e339b61a19499bcd34baefbd77ba}
+
+
+Execute S\+M\+A\+CH plan. 
+
+\index{Behaviors@{Behaviors}!Pose\+Stamped@{Pose\+Stamped}}
+\index{Pose\+Stamped@{Pose\+Stamped}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{Pose\+Stamped}{PoseStamped}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+Pose\+Stamped}\hypertarget{namespaceBehaviors_a46e25ae172a62cf80114356ad513b371}{}\label{namespaceBehaviors_a46e25ae172a62cf80114356ad513b371}
+\index{Behaviors@{Behaviors}!prev\+\_\+state@{prev\+\_\+state}}
+\index{prev\+\_\+state@{prev\+\_\+state}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{prev\+\_\+state}{prev_state}}]{\setlength{\rightskip}{0pt plus 5cm}int Behaviors.\+prev\+\_\+state = 0}\hypertarget{namespaceBehaviors_a2de241e90497b66cefc28211136d938b}{}\label{namespaceBehaviors_a2de241e90497b66cefc28211136d938b}
+\index{Behaviors@{Behaviors}!queue\+\_\+size@{queue\+\_\+size}}
+\index{queue\+\_\+size@{queue\+\_\+size}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{queue\+\_\+size}{queue_size}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+queue\+\_\+size}\hypertarget{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}{}\label{namespaceBehaviors_a182345f6e56bfb62f2fe95e488624da4}
+\index{Behaviors@{Behaviors}!recovery\+\_\+callback@{recovery\+\_\+callback}}
+\index{recovery\+\_\+callback@{recovery\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{recovery\+\_\+callback}{recovery_callback}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+recovery\+\_\+callback}\hypertarget{namespaceBehaviors_a58f5bdd371d18a7f2a82d97b0db5a536}{}\label{namespaceBehaviors_a58f5bdd371d18a7f2a82d97b0db5a536}
+\index{Behaviors@{Behaviors}!robot\+\_\+state@{robot\+\_\+state}}
+\index{robot\+\_\+state@{robot\+\_\+state}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{robot\+\_\+state}{robot_state}}]{\setlength{\rightskip}{0pt plus 5cm}list Behaviors.\+robot\+\_\+state = \mbox{[}0,0,0\mbox{]}}\hypertarget{namespaceBehaviors_a7fda1c0de76b996b876dad16ed5c7cf5}{}\label{namespaceBehaviors_a7fda1c0de76b996b876dad16ed5c7cf5}
+\index{Behaviors@{Behaviors}!sm\+\_\+s\+\_\+a@{sm\+\_\+s\+\_\+a}}
+\index{sm\+\_\+s\+\_\+a@{sm\+\_\+s\+\_\+a}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{sm\+\_\+s\+\_\+a}{sm_s_a}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+sm\+\_\+s\+\_\+a = smach.\+State\+Machine(outcomes=\mbox{[}\textquotesingle{}outcome6\textquotesingle{}\mbox{]})}\hypertarget{namespaceBehaviors_a8d923766f9ce0a45edee2abc4ddd7dfd}{}\label{namespaceBehaviors_a8d923766f9ce0a45edee2abc4ddd7dfd}
+
+
+Main function declaration. 
+
+Init the ros node Create a S\+M\+A\+CH state machine \index{Behaviors@{Behaviors}!status@{status}}
+\index{status@{status}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{status}{status}}]{\setlength{\rightskip}{0pt plus 5cm}int Behaviors.\+status = 0}\hypertarget{namespaceBehaviors_a7ea0e9c25ae327630daf14912540597f}{}\label{namespaceBehaviors_a7ea0e9c25ae327630daf14912540597f}
+
+
+Variables declaration. 
+
+\index{Behaviors@{Behaviors}!status\+\_\+callback@{status\+\_\+callback}}
+\index{status\+\_\+callback@{status\+\_\+callback}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{status\+\_\+callback}{status_callback}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+status\+\_\+callback}\hypertarget{namespaceBehaviors_a151c2aa7ae62991aea8bc9a08e0e641b}{}\label{namespaceBehaviors_a151c2aa7ae62991aea8bc9a08e0e641b}
+\index{Behaviors@{Behaviors}!transitions@{transitions}}
+\index{transitions@{transitions}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{transitions}{transitions}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+transitions}\hypertarget{namespaceBehaviors_a37367cb6a42ce97b27fc6b024c7fe079}{}\label{namespaceBehaviors_a37367cb6a42ce97b27fc6b024c7fe079}
+
+
+Open the container. 
+
+Add states to the container.
+
+Add states to the container \index{Behaviors@{Behaviors}!vel\+\_\+pub@{vel\+\_\+pub}}
+\index{vel\+\_\+pub@{vel\+\_\+pub}!Behaviors@{Behaviors}}
+\subsubsection[{\texorpdfstring{vel\+\_\+pub}{vel_pub}}]{\setlength{\rightskip}{0pt plus 5cm}Behaviors.\+vel\+\_\+pub}\hypertarget{namespaceBehaviors_a56b79b8920b23a79eb3459479c6342eb}{}\label{namespaceBehaviors_a56b79b8920b23a79eb3459479c6342eb}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 = rospy.Publisher(\textcolor{stringliteral}{"/cmd\_vel"},
+2                                        Twist, queue\_size=1)
+\end{DoxyCode}

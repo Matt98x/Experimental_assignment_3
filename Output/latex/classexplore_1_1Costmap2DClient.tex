@@ -1,0 +1,189 @@
+\hypertarget{classexplore_1_1Costmap2DClient}{}\section{explore\+:\+:Costmap2\+D\+Client Class Reference}
+\label{classexplore_1_1Costmap2DClient}\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+
+
+{\ttfamily \#include $<$costmap\+\_\+client.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classexplore_1_1Costmap2DClient_a0c7fe155a1ac35503a7906e0f23bde3a}{Costmap2\+D\+Client} (ros\+::\+Node\+Handle \&param\+\_\+nh, ros\+::\+Node\+Handle \&subscription\+\_\+nh, const tf\+::\+Transform\+Listener $\ast$tf\+\_\+listener)
+\begin{DoxyCompactList}\small\item\em Contructs client and start listening. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Pose \hyperlink{classexplore_1_1Costmap2DClient_ae7c4fa4e8e83916f0f8e0ad126c4bbae}{get\+Robot\+Pose} () const 
+\begin{DoxyCompactList}\small\item\em Get the pose of the robot in the global frame of the costmap. \end{DoxyCompactList}\item 
+costmap\+\_\+2d\+::\+Costmap2D $\ast$ \hyperlink{classexplore_1_1Costmap2DClient_a6c2cb3946a589eb2708092b762a0ca19}{get\+Costmap} ()
+\begin{DoxyCompactList}\small\item\em Return a pointer to the \char`\"{}master\char`\"{} costmap which receives updates from all the layers. \end{DoxyCompactList}\item 
+const costmap\+\_\+2d\+::\+Costmap2D $\ast$ \hyperlink{classexplore_1_1Costmap2DClient_ac6e206858506129629085e583730b750}{get\+Costmap} () const 
+\begin{DoxyCompactList}\small\item\em Return a pointer to the \char`\"{}master\char`\"{} costmap which receives updates from all the layers. \end{DoxyCompactList}\item 
+const std\+::string \& \hyperlink{classexplore_1_1Costmap2DClient_a4e1fba13e2cdaeec2974edf00d1cbcbf}{get\+Global\+Frame\+ID} () const 
+\begin{DoxyCompactList}\small\item\em Returns the global frame of the costmap. \end{DoxyCompactList}\item 
+const std\+::string \& \hyperlink{classexplore_1_1Costmap2DClient_a8c57bfd0380791903e0ed175b6cf3076}{get\+Base\+Frame\+ID} () const 
+\begin{DoxyCompactList}\small\item\em Returns the local frame of the costmap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classexplore_1_1Costmap2DClient_aea42456429533a2d1b2534ba2a2a3c38}{update\+Full\+Map} (const nav\+\_\+msgs\+::\+Occupancy\+Grid\+::\+Const\+Ptr \&msg)
+\item 
+void \hyperlink{classexplore_1_1Costmap2DClient_a9ced9410da0b202133977a1ac30042bb}{update\+Partial\+Map} (const map\+\_\+msgs\+::\+Occupancy\+Grid\+Update\+::\+Const\+Ptr \&msg)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+costmap\+\_\+2d\+::\+Costmap2D \hyperlink{classexplore_1_1Costmap2DClient_afdd7c04f99ea98d0f5f624a3446187c9}{costmap\+\_\+}
+\item 
+const tf\+::\+Transform\+Listener $\ast$const \hyperlink{classexplore_1_1Costmap2DClient_a1b47f263b4090e67878f388c19007759}{tf\+\_\+}
+\begin{DoxyCompactList}\small\item\em Used for transforming point clouds. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classexplore_1_1Costmap2DClient_a7a1947e93767e79127bf7579906aea00}{global\+\_\+frame\+\_\+}
+\begin{DoxyCompactList}\small\item\em The global frame for the costmap. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classexplore_1_1Costmap2DClient_aca46101d77483604e1bf30c705c42c28}{robot\+\_\+base\+\_\+frame\+\_\+}
+\begin{DoxyCompactList}\small\item\em The frame\+\_\+id of the robot base. \end{DoxyCompactList}\item 
+double \hyperlink{classexplore_1_1Costmap2DClient_a8df618a02b5a81b30e121cf509c0b804}{transform\+\_\+tolerance\+\_\+}
+\begin{DoxyCompactList}\small\item\em timeout before transform errors \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!Costmap2\+D\+Client@{Costmap2\+D\+Client}}
+\index{Costmap2\+D\+Client@{Costmap2\+D\+Client}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{Costmap2\+D\+Client(ros\+::\+Node\+Handle \&param\+\_\+nh, ros\+::\+Node\+Handle \&subscription\+\_\+nh, const tf\+::\+Transform\+Listener $\ast$tf\+\_\+listener)}{Costmap2DClient(ros::NodeHandle &param_nh, ros::NodeHandle &subscription_nh, const tf::TransformListener *tf_listener)}}]{\setlength{\rightskip}{0pt plus 5cm}explore\+::\+Costmap2\+D\+Client\+::\+Costmap2\+D\+Client (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Node\+Handle \&}]{param\+\_\+nh, }
+\item[{ros\+::\+Node\+Handle \&}]{subscription\+\_\+nh, }
+\item[{const tf\+::\+Transform\+Listener $\ast$}]{tf\+\_\+listener}
+\end{DoxyParamCaption}
+)}\hypertarget{classexplore_1_1Costmap2DClient_a0c7fe155a1ac35503a7906e0f23bde3a}{}\label{classexplore_1_1Costmap2DClient_a0c7fe155a1ac35503a7906e0f23bde3a}
+
+
+Contructs client and start listening. 
+
+Constructor will block until first map update is received and map is ready to use, also will block before trasformation robot\+\_\+base\+\_\+frame $<$-\/$>$ global\+\_\+frame is available.
+
+
+\begin{DoxyParams}{Parameters}
+{\em param\+\_\+nh} & node hadle to retrieve parameters from \\
+\hline
+{\em subscription\+\_\+nh} & node hadle where topics will be subscribed \\
+\hline
+{\em tf\+\_\+listener} & Will be used for transformation of robot pose. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!get\+Base\+Frame\+ID@{get\+Base\+Frame\+ID}}
+\index{get\+Base\+Frame\+ID@{get\+Base\+Frame\+ID}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{get\+Base\+Frame\+I\+D() const }{getBaseFrameID() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string\& explore\+::\+Costmap2\+D\+Client\+::get\+Base\+Frame\+ID (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classexplore_1_1Costmap2DClient_a8c57bfd0380791903e0ed175b6cf3076}{}\label{classexplore_1_1Costmap2DClient_a8c57bfd0380791903e0ed175b6cf3076}
+
+
+Returns the local frame of the costmap. 
+
+\begin{DoxyReturn}{Returns}
+The local frame of the costmap 
+\end{DoxyReturn}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!get\+Costmap@{get\+Costmap}}
+\index{get\+Costmap@{get\+Costmap}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{get\+Costmap()}{getCostmap()}}]{\setlength{\rightskip}{0pt plus 5cm}costmap\+\_\+2d\+::\+Costmap2D$\ast$ explore\+::\+Costmap2\+D\+Client\+::get\+Costmap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classexplore_1_1Costmap2DClient_a6c2cb3946a589eb2708092b762a0ca19}{}\label{classexplore_1_1Costmap2DClient_a6c2cb3946a589eb2708092b762a0ca19}
+
+
+Return a pointer to the \char`\"{}master\char`\"{} costmap which receives updates from all the layers. 
+
+This pointer will stay the same for the lifetime of \hyperlink{classexplore_1_1Costmap2DClient}{Costmap2\+D\+Client} object. \index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!get\+Costmap@{get\+Costmap}}
+\index{get\+Costmap@{get\+Costmap}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{get\+Costmap() const }{getCostmap() const }}]{\setlength{\rightskip}{0pt plus 5cm}const costmap\+\_\+2d\+::\+Costmap2D$\ast$ explore\+::\+Costmap2\+D\+Client\+::get\+Costmap (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classexplore_1_1Costmap2DClient_ac6e206858506129629085e583730b750}{}\label{classexplore_1_1Costmap2DClient_ac6e206858506129629085e583730b750}
+
+
+Return a pointer to the \char`\"{}master\char`\"{} costmap which receives updates from all the layers. 
+
+This pointer will stay the same for the lifetime of \hyperlink{classexplore_1_1Costmap2DClient}{Costmap2\+D\+Client} object. \index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!get\+Global\+Frame\+ID@{get\+Global\+Frame\+ID}}
+\index{get\+Global\+Frame\+ID@{get\+Global\+Frame\+ID}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{get\+Global\+Frame\+I\+D() const }{getGlobalFrameID() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::string\& explore\+::\+Costmap2\+D\+Client\+::get\+Global\+Frame\+ID (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classexplore_1_1Costmap2DClient_a4e1fba13e2cdaeec2974edf00d1cbcbf}{}\label{classexplore_1_1Costmap2DClient_a4e1fba13e2cdaeec2974edf00d1cbcbf}
+
+
+Returns the global frame of the costmap. 
+
+\begin{DoxyReturn}{Returns}
+The global frame of the costmap 
+\end{DoxyReturn}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!get\+Robot\+Pose@{get\+Robot\+Pose}}
+\index{get\+Robot\+Pose@{get\+Robot\+Pose}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{get\+Robot\+Pose() const }{getRobotPose() const }}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Pose explore\+::\+Costmap2\+D\+Client\+::get\+Robot\+Pose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classexplore_1_1Costmap2DClient_ae7c4fa4e8e83916f0f8e0ad126c4bbae}{}\label{classexplore_1_1Costmap2DClient_ae7c4fa4e8e83916f0f8e0ad126c4bbae}
+
+
+Get the pose of the robot in the global frame of the costmap. 
+
+\begin{DoxyReturn}{Returns}
+pose of the robot in the global frame of the costmap 
+\end{DoxyReturn}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!update\+Full\+Map@{update\+Full\+Map}}
+\index{update\+Full\+Map@{update\+Full\+Map}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{update\+Full\+Map(const nav\+\_\+msgs\+::\+Occupancy\+Grid\+::\+Const\+Ptr \&msg)}{updateFullMap(const nav_msgs::OccupancyGrid::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void explore\+::\+Costmap2\+D\+Client\+::update\+Full\+Map (
+\begin{DoxyParamCaption}
+\item[{const nav\+\_\+msgs\+::\+Occupancy\+Grid\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_aea42456429533a2d1b2534ba2a2a3c38}{}\label{classexplore_1_1Costmap2DClient_aea42456429533a2d1b2534ba2a2a3c38}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!update\+Partial\+Map@{update\+Partial\+Map}}
+\index{update\+Partial\+Map@{update\+Partial\+Map}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{update\+Partial\+Map(const map\+\_\+msgs\+::\+Occupancy\+Grid\+Update\+::\+Const\+Ptr \&msg)}{updatePartialMap(const map_msgs::OccupancyGridUpdate::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void explore\+::\+Costmap2\+D\+Client\+::update\+Partial\+Map (
+\begin{DoxyParamCaption}
+\item[{const map\+\_\+msgs\+::\+Occupancy\+Grid\+Update\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_a9ced9410da0b202133977a1ac30042bb}{}\label{classexplore_1_1Costmap2DClient_a9ced9410da0b202133977a1ac30042bb}
+
+
+\subsection{Member Data Documentation}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!costmap\+\_\+@{costmap\+\_\+}}
+\index{costmap\+\_\+@{costmap\+\_\+}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{costmap\+\_\+}{costmap_}}]{\setlength{\rightskip}{0pt plus 5cm}costmap\+\_\+2d\+::\+Costmap2D explore\+::\+Costmap2\+D\+Client\+::costmap\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_afdd7c04f99ea98d0f5f624a3446187c9}{}\label{classexplore_1_1Costmap2DClient_afdd7c04f99ea98d0f5f624a3446187c9}
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!global\+\_\+frame\+\_\+@{global\+\_\+frame\+\_\+}}
+\index{global\+\_\+frame\+\_\+@{global\+\_\+frame\+\_\+}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{global\+\_\+frame\+\_\+}{global_frame_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string explore\+::\+Costmap2\+D\+Client\+::global\+\_\+frame\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_a7a1947e93767e79127bf7579906aea00}{}\label{classexplore_1_1Costmap2DClient_a7a1947e93767e79127bf7579906aea00}
+
+
+The global frame for the costmap. 
+
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!robot\+\_\+base\+\_\+frame\+\_\+@{robot\+\_\+base\+\_\+frame\+\_\+}}
+\index{robot\+\_\+base\+\_\+frame\+\_\+@{robot\+\_\+base\+\_\+frame\+\_\+}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{robot\+\_\+base\+\_\+frame\+\_\+}{robot_base_frame_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string explore\+::\+Costmap2\+D\+Client\+::robot\+\_\+base\+\_\+frame\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_aca46101d77483604e1bf30c705c42c28}{}\label{classexplore_1_1Costmap2DClient_aca46101d77483604e1bf30c705c42c28}
+
+
+The frame\+\_\+id of the robot base. 
+
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!tf\+\_\+@{tf\+\_\+}}
+\index{tf\+\_\+@{tf\+\_\+}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{tf\+\_\+}{tf_}}]{\setlength{\rightskip}{0pt plus 5cm}const tf\+::\+Transform\+Listener$\ast$ const explore\+::\+Costmap2\+D\+Client\+::tf\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_a1b47f263b4090e67878f388c19007759}{}\label{classexplore_1_1Costmap2DClient_a1b47f263b4090e67878f388c19007759}
+
+
+Used for transforming point clouds. 
+
+\index{explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}!transform\+\_\+tolerance\+\_\+@{transform\+\_\+tolerance\+\_\+}}
+\index{transform\+\_\+tolerance\+\_\+@{transform\+\_\+tolerance\+\_\+}!explore\+::\+Costmap2\+D\+Client@{explore\+::\+Costmap2\+D\+Client}}
+\subsubsection[{\texorpdfstring{transform\+\_\+tolerance\+\_\+}{transform_tolerance_}}]{\setlength{\rightskip}{0pt plus 5cm}double explore\+::\+Costmap2\+D\+Client\+::transform\+\_\+tolerance\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classexplore_1_1Costmap2DClient_a8df618a02b5a81b30e121cf509c0b804}{}\label{classexplore_1_1Costmap2DClient_a8df618a02b5a81b30e121cf509c0b804}
+
+
+timeout before transform errors 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+m-\/explore/explore/include/explore/\hyperlink{costmap__client_8h}{costmap\+\_\+client.\+h}\item 
+m-\/explore/explore/src/\hyperlink{costmap__client_8cpp}{costmap\+\_\+client.\+cpp}\end{DoxyCompactItemize}

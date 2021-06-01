@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['slamgmappingnodelet',['SlamGMappingNodelet',['../classSlamGMappingNodelet.html',1,'']]],
-  ['sleep',['Sleep',['../classBehaviors_1_1Sleep.html',1,'Behaviors']]]
+  ['play',['Play',['../classBehaviors_1_1Play.html',1,'Behaviors']]]
 ];

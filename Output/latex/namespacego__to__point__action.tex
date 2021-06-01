@@ -1,0 +1,226 @@
+\hypertarget{namespacego__to__point__action}{}\section{go\+\_\+to\+\_\+point\+\_\+action Namespace Reference}
+\label{namespacego__to__point__action}\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacego__to__point__action_a071343dec01124a125b208f881e350ff}{clbk\+\_\+odom} (msg)
+\begin{DoxyCompactList}\small\item\em callbacks \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a228c91a7de8ba144bebc1621674878da}{change\+\_\+state} (state)
+\begin{DoxyCompactList}\small\item\em change state \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a595bc16b669d1573a921f2fc42d61961}{normalize\+\_\+angle} (angle)
+\item 
+def \hyperlink{namespacego__to__point__action_a4a5f8180b546da8703ac2dddf1a70e5d}{fix\+\_\+yaw} (des\+\_\+pos)
+\item 
+def \hyperlink{namespacego__to__point__action_a15dbc5b1176cdaf104c33ce8eb7e6103}{go\+\_\+straight\+\_\+ahead} (des\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em function to go straight ahead \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a99cfe9dae88227814c5387387fe794c5}{done} ()
+\begin{DoxyCompactList}\small\item\em Function to terminate the control when target is achieved. \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_a5bba71b4503c075067b2bbfcdf64556e}{planning} (goal)
+\begin{DoxyCompactList}\small\item\em Function to plan the control to reach the target. \end{DoxyCompactList}\item 
+def \hyperlink{namespacego__to__point__action_ad5e10fe384fcab186e405aac29aece7b}{main} ()
+\begin{DoxyCompactList}\small\item\em main function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacego__to__point__action_a4aafc5721803ca4d208e9e0a686f8e65}{position\+\_\+} = Point()
+\begin{DoxyCompactList}\small\item\em robot state variables \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_ac843a0e43a672ed873017530721ce2d9}{pose\+\_\+} = Pose()
+\item 
+int \hyperlink{namespacego__to__point__action_a880fb089b41232984ae49355b6f46a39}{yaw\+\_\+} = 0
+\item 
+int \hyperlink{namespacego__to__point__action_aadf404dc66c95a101e7e05dfafd92c3d}{state\+\_\+} = 0
+\begin{DoxyCompactList}\small\item\em machine state \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a57e8782cf693baab2ca4390e2e917155}{desired\+\_\+position\+\_\+} = Point()
+\begin{DoxyCompactList}\small\item\em goal \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a8848541ff0d9e1607e1d715de007aa03}{z}
+\item 
+int \hyperlink{namespacego__to__point__action_a914253ff638fc05f3f0fd3d9536503c2}{yaw\+\_\+precision\+\_\+} = math.\+pi/9
+\begin{DoxyCompactList}\small\item\em parameters \end{DoxyCompactList}\item 
+int \hyperlink{namespacego__to__point__action_a65f4bbc971a7e33d9441aa79dcbfa1ae}{yaw\+\_\+precision\+\_\+2\+\_\+} = math.\+pi/90
+\begin{DoxyCompactList}\small\item\em +/-\/ 20 degree allowed \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a2b67a832bde842bf565341c5fc606f81}{dist\+\_\+precision\+\_\+} = 0.\+1
+\begin{DoxyCompactList}\small\item\em +/-\/ 2 degree allowed \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a9f06acd5d2562909e122242d328755df}{kp\+\_\+a} = 3.\+0
+\item 
+float \hyperlink{namespacego__to__point__action_a34be7fb79cc4f03e9b8671df19275132}{kp\+\_\+d} = 0.\+2
+\begin{DoxyCompactList}\small\item\em In R\+OS Noetic, it may be necessary to change the sign of this proportional controller. \end{DoxyCompactList}\item 
+float \hyperlink{namespacego__to__point__action_a2c03541662b19da8a707e89f121e25a5}{ub\+\_\+a} = 0.\+9
+\item 
+float \hyperlink{namespacego__to__point__action_ac93d2080cb249db79a1bba87a42c1a44}{lb\+\_\+a} = -\/0.\+9
+\item 
+float \hyperlink{namespacego__to__point__action_a6450364749bdc94394b2251c68e2ceee}{ub\+\_\+d} = 0.\+6
+\item 
+\hyperlink{namespacego__to__point__action_a3e555da71db618b9165bb58fe9ef160e}{pub} = None
+\begin{DoxyCompactList}\small\item\em publisher \end{DoxyCompactList}\item 
+\hyperlink{namespacego__to__point__action_a3994b1577d1a499ce8c7352036ee6486}{act\+\_\+s} = None
+\begin{DoxyCompactList}\small\item\em action\+\_\+server \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!change\+\_\+state@{change\+\_\+state}}
+\index{change\+\_\+state@{change\+\_\+state}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{change\+\_\+state(state)}{change_state(state)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+change\+\_\+state (
+\begin{DoxyParamCaption}
+\item[{}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a228c91a7de8ba144bebc1621674878da}{}\label{namespacego__to__point__action_a228c91a7de8ba144bebc1621674878da}
+
+
+change state 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!clbk\+\_\+odom@{clbk\+\_\+odom}}
+\index{clbk\+\_\+odom@{clbk\+\_\+odom}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{clbk\+\_\+odom(msg)}{clbk_odom(msg)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+clbk\+\_\+odom (
+\begin{DoxyParamCaption}
+\item[{}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a071343dec01124a125b208f881e350ff}{}\label{namespacego__to__point__action_a071343dec01124a125b208f881e350ff}
+
+
+callbacks 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!done@{done}}
+\index{done@{done}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{done()}{done()}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+done (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a99cfe9dae88227814c5387387fe794c5}{}\label{namespacego__to__point__action_a99cfe9dae88227814c5387387fe794c5}
+
+
+Function to terminate the control when target is achieved. 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!fix\+\_\+yaw@{fix\+\_\+yaw}}
+\index{fix\+\_\+yaw@{fix\+\_\+yaw}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{fix\+\_\+yaw(des\+\_\+pos)}{fix_yaw(des_pos)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+fix\+\_\+yaw (
+\begin{DoxyParamCaption}
+\item[{}]{des\+\_\+pos}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a4a5f8180b546da8703ac2dddf1a70e5d}{}\label{namespacego__to__point__action_a4a5f8180b546da8703ac2dddf1a70e5d}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!go\+\_\+straight\+\_\+ahead@{go\+\_\+straight\+\_\+ahead}}
+\index{go\+\_\+straight\+\_\+ahead@{go\+\_\+straight\+\_\+ahead}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{go\+\_\+straight\+\_\+ahead(des\+\_\+pos)}{go_straight_ahead(des_pos)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+go\+\_\+straight\+\_\+ahead (
+\begin{DoxyParamCaption}
+\item[{}]{des\+\_\+pos}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a15dbc5b1176cdaf104c33ce8eb7e6103}{}\label{namespacego__to__point__action_a15dbc5b1176cdaf104c33ce8eb7e6103}
+
+
+function to go straight ahead 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!main@{main}}
+\index{main@{main}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{main()}{main()}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_ad5e10fe384fcab186e405aac29aece7b}{}\label{namespacego__to__point__action_ad5e10fe384fcab186e405aac29aece7b}
+
+
+main function 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!normalize\+\_\+angle@{normalize\+\_\+angle}}
+\index{normalize\+\_\+angle@{normalize\+\_\+angle}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{normalize\+\_\+angle(angle)}{normalize_angle(angle)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+normalize\+\_\+angle (
+\begin{DoxyParamCaption}
+\item[{}]{angle}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a595bc16b669d1573a921f2fc42d61961}{}\label{namespacego__to__point__action_a595bc16b669d1573a921f2fc42d61961}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!planning@{planning}}
+\index{planning@{planning}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{planning(goal)}{planning(goal)}}]{\setlength{\rightskip}{0pt plus 5cm}def go\+\_\+to\+\_\+point\+\_\+action.\+planning (
+\begin{DoxyParamCaption}
+\item[{}]{goal}
+\end{DoxyParamCaption}
+)}\hypertarget{namespacego__to__point__action_a5bba71b4503c075067b2bbfcdf64556e}{}\label{namespacego__to__point__action_a5bba71b4503c075067b2bbfcdf64556e}
+
+
+Function to plan the control to reach the target. 
+
+
+
+\subsection{Variable Documentation}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!act\+\_\+s@{act\+\_\+s}}
+\index{act\+\_\+s@{act\+\_\+s}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{act\+\_\+s}{act_s}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+act\+\_\+s = None}\hypertarget{namespacego__to__point__action_a3994b1577d1a499ce8c7352036ee6486}{}\label{namespacego__to__point__action_a3994b1577d1a499ce8c7352036ee6486}
+
+
+action\+\_\+server 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!desired\+\_\+position\+\_\+@{desired\+\_\+position\+\_\+}}
+\index{desired\+\_\+position\+\_\+@{desired\+\_\+position\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{desired\+\_\+position\+\_\+}{desired_position_}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+desired\+\_\+position\+\_\+ = Point()}\hypertarget{namespacego__to__point__action_a57e8782cf693baab2ca4390e2e917155}{}\label{namespacego__to__point__action_a57e8782cf693baab2ca4390e2e917155}
+
+
+goal 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!dist\+\_\+precision\+\_\+@{dist\+\_\+precision\+\_\+}}
+\index{dist\+\_\+precision\+\_\+@{dist\+\_\+precision\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{dist\+\_\+precision\+\_\+}{dist_precision_}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+dist\+\_\+precision\+\_\+ = 0.\+1}\hypertarget{namespacego__to__point__action_a2b67a832bde842bf565341c5fc606f81}{}\label{namespacego__to__point__action_a2b67a832bde842bf565341c5fc606f81}
+
+
++/-\/ 2 degree allowed 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!kp\+\_\+a@{kp\+\_\+a}}
+\index{kp\+\_\+a@{kp\+\_\+a}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{kp\+\_\+a}{kp_a}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+kp\+\_\+a = 3.\+0}\hypertarget{namespacego__to__point__action_a9f06acd5d2562909e122242d328755df}{}\label{namespacego__to__point__action_a9f06acd5d2562909e122242d328755df}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!kp\+\_\+d@{kp\+\_\+d}}
+\index{kp\+\_\+d@{kp\+\_\+d}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{kp\+\_\+d}{kp_d}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+kp\+\_\+d = 0.\+2}\hypertarget{namespacego__to__point__action_a34be7fb79cc4f03e9b8671df19275132}{}\label{namespacego__to__point__action_a34be7fb79cc4f03e9b8671df19275132}
+
+
+In R\+OS Noetic, it may be necessary to change the sign of this proportional controller. 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!lb\+\_\+a@{lb\+\_\+a}}
+\index{lb\+\_\+a@{lb\+\_\+a}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{lb\+\_\+a}{lb_a}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+lb\+\_\+a = -\/0.\+9}\hypertarget{namespacego__to__point__action_ac93d2080cb249db79a1bba87a42c1a44}{}\label{namespacego__to__point__action_ac93d2080cb249db79a1bba87a42c1a44}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!pose\+\_\+@{pose\+\_\+}}
+\index{pose\+\_\+@{pose\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{pose\+\_\+}{pose_}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+pose\+\_\+ = Pose()}\hypertarget{namespacego__to__point__action_ac843a0e43a672ed873017530721ce2d9}{}\label{namespacego__to__point__action_ac843a0e43a672ed873017530721ce2d9}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!position\+\_\+@{position\+\_\+}}
+\index{position\+\_\+@{position\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{position\+\_\+}{position_}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+position\+\_\+ = Point()}\hypertarget{namespacego__to__point__action_a4aafc5721803ca4d208e9e0a686f8e65}{}\label{namespacego__to__point__action_a4aafc5721803ca4d208e9e0a686f8e65}
+
+
+robot state variables 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!pub@{pub}}
+\index{pub@{pub}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{pub}{pub}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+pub = None}\hypertarget{namespacego__to__point__action_a3e555da71db618b9165bb58fe9ef160e}{}\label{namespacego__to__point__action_a3e555da71db618b9165bb58fe9ef160e}
+
+
+publisher 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!state\+\_\+@{state\+\_\+}}
+\index{state\+\_\+@{state\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{state\+\_\+}{state_}}]{\setlength{\rightskip}{0pt plus 5cm}int go\+\_\+to\+\_\+point\+\_\+action.\+state\+\_\+ = 0}\hypertarget{namespacego__to__point__action_aadf404dc66c95a101e7e05dfafd92c3d}{}\label{namespacego__to__point__action_aadf404dc66c95a101e7e05dfafd92c3d}
+
+
+machine state 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!ub\+\_\+a@{ub\+\_\+a}}
+\index{ub\+\_\+a@{ub\+\_\+a}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{ub\+\_\+a}{ub_a}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+ub\+\_\+a = 0.\+9}\hypertarget{namespacego__to__point__action_a2c03541662b19da8a707e89f121e25a5}{}\label{namespacego__to__point__action_a2c03541662b19da8a707e89f121e25a5}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!ub\+\_\+d@{ub\+\_\+d}}
+\index{ub\+\_\+d@{ub\+\_\+d}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{ub\+\_\+d}{ub_d}}]{\setlength{\rightskip}{0pt plus 5cm}float go\+\_\+to\+\_\+point\+\_\+action.\+ub\+\_\+d = 0.\+6}\hypertarget{namespacego__to__point__action_a6450364749bdc94394b2251c68e2ceee}{}\label{namespacego__to__point__action_a6450364749bdc94394b2251c68e2ceee}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!yaw\+\_\+@{yaw\+\_\+}}
+\index{yaw\+\_\+@{yaw\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{yaw\+\_\+}{yaw_}}]{\setlength{\rightskip}{0pt plus 5cm}int go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+ = 0}\hypertarget{namespacego__to__point__action_a880fb089b41232984ae49355b6f46a39}{}\label{namespacego__to__point__action_a880fb089b41232984ae49355b6f46a39}
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!yaw\+\_\+precision\+\_\+@{yaw\+\_\+precision\+\_\+}}
+\index{yaw\+\_\+precision\+\_\+@{yaw\+\_\+precision\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{yaw\+\_\+precision\+\_\+}{yaw_precision_}}]{\setlength{\rightskip}{0pt plus 5cm}int go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+precision\+\_\+ = math.\+pi/9}\hypertarget{namespacego__to__point__action_a914253ff638fc05f3f0fd3d9536503c2}{}\label{namespacego__to__point__action_a914253ff638fc05f3f0fd3d9536503c2}
+
+
+parameters 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!yaw\+\_\+precision\+\_\+2\+\_\+@{yaw\+\_\+precision\+\_\+2\+\_\+}}
+\index{yaw\+\_\+precision\+\_\+2\+\_\+@{yaw\+\_\+precision\+\_\+2\+\_\+}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{yaw\+\_\+precision\+\_\+2\+\_\+}{yaw_precision_2_}}]{\setlength{\rightskip}{0pt plus 5cm}int go\+\_\+to\+\_\+point\+\_\+action.\+yaw\+\_\+precision\+\_\+2\+\_\+ = math.\+pi/90}\hypertarget{namespacego__to__point__action_a65f4bbc971a7e33d9441aa79dcbfa1ae}{}\label{namespacego__to__point__action_a65f4bbc971a7e33d9441aa79dcbfa1ae}
+
+
++/-\/ 20 degree allowed 
+
+\index{go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}!z@{z}}
+\index{z@{z}!go\+\_\+to\+\_\+point\+\_\+action@{go\+\_\+to\+\_\+point\+\_\+action}}
+\subsubsection[{\texorpdfstring{z}{z}}]{\setlength{\rightskip}{0pt plus 5cm}go\+\_\+to\+\_\+point\+\_\+action.\+z}\hypertarget{namespacego__to__point__action_a8848541ff0d9e1607e1d715de007aa03}{}\label{namespacego__to__point__action_a8848541ff0d9e1607e1d715de007aa03}

@@ -4,18 +4,10 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Final experimental assignment: slam_gmapping</title>
+<title>Final experimental assignment: Experimental robotic assignment 3</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,7 +39,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -67,20 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('index.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -97,68 +78,181 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">slam_gmapping </div>  </div>
+<div class="title">Experimental robotic assignment 3 </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"> <b>slam_gmapping</b> is a wrapper around the GMapping SLAM library. It reads laser scans and odometry and computes a map. This map can be written to a file using e.g. "rosrun map_server map_saver static_map:=dynamic_map" </p><hr/>
- <h1><a class="anchor" id="topic"></a>
-ROS topics</h1>
-<p>Subscribes to (name/type):</p><ul>
-<li><b>"scan"/</b> <a href="../../sensor_msgs/html/classstd__msgs_1_1LaserScan.html">sensor_msgs/LaserScan</a> : data from a laser range scanner</li>
-<li><b>"/tf"</b>: odometry from the robot Publishes to (name/type):</li>
-<li><b>"/tf"/tf/tfMessage</b>: position relative to the map </li>
-</ul>
-<h1><a class="anchor" id="services"></a>
-services</h1>
-<ul>
-<li><b>"~dynamic_map"</b> : returns the map </li>
-</ul>
-<h1><a class="anchor" id="parameters"></a>
-ROS parameters</h1>
-<p>Reads the following parameters from the parameter server Parameters used by our GMapping wrapper:</p><ul>
-<li><b>"~throttle_scans"</b>: <b></b>[int] throw away every nth laser scan</li>
-<li><b>"~base_frame"</b>: <b></b>[string] the tf frame_id to use for the robot base pose</li>
-<li><b>"~map_frame"</b>: <b></b>[string] the tf frame_id where the robot pose on the map is published</li>
-<li><b>"~odom_frame"</b>: <b></b>[string] the tf frame_id from which odometry is read</li>
-<li><b>"~map_update_interval"</b>: <b></b>[double] time in seconds between two recalculations of the map Parameters used by GMapping itself: Laser Parameters:</li>
-<li><b>"~/maxRange"</b> <b></b>[double] maximum range of the laser scans. Rays beyond this range get discarded completely. (default: maximum laser range minus 1 cm, as received in the the first LaserScan message)</li>
-<li><b>"~/maxUrange"</b> <b></b>[double] maximum range of the laser scanner that is used for map building (default: same as maxRange)</li>
-<li><b>"~/sigma"</b> <b></b>[double] standard deviation for the scan matching process (cell)</li>
-<li><b>"~/kernelSize"</b> <b></b>[int] search window for the scan matching process</li>
-<li><b>"~/lstep"</b> <b></b>[double] initial search step for scan matching (linear)</li>
-<li><b>"~/astep"</b> <b></b>[double] initial search step for scan matching (angular)</li>
-<li><b>"~/iterations"</b> <b></b>[int] number of refinement steps in the scan matching. The final "precision" for the match is lstep*2^(-iterations) or astep*2^(-iterations), respectively.</li>
-<li><b>"~/lsigma"</b> <b></b>[double] standard deviation for the scan matching process (single laser beam)</li>
-<li><b>"~/ogain"</b> <b></b>[double] gain for smoothing the likelihood</li>
-<li><b>"~/lskip"</b> <b></b>[int] take only every (n+1)th laser ray for computing a match (0 = take all rays)</li>
-<li><b>"~/minimumScore"</b> <b></b>[double] minimum score for considering the outcome of the scanmatching good. Can avoid 'jumping' pose estimates in large open spaces when using laser scanners with limited range (e.g. 5m). (0 = default. Scores go up to 600+, try 50 for example when experiencing 'jumping' estimate issues) Motion Model Parameters (all standard deviations of a gaussian noise model)</li>
-<li><b>"~/srr"</b> <b></b>[double] linear noise component (x and y)</li>
-<li><b>"~/stt"</b> <b></b>[double] angular noise component (theta)</li>
-<li><b>"~/srt"</b> <b></b>[double] linear -&gt; angular noise component</li>
-<li><b>"~/str"</b> <b></b>[double] angular -&gt; linear noise component Others:</li>
-<li><b>"~/linearUpdate"</b> <b></b>[double] the robot only processes new measurements if the robot has moved at least this many meters</li>
-<li><b>"~/angularUpdate"</b> <b></b>[double] the robot only processes new measurements if the robot has turned at least this many rads</li>
-<li><b>"~/resampleThreshold"</b> <b></b>[double] threshold at which the particles get resampled. Higher means more frequent resampling.</li>
-<li><b>"~/particles"</b> <b></b>[int] (fixed) number of particles. Each particle represents a possible trajectory that the robot has traveled Likelihood sampling (used in scan matching)</li>
-<li><b>"~/llsamplerange"</b> <b></b>[double] linear range</li>
-<li><b>"~/lasamplerange"</b> <b></b>[double] linear step size</li>
-<li><b>"~/llsamplestep"</b> <b></b>[double] linear range</li>
-<li><b>"~/lasamplestep"</b> <b></b>[double] angular step size Initial map dimensions and resolution:</li>
-<li><b>"~/xmin"</b> <b></b>[double] minimum x position in the map [m]</li>
-<li><b>"~/ymin"</b> <b></b>[double] minimum y position in the map [m]</li>
-<li><b>"~/xmax"</b> <b></b>[double] maximum x position in the map [m]</li>
-<li><b>"~/ymax"</b> <b></b>[double] maximum y position in the map [m]</li>
-<li><b>"~/delta"</b> <b></b>[double] size of one pixel [m] </li>
-</ul>
-</div></div><!-- contents -->
-</div><!-- doc-content -->
-<!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
+<div class="textblock"><p>Documentation might take some time to load completely</p>
+<h2>Introduction</h2>
+<p>The aim of this assignment is to create a software architecture, which simulates a pet able to move autonomously inside a domestic environment, change its behavior and interact with a user, following its orders and exploring when asked to find unseen objectives.</p>
+<p>The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner. Here's a visual representation obtained from the simulation environment: </p><div class="image">
+<img src="Image1.PNG" alt="Image1.PNG"/>
 </div>
+<h3>The robot</h3>
+<p>The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture: </p><div class="image">
+<img src="Image2.PNG" alt="Image2.PNG"/>
+</div>
+ <p>Robot </p>
+<p>It is a differential drive device with a camera(for the objectives detection and tracking) mounted on the head, and a range-finder(to allow the obstacles avoidance), which can be seen as the white box protruding from its chest. The differential drive regulates the posterior wheels speed to achieve forward and backward movements and the robot turning around the vertical axis. The smaller front castor wheel allow for a stable support of the robot and the proper working of the differential drive.</p>
+<h2>Software Architecture, State Machine and communications</h2>
+<p>Here we show the main characteristics of the implemented system: the software architecture, the state machine and the communication methods.</p>
+<h3>Architecture</h3>
+<p>The software architecture is built around a finite state machine which encodes all the robot behaviors and the conditions which govern the change of states. The logic being that all required features are just aspects of the states and their interaction, obtained by appropriately activating or deactivating parts of code depending on the system state.</p>
+<p>A representation of the architecture can be given in the following image: </p><div class="image">
+<img src="Component_Diagram.png" alt="Component_Diagram.png"/>
+</div>
+<p>This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture:</p><ul>
+<li>The "Behavior" component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.</li>
+<li>The "Perception" component is an always active script which handles the features related to the camera. These are: the objective recognition(recognise the colored balls inside the image), the tracking and the obstacle avoidance while tracking(these two while moving closer to the recognised ball)</li>
+<li>The "Explore_lite" refers to a package which is activated each time the pet is in the play state and is asked to go in a never previously seen room(and it deactivates otherwise). This package is not implemented by the author, but allow the exploration of the environment as a frontier elimination process, where the exploration is done when all the frontiers have been explored.</li>
+<li>The "MoveBase" package is another external source which handles the motion of the robot to specific destinations. It can be imagined as the high-level controller and generates from the input the differential control output to achieve the objective while avoiding the obstacles and detecting whether the objective is achievable.</li>
+<li>The "User interface" handles both the randomic aspects of the robot(as the change of the states, and the inputs in case the user do not give one) and the interaction with the user, which can select when to enter the play state and where to go when the robot is at the user.</li>
+<li>The "Gazebo" environment handles the simulation of the entire system both of the robot movement and of the sensor data, which it distributes via publish/subscribe topics.</li>
+</ul>
+<p>Althought they might seem disconnected, these nodes share information via a global parameter server which allow all nodes to have a singular always updated source of information.</p>
+<h3>State Machine</h3>
+<p>The state machine is implemented as a python script implementing a smach class. </p><div class="image">
+<img src="Finite_States_Machine.png" alt="Finite_States_Machine.png"/>
+</div>
+<p>This is composed by the following 6 states:</p><ul>
+<li>Sleep: this state makes the robot go from its current position to its "home" or "doghouse" situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.</li>
+<li>Normal: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)</li>
+<li>Play: Although more complex in the implementation, this states simply allow the pet to come back to the owner every time it is sent to a known or an unknown destination. Most of the logic inside it is mostly to handle the various scenarios that can arise. For example, if the objective has never been seen, the robot will explore the environment until a ball have been found thanks to the interaction between the find state and the track state. <div class="image">
+<img src="Play_state.png" alt="Play_state.png"/>
+</div>
+</li>
+<li>Find: This node use in its implementation the code from the explore-lite package. Inside the finite state machine, in fact, there is just some code to launch the external code and to shut it down when the robot decide to go to sleep or if a ball have been found, switching to the track behavior.</li>
+<li>Track: As the previous, this code is implemented in an external script. The <a class="el" href="namespacePerception.html">Perception</a> script is an always running process which handles the camera feed. When a new ball is recognised and the state is appropriate, the robot use the camera and the rangefinder data to approach it, while avoiding obstacles. When it is close enough the robot saves its pose to the parameter server to be later use as the objective pose when the owner ask it to go to the room associated with that ball. In the other cases, the robot will display a contour around the identified balls and the respective room name.</li>
+<li>Recovery: This state, although not included in the requirements, allow the user to temporarily override the robot to a more useful position if it gets stuck in a wall. It is activated using the 2D navigation goal tool on rviz, and just guide the robot from its current position to the goal and then switch the state back to normal.</li>
+</ul>
+<p>More concisely, we can see the interaction between the states in the following diagram:</p>
+<h3>Messages and parameters</h3>
+<p>The main parameters used for this implementation are:</p><ul>
+<li>/state: state of the pet(0-sleep,1-normal,2-play,3-find,4-track,5-recovery)</li>
+<li>/home/{x,y,theta}: pose assigned to the place where the robot goes to sleep(defined a priori)</li>
+<li>/owner/{x,y,theta}: pose assigned to the place where the robot owner resides(defined a priori)</li>
+<li>/"room name"/{x,y,theta}: pose assigned by the robot to the ball assigned to the room with a generic "room name" after the tracking action have been completed(it is not defined at startup)</li>
+<li>/cplace: string indicating the current location of the robot, during movement it is "unknown"</li>
+<li>/destination/{x,y,theta,name}: contains the information of the destination of the movement</li>
+<li>/gazebo: gazebo anvironment parameters</li>
+</ul>
+<p>Regarding the messages, they will be listed as</p><ul>
+<li>geometry_msgs:Twist: used by Behaviours and Following to Gazebo in order to control the twist of the robot</li>
+<li>sensor_msgs:Image: Message with the image camera information</li>
+<li>exp_assignment.PlanningAction: message of the action server, it is used by the Pet_logic and Behaviour to use the action server of the ball and robot respectively <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;.geometry_msgs/PoseStamped target_pose</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;---</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;---</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;string stat</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;geometry_msgs/Pose position</div></div><!-- fragment --></li>
+</ul>
+<p>## Packages and file list </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Final_assignment/</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;├── Doxyfile</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;├── Output</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;│   ├── html</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;│   │   ...</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;│   └── latex</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;│       ...</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;├── README.md</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;├── exp_assignment3</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;│   ├── CMakeLists.txt</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;│   ├── action</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;│   │   └── Planning.action</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;│   ├── launch</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;│   │   ├── General.launch</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;│   │   ├── gmapping.launch</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;│   │   ├── launcher.launch</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;│   │   ├── move_base.launch</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;│   │   ├── move_plan.launch</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;│   │   ├── rviz.launch</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;│   │   └── simulation.launch</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;│   ├── nodelet_plugins.xml</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;│   ├── package.xml</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;│   ├── param</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;│   │   ├── base_local_planner_params.yaml</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;│   │   ├── costmap_common_params.yaml</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;│   │   ├── global_costmap_params.yaml</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;│   │   ├── local_costmap_params.yaml</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;│   │   └── move_base_params.yaml</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;│   ├── rviz</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;│   │   └── sim.rviz</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;│   ├── scripts</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;│   │   ├── Behaviors.py</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;│   │   ├── Perception.py</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;│   │   ├── bug_m.py</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;│   │   ├── gmapping_muting.sh</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;│   │   ├── go_to_point_action.py</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;│   │   ├── go_to_point_service_m.py</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;│   │   ├── interface.sh</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;│   │   ├── user_interface.py</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;│   │   └── wall_follow_service_m.py</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;│   ├── src</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;│   │   ├── main.cpp</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;│   │   ├── nodelet.cpp</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;│   │   ├── replay.cpp</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;│   │   ├── slam_gmapping.cpp</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;│   │   └── slam_gmapping.h</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;│   ├── urdf</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;│   │   ├── Pet</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;│   │   │   ├── robot.gazebo</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;│   │   │   └── robot.xacro</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;│   │   └── human.urdf</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;│   └── worlds</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;│       └── house2.world</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;├── m-explore</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;│   ├── LICENSE</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;│   ├── README.md</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;│   └── explore</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;│       ├── CHANGELOG.rst</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;│       ├── CMakeLists.txt</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;│       ├── doc</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;│       │   ├── architecture.dia</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;│       │   ├── screenshot.png</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;│       │   └── wiki_doc.txt</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;│       ├── include</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;│       │   └── explore</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;│       │       ├── costmap_client.h</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;│       │       ├── costmap_tools.h</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;│       │       ├── explore.h</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;│       │       └── frontier_search.h</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;│       ├── launch</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;│       │   ├── explore.launch</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;│       │   └── explore_costmap.launch</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;│       ├── package.xml</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;│       └── src</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;│           ├── costmap_client.cpp</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;│           ├── explore.cpp</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;│           └── frontier_search.cpp</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;├── motion_plan</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;│   ├── CMakeLists.txt</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;│   ├── action</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;│   │   └── Planning.action</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;│   ├── config</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;│   │   └── motors_config2.yaml</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;│   ├── launch</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;│   │   └── gazebo_arm3.launch</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;│   ├── package.xml</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;│   ├── scripts</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;│   │   ├── go_to_point.py</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;│   │   └── go_to_point_action.py</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;│   ├── src</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;│   │   └── move_client.cpp</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;│   └── urdf</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;│       ├── m2wr_arm3.gazebo</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;│       ├── m2wr_arm3.xacro</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;│       └── materials.xacro</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;└── slam_gmapping</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    ├── README.md</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    └── slam_gmapping</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        ├── CHANGELOG.rst</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        ├── CMakeLists.txt</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        └── package.xml</div></div><!-- fragment --><h2>Installation and running procedure</h2>
+<p>Here we will show the installation procedures and how to run the code, with the instructions to reproduce the behaviors obtained in this project.</p>
+<h3>Prerequisites</h3>
+<ul>
+<li>ROS melodic</li>
+<li>Smach</li>
+<li>Gazebo</li>
+</ul>
+<h3>Installation</h3>
+<p>To download the package on the desired machines there are two ways</p><ul>
+<li>Download the package from the github repository and put the whole content in the src folder of the desired catkin workspace</li>
+<li>Set the package in the src folder of the catkin workspace with a gi command <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git clone https://github.com/Matt98x/Experimental_assignment_3.git</div></div><!-- fragment --> After the installation we can source the setup.bash file inside the devel folder of the catkin workspace <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;(Inside the catkin workspace)</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; source /devel/setup.bash</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;catkin_make</div></div><!-- fragment --></li>
+</ul>
+<h3>Running</h3>
+<ul>
+<li>After the compiler has completed its task we can use the same shell to launch the simulation environment. <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;roslauch exp_assignment3 General.launch</div></div><!-- fragment --></li>
+</ul>
+<p>When completed the launch will result in the following windows being open:</p><ul>
+<li>The shell where the code have been launched: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement <div class="image">
+<img src="Image5.PNG" alt="Image5.PNG"/>
+</div>
+ </li>
+</ul>
+<p>Main shell </p>
+<ul>
+<li>A second shell reporting the LaserScan data status</li>
+<li>A third shell with the possibility to introduce user commands <div class="image">
+<img src="Image4.PNG" alt="Image4.PNG"/>
+</div>
+ </li>
+</ul>
+<p>User interface </p>
+<ul>
+<li>The Gazebo simulation environment</li>
+<li>The Rviz visualizer <div class="image">
+<img src="Image6.PNG" alt="Image6.PNG"/>
+</div>
+ </li>
+</ul>
+<p>Mapping in Rviz </p>
+<ul>
+<li>A window showing what the robot sees <div class="image">
+<img src="Image3.PNG" alt="Image3.PNG"/>
+</div>
+ </li>
+</ul>
+<p>Robot camera </p>
+<p>With this one can decide to just leave the robot roam and change state inside the environment or can give commands via the user interface as it will be explained in the next section.</p>
+<h3>User commands</h3>
+<ul>
+<li>User Interface (In the proper shell, type one of the following commands being sure to respect the case of each letter and pressing ENTER after that)<ul>
+<li>help: will display the list of possible commands with a brief description</li>
+<li>play: will set the robot in play state(waking up the robot if the user use it during the robot sleep state)</li>
+<li>room_list: will display the list of all available rooms</li>
+<li>go to 'room name' (with the name of the rooms in room_list, respecting the casing of the letters): when the robot is at the user, it can receive a command with the name of a room, if the room has been seen it will go to the memorized pose and come back, if not it will start exploring till a new ball have been found and then it will come back to the user</li>
+</ul>
+</li>
+<li>Rviz<ul>
+<li>Selecting the command 2D navigation tool in the top part of the Rviz GUI and selecting an achievable point in the map will set the robot in the recovery state. In this, the robot will forget everything it was doing and achieve that position, after that it will come back to the normal state</li>
+</ul>
+</li>
+</ul>
+<h2>Working assumptions</h2>
+<p>The working assumptions will be discussed as the following list:</p><ul>
+<li>The robot, simulating a pet move in a completely static world, so there are no moving or variable obstacles.</li>
+<li>The world is composed of 6 rooms containing a colored ball each, and is completely unknown to the robot at the beginning of program execution.</li>
+<li>It is in one and only one state at a time</li>
+<li>The objectives are represented by uniform color balls, which can not be found anywhere else in the entire environment.</li>
+<li>Each color is mapped to a specific room name (e.g. blue ball: kitchen).</li>
+<li>A new ball can only be recognise when the robot is in the normal or find state</li>
+<li>The commands can be just received when the robot is at the user</li>
+</ul>
+<h2>System features and limitations</h2>
+<h3>Limitations</h3>
+<p>Here some systemic limitation given by the structure of the architecture:</p><ul>
+<li>The system is not scalable in the number of individually controllable robots, but if all robots have the same state, it is scalable</li>
+<li>It is not scalable in the number of symbolic locations</li>
+<li>It is not really scalable in the number of states</li>
+<li>There are some problems with the target reaching the robot when it really close to the chassis</li>
+<li>The method to launch the find state is slow since every time a roslaunch must be called</li>
+</ul>
+<p>Apart from these we have some limitations in the working procedures:</p><ul>
+<li>For some still unidentified reasons, sometimes, the robot have have a false positive in the recognition of an already seen ball and end up moving against a wall(To correct it one can use the recovery state)</li>
+<li>There is some collision between the obstacle avoidance and the tracking control which mean that the angular position of the robot might swing when approaching a ball close to the wall</li>
+<li>If the robot is interrupted during a tracking phase derived from the find state it might miss the identification of a ball</li>
+</ul>
+<h3>Features</h3>
+<p>Talking about the system features, they can be divided in required and not required. As part of the first category we have:</p><ul>
+<li>autonomous navigation of a robot in an ideal indoor environment</li>
+<li>building a map autonomously with frontier bases exploration and SLAM</li>
+<li>Reliable detection of colored balls in a controlled environment</li>
+<li>Perform visual servoing to approach a target detected by the camera while avoiding obstacles</li>
+<li>Visualization of the map, and costmap in RVIZ including the colored balls, that have been found, as colored markers</li>
+</ul>
+<p>For the second, we have:</p><ul>
+<li>The simplicity of the system makes it robust enough for long using(it performed up to 6 hours without problems before interrupting the test)</li>
+<li>Using the perception node as the track state allow for a modular design, and using just one track state instead of two separate</li>
+</ul>
+<h2>Possible technical improvements</h2>
+<ul>
+<li>Add multiple robots to the simulation possibly adding namespaces to represent the knowledge of each robot</li>
+<li>Integrate the explore-lite to run continuously and find a way to activate and deactivate it</li>
+<li>Find a way to stop the exploration if all frontiers have been explored and give a way to explore after that if a ball have been missed(It has not appened during testing but it might happen if the robot is interrupted while tracking, the current solution is to use the normal state to eventually find them)</li>
+<li>Add a user readable debugging tool</li>
+</ul>
+<h2>Author and contacts</h2>
+<p>Matteo Palmas: matteo.palmas7gmail.com </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>

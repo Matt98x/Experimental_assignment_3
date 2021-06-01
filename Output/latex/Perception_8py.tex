@@ -1,0 +1,82 @@
+\hypertarget{Perception_8py}{}\section{exp\+\_\+assignment3/scripts/\+Perception.py File Reference}
+\label{Perception_8py}\index{exp\+\_\+assignment3/scripts/\+Perception.\+py@{exp\+\_\+assignment3/scripts/\+Perception.\+py}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classPerception_1_1image__feature}{Perception.\+image\+\_\+feature}
+\begin{DoxyCompactList}\small\item\em C\+L\+A\+SS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacePerception}{Perception}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacePerception_ae23dae157a1ef4e00fb8d4d11ed4cfd7}{Perception.\+rob\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em C\+A\+L\+L\+B\+A\+C\+KS A\+ND F\+U\+N\+C\+T\+I\+O\+NS. \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a34e5d1ea23bca609f6613f955a102c8f}{Perception.\+laser\+\_\+callback} (ros\+\_\+data)
+\begin{DoxyCompactList}\small\item\em callback function to read the laser scan \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a235ca282efe20cd6f6553cf69dfa3416}{Perception.\+enclosing\+\_\+circle} (cnts)
+\begin{DoxyCompactList}\small\item\em find the enclosing circle of the ball in the image \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_aad4a17a04d9de153f903bec742d3f1c4}{Perception.\+caption} (image\+\_\+np, x, y, radius, center, name)
+\begin{DoxyCompactList}\small\item\em Put a caption and an enclosing circle around a perceived ball. \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a2fca011fd161b10ca2292edbb9897af5}{Perception.\+take\+\_\+action} (regions)
+\begin{DoxyCompactList}\small\item\em action to take to avoid collisions \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a9210db14d4f3a53190632b2097f7444c}{Perception.\+clbk\+\_\+laser} (scan, k)
+\begin{DoxyCompactList}\small\item\em obstacles region declaration to obstacle avoidance \end{DoxyCompactList}\item 
+def \hyperlink{namespacePerception_a4fe5d026a2ef743aa57777be689aeb43}{Perception.\+main} (args)
+\begin{DoxyCompactList}\small\item\em M\+A\+IN. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacePerception_a45c9a255f6f96422822a1134c6200451}{Perception.\+V\+E\+R\+B\+O\+SE} = False
+\item 
+int \hyperlink{namespacePerception_a30f922540fc81da4abe1a1cf48cf96ac}{Perception.\+angle} = 0
+\begin{DoxyCompactList}\small\item\em V\+A\+R\+I\+A\+B\+L\+ES. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a9f6f9cf6f9b5895bb39924b3682a262b}{Perception.\+threshold} = 10
+\begin{DoxyCompactList}\small\item\em Threshold precision. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a25e59ac83c977a1cd1752b677923c0d8}{Perception.\+max\+\_\+rad} = 180
+\begin{DoxyCompactList}\small\item\em Dimension of the proximity radius. \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a6f826a3f390ba3a185e2aa8a43013701}{Perception.\+rob\+\_\+angle} = 0
+\begin{DoxyCompactList}\small\item\em robot angle \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_ad0534f9c1df13d7a2b48ff2a983f0cc6}{Perception.\+rob\+\_\+vel} = 0
+\begin{DoxyCompactList}\small\item\em robot vel \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a32c9e49968ea4ea21f1afbe28dc236cc}{Perception.\+max\+\_\+ang} = 0
+\begin{DoxyCompactList}\small\item\em maximum and minimum angle of the scan \end{DoxyCompactList}\item 
+int \hyperlink{namespacePerception_a0aca0fa8eb3415fe07777168f37774ff}{Perception.\+min\+\_\+ang} = 0
+\item 
+list \hyperlink{namespacePerception_a649811d3cb5680f5481c7d612e159825}{Perception.\+scans} = \mbox{[}$\,$\mbox{]}
+\item 
+float \hyperlink{namespacePerception_ac133c0d0f793260fe4d078d02ec777b6}{Perception.\+value\+\_\+min} = 0.\+30
+\item 
+int \hyperlink{namespacePerception_a47402108dd4d75ac8a27e5d917aa022c}{Perception.\+rob\+\_\+x} = 0
+\item 
+int \hyperlink{namespacePerception_ace15e3c972e7a909673f2280e02954a5}{Perception.\+rob\+\_\+y} = 0
+\item 
+int \hyperlink{namespacePerception_ab4a40230ffe1d9f53908c2c5c6fd6ebb}{Perception.\+rob\+\_\+theta} = 0
+\item 
+int \hyperlink{namespacePerception_ad34a03e4d4afc6f3f824f912c28692ff}{Perception.\+prev\+\_\+state} = 0
+\item 
+list \hyperlink{namespacePerception_ade020d1959a087b5a07fd0936a5f489d}{Perception.\+names} = \mbox{[}\char`\"{}Entrance\char`\"{},\char`\"{}Living\+\_\+room\char`\"{},\char`\"{}Closet\char`\"{},\char`\"{}Kitchen\char`\"{},\char`\"{}Bathroom\char`\"{},\char`\"{}Bedroom\char`\"{}\mbox{]}
+\begin{DoxyCompactList}\small\item\em R\+O\+O\+MS P\+A\+R\+A\+M\+E\+T\+E\+RS. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_a4166a4d5dfba1d1c65be4e69bed3a442}{Perception.\+lower} = \mbox{[}100,50,0,25,125,0\mbox{]}
+\item 
+list \hyperlink{namespacePerception_a0d76072dc5634b931abcd5275677b670}{Perception.\+upper} = \mbox{[}130,70,5,35,150,5\mbox{]}
+\item 
+list \hyperlink{namespacePerception_a47f799f9c4dfa904981d74938dcd5e49}{Perception.\+checked} = \mbox{[}0\mbox{]}$\ast$len(names)
+\item 
+int \hyperlink{namespacePerception_a78a55345c0afe004ebc5bd95007dccf0}{Perception.\+active} = 0
+\begin{DoxyCompactList}\small\item\em Track activate variable. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_a2df199890febf0c129179eacf940dbaa}{Perception.\+seen} = \mbox{[}0\mbox{]}$\ast$len(checked)
+\begin{DoxyCompactList}\small\item\em Seen balls. \end{DoxyCompactList}\item 
+list \hyperlink{namespacePerception_ae9b407646d9596cc4c837cadcc084168}{Perception.\+cnts} = \mbox{[}None\mbox{]}$\ast$len(seen)
+\begin{DoxyCompactList}\small\item\em Contours. \end{DoxyCompactList}\item 
+float \hyperlink{namespacePerception_a353d9d2be3d3ef1de098a6dd0354b5fe}{Perception.\+gain1} = 0.\+003
+\begin{DoxyCompactList}\small\item\em G\+A\+I\+NS. \end{DoxyCompactList}\item 
+float \hyperlink{namespacePerception_a2520defc2fe01293181f48cc9c93d552}{Perception.\+gain2} = 0.\+042
+\item 
+float \hyperlink{namespacePerception_a229e55dde1fafbfa34e1ed76f9dab9a7}{Perception.\+gain3} = 0.\+0035
+\item 
+float \hyperlink{namespacePerception_a1149af80a55cce4661c985f8d4ca15ae}{Perception.\+gain4} = 0.\+04
+\end{DoxyCompactItemize}

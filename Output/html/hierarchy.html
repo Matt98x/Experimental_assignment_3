@@ -8,14 +8,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-  $(window).load(resizeHeight);
-</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -47,7 +39,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -75,20 +70,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('hierarchy.html','');});
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -112,27 +93,29 @@ $(document).ready(function(){initNavTree('hierarchy.html','');});
 <p><a href="inherits.html">Go to the graphical class hierarchy</a></p>
 This inheritance list is sorted roughly, but not completely, alphabetically:</div><div class="directory">
 <div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classPerception_1_1image__feature.html" target="_self">Perception.image_feature</a></td><td class="desc">CLASS </td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_1_" class="arrow" onclick="toggleFolder('1_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>Nodelet</b></td><td class="desc"></td></tr>
-<tr id="row_1_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSlamGMappingNodelet.html" target="_self">SlamGMappingNodelet</a></td><td class="desc"></td></tr>
-<tr id="row_2_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="toggleFolder('2_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>State</b></td><td class="desc"></td></tr>
-<tr id="row_2_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Find.html" target="_self">Behaviors.Find</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Find.html" title="Find: class that describes the Find state. ">Find</a>: class that describes the <a class="el" href="classBehaviors_1_1Find.html" title="Find: class that describes the Find state. ">Find</a> state </td></tr>
-<tr id="row_2_1_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Normal.html" target="_self">Behaviors.Normal</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Normal.html" title="Normal: class that describes the Normal state. ">Normal</a>: class that describes the <a class="el" href="classBehaviors_1_1Normal.html" title="Normal: class that describes the Normal state. ">Normal</a> state </td></tr>
-<tr id="row_2_2_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Play.html" target="_self">Behaviors.Play</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Play.html" title="Play: class that describes the Play state. ">Play</a>: class that describes the <a class="el" href="classBehaviors_1_1Play.html" title="Play: class that describes the Play state. ">Play</a> state </td></tr>
-<tr id="row_2_3_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Recovery.html" target="_self">Behaviors.Recovery</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Recovery.html" title="Recovery: class that describes the Recovery state. ">Recovery</a>: class that describes the <a class="el" href="classBehaviors_1_1Recovery.html" title="Recovery: class that describes the Recovery state. ">Recovery</a> state </td></tr>
-<tr id="row_2_4_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Sleep.html" target="_self">Behaviors.Sleep</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Sleep.html" title="Sleep: class that describes the Sleep state. ">Sleep</a>: class that describes the <a class="el" href="classBehaviors_1_1Sleep.html" title="Sleep: class that describes the Sleep state. ">Sleep</a> state </td></tr>
-<tr id="row_2_5_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Track.html" target="_self">Behaviors.Track</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Track.html" title="Track: class that describes the Track state. ">Track</a>: class that describes the <a class="el" href="classBehaviors_1_1Track.html" title="Track: class that describes the Track state. ">Track</a> state </td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classexplore_1_1Costmap2DClient.html" target="_self">explore::Costmap2DClient</a></td><td class="desc"></td></tr>
+<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classexplore_1_1Explore.html" target="_self">explore::Explore</a></td><td class="desc">A class adhering to the robot_actions::Action interface that moves the robot base to explore its environment </td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structfrontier__exploration_1_1Frontier.html" target="_self">frontier_exploration::Frontier</a></td><td class="desc">Represents a frontier </td></tr>
+<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classfrontier__exploration_1_1FrontierSearch.html" target="_self">frontier_exploration::FrontierSearch</a></td><td class="desc">Thread-safe implementation of a frontier-search task for an input costmap </td></tr>
+<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classPerception_1_1image__feature.html" target="_self">Perception.image_feature</a></td><td class="desc">CLASS </td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_5_" class="arrow" onclick="toggleFolder('5_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>Nodelet</b></td><td class="desc"></td></tr>
+<tr id="row_5_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSlamGMappingNodelet.html" target="_self">SlamGMappingNodelet</a></td><td class="desc"></td></tr>
+<tr id="row_6_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classSlamGMapping.html" target="_self">SlamGMapping</a></td><td class="desc"></td></tr>
+<tr id="row_7_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_7_" class="arrow" onclick="toggleFolder('7_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><b>State</b></td><td class="desc"></td></tr>
+<tr id="row_7_0_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Find.html" target="_self">Behaviors.Find</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Find.html" title="Find: class that describes the Find state. ">Find</a>: class that describes the <a class="el" href="classBehaviors_1_1Find.html" title="Find: class that describes the Find state. ">Find</a> state </td></tr>
+<tr id="row_7_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Normal.html" target="_self">Behaviors.Normal</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Normal.html" title="Normal: class that describes the Normal state. ">Normal</a>: class that describes the <a class="el" href="classBehaviors_1_1Normal.html" title="Normal: class that describes the Normal state. ">Normal</a> state </td></tr>
+<tr id="row_7_2_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Play.html" target="_self">Behaviors.Play</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Play.html" title="Play: class that describes the Play state. ">Play</a>: class that describes the <a class="el" href="classBehaviors_1_1Play.html" title="Play: class that describes the Play state. ">Play</a> state </td></tr>
+<tr id="row_7_3_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Recovery.html" target="_self">Behaviors.Recovery</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Recovery.html" title="Recovery: class that describes the Recovery state. ">Recovery</a>: class that describes the <a class="el" href="classBehaviors_1_1Recovery.html" title="Recovery: class that describes the Recovery state. ">Recovery</a> state </td></tr>
+<tr id="row_7_4_"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Sleep.html" target="_self">Behaviors.Sleep</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Sleep.html" title="Sleep: class that describes the Sleep state. ">Sleep</a>: class that describes the <a class="el" href="classBehaviors_1_1Sleep.html" title="Sleep: class that describes the Sleep state. ">Sleep</a> state </td></tr>
+<tr id="row_7_5_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classBehaviors_1_1Track.html" target="_self">Behaviors.Track</a></td><td class="desc"><a class="el" href="classBehaviors_1_1Track.html" title="Track: class that describes the Track state. ">Track</a>: class that describes the <a class="el" href="classBehaviors_1_1Track.html" title="Track: class that describes the Track state. ">Track</a> state </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
 </body>
 </html>
