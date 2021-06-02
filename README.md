@@ -299,7 +299,7 @@ For the second, we have:
 
 * Add multiple robots to the simulation possibly adding namespaces to represent the knowledge of each robot
 * Integrate the explore-lite to run continuously and find a way to activate and deactivate it
-* Find a way to stop the exploration if all frontiers have been explored and give a way to explore after that if a ball have been missed(It has not appened during testing but it might happen if the robot is interrupted while tracking, the current solution is to use the normal state to eventually find them)   
+* Find a way to stop the exploration if all frontiers have been explored and give a way to explore after that if a ball have been missed(It has not happened during testing but it might if the robot is interrupted while tracking, the current solution is to use the normal state to eventually find them)   
 * Add a user readable debugging tool
 
 ## Author and contacts
