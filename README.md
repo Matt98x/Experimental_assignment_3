@@ -10,11 +10,15 @@ The aim of this assignment is to create a software architecture, which simulates
 
 The map of the environment is not known at the start of the robot movement, which entails that the robot can move autonomously both avoiding obstacles and simultaneously mapping the places it moves into. The environment itself was provided with the requirements with a description of the elements in it, among which the rooms names and correspondent ball color and the position of the owner.
 Here's a visual representation obtained from the simulation environment:  
-\image html Image1.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image1.PNG?raw=true "Title"">
+</p>
  
 ### The robot
 The robot itself was created for this assignment to allow for all the required features and can be seen in the following picture:
-\image html Image2.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image2.PNG?raw=true "Title"">
+</p>
 <p align="center">
   Robot
 </p>   
@@ -29,7 +33,9 @@ Here we show the main characteristics of the implemented system: the software ar
 The software architecture is built around a finite state machine which encodes all the robot behaviors and the conditions which govern the change of states. The logic being that all required features are just aspects of the states and their interaction, obtained by appropriately activating or deactivating parts of code depending on the system state.
 
 A representation of the architecture can be given in the following image:
-\image html Component_Diagram.png
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Component_Diagram.png?raw=true "Title"">
+</p>
 
 This component diagram cannot really encompass all the logic and interconnections, but shows the main actors of the architecture:
 - The "Behavior" component consists of a python script implementing a smach finite state machine. This finite state machines contains the implementation of most states and employs other scripts to perform the operations inside the remaining behaviors.
@@ -43,13 +49,17 @@ Althought they might seem disconnected, these nodes share information via a glob
 
 ### State Machine
 The state machine is implemented as a python script implementing a smach class.
-\image html Finite_States_Machine.png
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Finite_States_Machine.png?raw=true "Title"">
+</p>
 
 This is composed by the following 6 states:
 - Sleep: this state makes the robot go from its current position to its "home" or "doghouse" situated arbitrarily at (4,1) in the bedroom. Once arrived it waits till the state is changed by the user(giving a play command) or by chance, and makes it go back to the normal state.
 - Normal: which enables a randomic roaming around the house which is interrupted by a change of state or by the identification of a not previously seen ball(corresponding to a room)
 - Play: Although more complex in the implementation, this states simply allow the pet to come back to the owner every time it is sent to a known or an unknown destination. Most of the logic inside it is mostly to handle the various scenarios that can arise. For example, if the objective has never been seen, the robot will explore the environment until a ball have been found thanks to the interaction between the find state and the track state.
-\image html Play_state.png
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Play_state.png?raw=true "Title"">
+</p>
 
 * Find: This node use in its implementation the code from the explore-lite package. Inside the finite state machine, in fact, there is just some code to launch the external code and to shut it down when the robot decide to go to sleep or if a ball have been found, switching to the track behavior.
 * Track: As the previous, this code is implemented in an external script. The Perception script is an always running process which handles the camera feed. When a new ball is recognised and the state is appropriate, the robot use the camera and the rangefinder data to approach it, while avoiding obstacles. When it is close enough the robot saves its pose to the parameter server to be later use as the objective pose when the owner ask it to go to the room associated with that ball. In the other cases, the robot will display a contour around the identified balls and the respective room name. 
@@ -218,27 +228,35 @@ To download the package on the desired machines there are two ways
 
 When completed the launch will result in the following windows being open:
 * The shell where the code have been launched: useful to observe the state of the robot, the coordinates of the objectives and the messages related to the robot movement
-\image html Image5.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image5.PNG?raw=true "Title"">
+</p>
 <p align="center">
   Main shell
 </p> 
 
 * A second shell reporting the LaserScan data status
 * A third shell with the possibility to introduce user commands
-\image html Image4.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image4.PNG?raw=true "Title"">
+</p>
 <p align="center">
   User interface
 </p> 
 
 * The Gazebo simulation environment
 * The Rviz visualizer
-\image html Image6.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image6.PNG?raw=true "Title"">
+</p>
 <p align="center">
   Mapping in Rviz
 </p> 
 
 * A window showing what the robot sees
-\image html Image3.PNG
+<p align="center">
+  <img src="https://github.com/Matt98x/Experimental_assignment_3/blob/main/Media/Image3.PNG?raw=true "Title"">
+</p>
 <p align="center">
   Robot camera
 </p> 
