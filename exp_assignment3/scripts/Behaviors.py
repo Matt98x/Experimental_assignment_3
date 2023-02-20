@@ -86,8 +86,8 @@ def setPosition(x,y,theta):
 	temp=quaternion_from_euler(0,0,theta) # generate a orientation quaternion from euler angles
 	pose.orientation.x=temp[0]
 	pose.orientation.y=temp[1]
- 	pose.orientation.z=temp[2]
- 	pose.orientation.w=temp[3]
+	pose.orientation.z=temp[2]
+	pose.orientation.w=temp[3]
 	msg=PoseStamped() # create the correct format
 	msg.header.frame_id="map" # impose the map as the frame id
 	print(pose.position.x,pose.position.y)
@@ -108,11 +108,11 @@ def roam():
 ## Sleep: class that describes the Sleep state
 class Sleep(smach.State):
 
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1'])
 	
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				## Check if in normal or not
 				cancel() # cancel previous goals
 				## while not at home
@@ -129,10 +129,10 @@ class Sleep(smach.State):
 ## Normal: class that describes the Normal state
 class Normal(smach.State):
 
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3'])
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				cancel() # cancel previous goals
 				var=1 # if you are roaming
 				while True:
@@ -157,10 +157,10 @@ class Normal(smach.State):
 ## Play: class that describes the Play state
 class Play(smach.State):
 	
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3'])
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				global robot_state
 				cancel() # cancel previous goals
 				temp=1
@@ -236,10 +236,10 @@ class Play(smach.State):
 ## Find: class that describes the Find state
 class Find(smach.State):
 	
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1','outcome2'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1','outcome2'])
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				cancel() # cancel previous goals
 				os.system("roslaunch explore_lite explore.launch &")
 				while True:
@@ -255,10 +255,10 @@ class Find(smach.State):
 ## Track: class that describes the Track state
 class Track(smach.State):
 	
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3','outcome4'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1','outcome2','outcome3','outcome4'])
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				cancel() # cancel the current objective if any are present
 				while True:
 					## check the state
@@ -275,10 +275,10 @@ class Track(smach.State):
 ## Recovery: class that describes the Recovery state
 class Recovery(smach.State):
     
-    def __init__(self):
-        smach.State.__init__(self, outcomes=['outcome1'])
+	def __init__(self):
+		smach.State.__init__(self, outcomes=['outcome1'])
 
-    def execute(self, userdata):
+	def execute(self, userdata):
 				while True:
 					if not (status==3 or status==4): # the goal was achieved
 						time.sleep(10)
@@ -327,6 +327,6 @@ if __name__ == '__main__':
           								'outcome3':'FIND',
           								'outcome4':'RECOVERY'})
 		## Add states to the container
-  		smach.StateMachine.add('RECOVERY',Recovery(),transitions={'outcome1':'NORMAL'})
+		smach.StateMachine.add('RECOVERY',Recovery(),transitions={'outcome1':'NORMAL'})
     ## Execute SMACH plan
 	outcome = sm_s_a.execute()

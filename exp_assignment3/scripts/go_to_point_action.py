@@ -44,87 +44,87 @@ act_s = None
 
 ## callbacks
 def clbk_odom(msg):
-    global position_
-    global pose_
-    global yaw_
-    
-    # position
-    position_ = msg.pose.pose.position
-    pose_ = msg.pose.pose
-    
-    # yaw
-    quaternion = (
-        msg.pose.pose.orientation.x,
-        msg.pose.pose.orientation.y,
-        msg.pose.pose.orientation.z,
-        msg.pose.pose.orientation.w)
-    euler = transformations.euler_from_quaternion(quaternion)
-    yaw_ = euler[2]
+	global position_
+	global pose_
+	global yaw_
+	
+	# position
+	position_ = msg.pose.pose.position
+	pose_ = msg.pose.pose
+	
+	# yaw
+	quaternion = (
+		msg.pose.pose.orientation.x,
+		msg.pose.pose.orientation.y,
+		msg.pose.pose.orientation.z,
+		msg.pose.pose.orientation.w)
+	euler = transformations.euler_from_quaternion(quaternion)
+	yaw_ = euler[2]
 ## change state
 def change_state(state):
-    global state_
-    state_ = state
-    print 'State changed to [%s]' % state_
+	global state_
+	state_ = state
+	print( 'State changed to [%s]' % state_)
 
 def normalize_angle(angle):
-    if(math.fabs(angle) > math.pi):
-        angle = angle - (2 * math.pi * angle) / (math.fabs(angle))
-    return angle
+	if(math.fabs(angle) > math.pi):
+		angle = angle - (2 * math.pi * angle) / (math.fabs(angle))
+	return angle
 
 def fix_yaw(des_pos):
-    global yaw_, pub, yaw_precision_2_, state_
-    desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
-    err_yaw = normalize_angle(desired_yaw - yaw_)
+	global yaw_, pub, yaw_precision_2_, state_
+	desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
+	err_yaw = normalize_angle(desired_yaw - yaw_)
 
-    
-    twist_msg = Twist()
-    if math.fabs(err_yaw) > yaw_precision_2_:
-        twist_msg.angular.z = kp_a*err_yaw 
-        if twist_msg.angular.z > ub_a:
-		    twist_msg.angular.z = ub_a
-        elif twist_msg.angular.z < lb_a: 
+	
+	twist_msg = Twist()
+	if math.fabs(err_yaw) > yaw_precision_2_:
+		twist_msg.angular.z = kp_a*err_yaw 
+		if twist_msg.angular.z > ub_a:
+			twist_msg.angular.z = ub_a
+		elif twist_msg.angular.z < lb_a: 
 			twist_msg.angular.z = lb_a
-    
-    pub.publish(twist_msg)
-    
-    # state change conditions
-    if math.fabs(err_yaw) <= yaw_precision_2_:
-        print 'Yaw error: [%s]' % err_yaw
-        change_state(1)
+	
+	pub.publish(twist_msg)
+	
+	# state change conditions
+	if math.fabs(err_yaw) <= yaw_precision_2_:
+		print( 'Yaw error: [%s]' % err_yaw)
+		change_state(1)
 
 ## function to go straight ahead
 def go_straight_ahead(des_pos):
-    global yaw_, pub, yaw_precision_, state_
-    desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
-    err_yaw = desired_yaw - yaw_
-    err_pos = math.sqrt(pow(des_pos.y - position_.y, 2) + pow(des_pos.x - position_.x, 2))
-    err_yaw = normalize_angle(desired_yaw - yaw_)
+	global yaw_, pub, yaw_precision_, state_
+	desired_yaw = math.atan2(des_pos.y - position_.y, des_pos.x - position_.x)
+	err_yaw = desired_yaw - yaw_
+	err_pos = math.sqrt(pow(des_pos.y - position_.y, 2) + pow(des_pos.x - position_.x, 2))
+	err_yaw = normalize_angle(desired_yaw - yaw_)
 
 
-    if err_pos > dist_precision_:
-        twist_msg = Twist()
-        twist_msg.linear.x = 0.8
-        if twist_msg.linear.x > ub_d:
+	if err_pos > dist_precision_:
+		twist_msg = Twist()
+		twist_msg.linear.x = 0.8
+		if twist_msg.linear.x > ub_d:
 			twist_msg.linear.x = ub_d
-        
-        twist_msg.angular.z = kp_a*err_yaw
-        pub.publish(twist_msg)
-    else:
-        print 'Position error: [%s]' % err_pos
-        change_state(2)
-    
-    # state change conditions
-    if math.fabs(err_yaw) > yaw_precision_:
-        print 'Yaw error: [%s]' % err_yaw
-        change_state(0)
+		
+		twist_msg.angular.z = kp_a*err_yaw
+		pub.publish(twist_msg)
+	else:
+		print( 'Position error: [%s]' % err_pos)
+		change_state(2)
+	
+	# state change conditions
+	if math.fabs(err_yaw) > yaw_precision_:
+		print( 'Yaw error: [%s]' % err_yaw)
+		change_state(0)
 
 ## Function to terminate the control when target is achieved 
 def done():
-    twist_msg = Twist()
-    twist_msg.linear.x = 0
-    twist_msg.angular.z = 0
-    pub.publish(twist_msg)
-    
+	twist_msg = Twist()
+	twist_msg.linear.x = 0
+	twist_msg.angular.z = 0
+	pub.publish(twist_msg)
+	
 ## Function to plan the control to reach the target
 def planning(goal):
 	
@@ -164,7 +164,7 @@ def planning(goal):
 			done()
 			break
 		else:
-		    rospy.logerr('Unknown state!')
+			rospy.logerr('Unknown state!')
 		
 		rate.sleep()
 	if success:
@@ -173,17 +173,17 @@ def planning(goal):
 
 ## main function
 def main():
-    global pub, active_, act_s
-    rospy.init_node('go_to_point')
-    pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
-    sub_odom = rospy.Subscriber('/odom', Odometry, clbk_odom)
-    act_s = actionlib.SimpleActionServer('/reaching_goal', motion_plan.msg.PlanningAction, planning, auto_start = False)
-    act_s.start()
-    
-    rate = rospy.Rate(20)
-    
-    while not rospy.is_shutdown():
-        rate.sleep()
+	global pub, active_, act_s
+	rospy.init_node('go_to_point')
+	pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
+	sub_odom = rospy.Subscriber('/odom', Odometry, clbk_odom)
+	act_s = actionlib.SimpleActionServer('/reaching_goal', motion_plan.msg.PlanningAction, planning, auto_start = False)
+	act_s.start()
+	
+	rate = rospy.Rate(20)
+	
+	while not rospy.is_shutdown():
+		rate.sleep()
 
 if __name__ == '__main__':
-    main()
+	main()
